@@ -9,5 +9,9 @@ public abstract class Character {
     Clothing clothing;
     String surname;
 
+    public static void main(String[] args) {
+        System.out.println("sgsdgsdg");
+    }
+
 
 }
