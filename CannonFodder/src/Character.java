@@ -7,6 +7,7 @@ public abstract class Character {
     int intelligence;
     Weapon weapon;
     Clothing clothing;
+    String surname;
 
 
 }
