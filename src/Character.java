@@ -10,7 +10,7 @@ public abstract class Character {
     String surname;
 
     public static void main(String[] args) {
-        System.out.println("sgsdgsdg");
+        System.out.println("hello world");
     }
 
 
