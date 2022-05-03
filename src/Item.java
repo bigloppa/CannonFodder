@@ -3,14 +3,17 @@ public abstract class Item{
     private String name;
     private int value;
     private int weight;
+    private int endurance;
 
     public Item(){
 
     }
+
     public Item(String name, int value, int weight) {
         this.name = name;
         this.value = value;
         this.weight = weight;
+        this.endurance = endurance;
     }
 
     public String getName() {
@@ -36,4 +39,11 @@ public abstract class Item{
     public void setWeight(int weight) {
         this.weight = weight;
     }
+    public int getEndurance(){
+        return endurance;
+    }
+    public void setEndurance(int endurance){
+
+    }
+
 }

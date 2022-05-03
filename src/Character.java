@@ -3,8 +3,9 @@ import java.util.ArrayList;
 
 
 public abstract class Character {
+    //FIELDS
     private String name;
-    private long hp = Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength());
+    private long hp;
     private int vitality;
     private int strength;
     private int intelligence;
@@ -14,7 +15,14 @@ public abstract class Character {
     private ArrayList<Item> inventory;
 
 
-
+    //CONSTRUCTORS + GET-SET
+    public Character(){
+        if ((int)Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength())>35){
+            setHp(35);
+        }else{
+            setHp((int)Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength()));
+        }
+    }
 
     public String getName() {
         return name;
@@ -87,4 +95,47 @@ public abstract class Character {
     public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
     }
+
+
+
+    //METHODS
+
+    public void attack(){
+
+
+    }
+
+    public void pick(){
+
+    }
+
+    public void wield(){
+
+    }
+
+    public void wear(){
+
+
+    }
+
+    public void examine(){
+
+    }
+
+    public void listInventory(){
+        System.out.println("Inventory: ");
+        for (Item item:getInventory()){
+            System.out.println(item.getName());
+        }
+    }
+
+    public void death(){
+
+    }
+
+
+
+
+
+
 }
