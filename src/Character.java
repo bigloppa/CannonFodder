@@ -15,13 +15,10 @@ public abstract class Character {
     private ArrayList<Item> inventory;
 
 
+
     //CONSTRUCTORS + GET-SET
     public Character(){
-        if ((int)Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength())>35){
-            setHp(35);
-        }else{
-            setHp((int)Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength()));
-        }
+
     }
 
     public String getName() {
@@ -36,7 +33,7 @@ public abstract class Character {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(long hp) {
         this.hp = hp;
     }
 
@@ -100,7 +97,24 @@ public abstract class Character {
 
     //METHODS
 
-    public void attack(){
+    public void calculateHp(){
+        if (Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength())>35){
+            setHp(35);
+        }else{
+            setHp((Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength())));
+        }
+    }
+
+    public void attack(Character selectedCharacter){
+        if (getWeapon()==null){
+            System.out.println("This Character doesn't wield a weapon it cannot attack.");
+
+        }else {
+            int dmg = getWeapon().getAttackDmg()*getStrength();
+            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
+            System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
+        }
+
 
 
     }

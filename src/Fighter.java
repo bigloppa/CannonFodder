@@ -9,6 +9,7 @@ public class Fighter extends Character {
         setStrength(secureRandom.nextInt(5)+6);
         setVitality(secureRandom.nextInt(5)+3);
         setIntelligence(secureRandom.nextInt(5)+1);
+        calculateHp();
     }
 
 }
