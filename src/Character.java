@@ -118,9 +118,7 @@ public abstract class Character {
 
     }
 
-    public void examine(){
 
-    }
 
     public void listInventory(){
         System.out.println("Inventory: ");

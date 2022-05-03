@@ -1,9 +1,9 @@
 
 public abstract class Item{
     private String name;
-    private int value;
+    private int tier;
     private int weight;
-    private int endurance;
+
 
     public Item(){
 
@@ -11,9 +11,9 @@ public abstract class Item{
 
     public Item(String name, int value, int weight) {
         this.name = name;
-        this.value = value;
+        this.tier = value;
         this.weight = weight;
-        this.endurance = endurance;
+
     }
 
     public String getName() {
@@ -24,12 +24,12 @@ public abstract class Item{
         this.name = name;
     }
 
-    public int getValue() {
-        return value;
+    public int getTier() {
+        return tier;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setTier(int value) {
+        this.tier = value;
     }
 
     public int getWeight() {
@@ -39,10 +39,8 @@ public abstract class Item{
     public void setWeight(int weight) {
         this.weight = weight;
     }
-    public int getEndurance(){
-        return endurance;
-    }
-    public void setEndurance(int endurance){
+
+    public void examine(){
 
     }
 
