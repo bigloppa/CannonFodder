@@ -11,7 +11,7 @@ public abstract class Character {
 
     public static void main(String[] args) {
         System.out.println("hello world");
-        System.out.println("adgsggaf");
+        System.out.println("sdfsdgsdg");
     }
 
 
