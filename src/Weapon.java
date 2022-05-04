@@ -3,6 +3,14 @@
 public class Weapon extends Item{
     private int attackDmg;
 
+    public Weapon(){
+
+    }
+
+    public Weapon(String name, int value, int weight, int attackDmg) {
+        super(name, value, weight);
+        this.attackDmg = attackDmg;
+    }
 
     public int getAttackDmg() {
         return attackDmg;

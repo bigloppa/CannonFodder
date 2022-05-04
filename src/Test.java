@@ -1,11 +1,20 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Test {
     public static void main(String[] args) {
-        Weapon weapon = new Weapon();
-        weapon.setAttackDmg(2);
         Tank tank = new Tank();
-        Enemy enemy = new Enemy();
-        enemy.setWeapon(weapon);
-        enemy.attack(tank);
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Item> arrayList = new ArrayList<>();
+        arrayList.add(new Shield("Excalibur",12,12,12,12));
+        tank.setInventory(arrayList);
+
+        String[] userInput = scanner.nextLine().split(" ");
+        tank.wield(userInput);
+
+        System.out.println(tank.getWeapon());
+
+        System.out.println(arrayList.size());
 
 
 

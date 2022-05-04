@@ -121,9 +121,14 @@ public abstract class Character {
 
     public void pick(){
 
+
     }
 
-    public void wield(){
+    public void wield(String[] userInput){
+
+
+
+
 
     }
 
@@ -139,6 +144,7 @@ public abstract class Character {
         for (Item item:getInventory()){
             System.out.println(item.getName());
         }
+        System.out.println("********************");
     }
 
     public void death(){
