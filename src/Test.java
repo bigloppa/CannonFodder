@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,7 +7,7 @@ public class Test {
         Tank tank = new Tank();
         Scanner scanner = new Scanner(System.in);
         ArrayList<Item> arrayList = new ArrayList<>();
-        arrayList.add(new Shield("Excalibur",12,12,12,12));
+        arrayList.add(new Sword("Excalibur",12,12,12));
         tank.setInventory(arrayList);
 
         String[] userInput = scanner.nextLine().split(" ");

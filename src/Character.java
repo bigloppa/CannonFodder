@@ -125,10 +125,23 @@ public abstract class Character {
     }
 
     public void wield(String[] userInput){
+        Item tempItem = null;
+        ArrayList<Item> tempInv = getInventory();
+        for (Item item:getInventory()){
+            if (userInput[2].equals(item.getName())&&(item.getClass().equals(Shield.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Wand.class))){
+                tempItem = item;
+                setWeapon((Weapon) tempItem);
 
+            }else if(){
+                //PICKING FROM GROUND
 
+            } else{
+                System.out.println("Item not found.");
+            }
+        }
 
-
+        tempInv.remove(tempItem);
+        setInventory(tempInv);
 
     }
 
