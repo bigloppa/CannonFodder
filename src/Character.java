@@ -11,7 +11,6 @@ public abstract class Character {
     private int intelligence;
     private Weapon weapon;
     private Clothing clothing;
-    private String surname;
     private ArrayList<Item> inventory;
 
 
@@ -75,14 +74,6 @@ public abstract class Character {
 
     public void setClothing(Clothing clothing) {
         this.clothing = clothing;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public ArrayList<Item> getInventory() {

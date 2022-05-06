@@ -5,6 +5,7 @@ public class Fighter extends Character {
 
 
     public Fighter(){
+        setName("Fighter");
         SecureRandom secureRandom = new SecureRandom();
         setStrength(secureRandom.nextInt(5)+6);
         setVitality(secureRandom.nextInt(5)+3);

@@ -2,6 +2,7 @@ import java.security.SecureRandom;
 
 public class Mage extends Character {
     public Mage(){
+        setName("Healer");
         SecureRandom secureRandom = new SecureRandom();
         setStrength(secureRandom.nextInt(5)+3);
         setVitality(secureRandom.nextInt(5)+1);
