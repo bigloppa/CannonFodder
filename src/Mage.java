@@ -6,6 +6,6 @@ public class Mage extends Character {
         setStrength(secureRandom.nextInt(5)+3);
         setVitality(secureRandom.nextInt(5)+1);
         setIntelligence(secureRandom.nextInt(5)+6);
-        calculateHp();
+        setHp(calculateHp());
     }
 }

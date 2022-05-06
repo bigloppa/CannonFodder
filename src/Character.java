@@ -97,11 +97,11 @@ public abstract class Character {
 
     //METHODS
 
-    public void calculateHp(){
+    public long calculateHp(){
         if (Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength())>35){
-            setHp(35);
+            return 35;
         }else{
-            setHp((Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength())));
+            return  Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength());
         }
     }
 
@@ -132,10 +132,7 @@ public abstract class Character {
                 tempItem = item;
                 setWeapon((Weapon) tempItem);
 
-            }else if(){
-                //PICKING FROM GROUND
-
-            } else{
+            }else{
                 System.out.println("Item not found.");
             }
         }
