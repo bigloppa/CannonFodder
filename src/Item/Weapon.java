@@ -1,6 +1,8 @@
+package Item;
 
 
-public class Weapon extends Item{
+
+public class Weapon extends Item {
     private int attackDmg;
 
     public Weapon(){
@@ -22,10 +24,10 @@ public class Weapon extends Item{
 
     @Override
     public void examine(){
-        System.out.println("Item Name: "+getName());
-        System.out.println("Item Type: "+getClass());
-        System.out.println("Item Weight: "+getWeight());
-        System.out.println("Item Tier: "+ getTier());
-        System.out.println("Item Damage"+getAttackDmg());
+        System.out.println("Item.Item Name: "+getName());
+        System.out.println("Item.Item Type: "+getClass());
+        System.out.println("Item.Item Weight: "+getWeight());
+        System.out.println("Item.Item Tier: "+ getTier());
+        System.out.println("Item.Item Damage"+getAttackDmg());
     }
 }

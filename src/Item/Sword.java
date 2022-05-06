@@ -1,4 +1,8 @@
-public class Sword extends Weapon{
+package Item;
+
+
+
+public class Sword extends Weapon {
     public Sword(){
 
     }

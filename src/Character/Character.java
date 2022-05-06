@@ -1,3 +1,8 @@
+package Character;
+
+
+import Item.*;
+
 import java.lang.Math;
 import java.util.ArrayList;
 
@@ -98,7 +103,7 @@ public abstract class Character {
 
     public void attack(Character selectedCharacter){
         if (getWeapon()==null){
-            System.out.println("This Character doesn't wield a weapon it cannot attack.");
+            System.out.println("This Character.Character doesn't wield a weapon it cannot attack.");
 
         }else {
             int dmg = getWeapon().getAttackDmg()*getStrength();
@@ -124,7 +129,7 @@ public abstract class Character {
                 setWeapon((Weapon) tempItem);
 
             }else{
-                System.out.println("Item not found.");
+                System.out.println("Item.Item not found.");
             }
         }
 
@@ -133,7 +138,21 @@ public abstract class Character {
 
     }
 
-    public void wear(){
+    public void wear(String[] userInput){
+        Item tempItem = null;
+        ArrayList<Item> tempInv = getInventory();
+        for (Item item:getInventory()){
+            if (userInput[2].equals(item.getName())&&(item.getClass().equals(MedArmor.class)||item.getClass().equals(LightArmor.class)||item.getClass().equals(HardArmor.class))){
+                tempItem = item;
+                setClothing((Clothing) tempItem);
+
+            }else{
+                System.out.println("Item.Item not found.");
+            }
+        }
+
+        tempInv.remove(tempItem);
+        setInventory(tempInv);
 
 
     }
