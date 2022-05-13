@@ -164,7 +164,7 @@ public abstract class Character {
                 setClothing((Clothing) tempItem);
 
             }else{
-                System.out.println("Item.Item not found.");
+                System.out.println("Item not found.");
             }
 
         }
