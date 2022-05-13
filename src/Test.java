@@ -10,13 +10,17 @@ public class Test {
         Tank tank = new Tank();
         Scanner scanner = new Scanner(System.in);
         ArrayList<Item> arrayList = new ArrayList<>();
+
         arrayList.add(new Sword("Excalibur",12,12,12));
-        tank.setInventory(arrayList);
+        tank.setInventory(new ArrayList<Item>());
+
 
         String[] userInput = scanner.nextLine().split(" ");
-        tank.wield(userInput);
+
+        tank.pick(userInput,arrayList);
 
         System.out.println(tank.getWeapon());
+        tank.listInventory();
 
         System.out.println(arrayList.size());
 

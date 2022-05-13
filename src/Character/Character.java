@@ -115,13 +115,30 @@ public abstract class Character {
 
     }
 
-    public void pick(){
+    public void pick(String[] userInput,ArrayList<Item> groundInventory){
+        Item selectedItem = null;
+        for (Item item:groundInventory){
+            if (item.getName().equals(userInput[2])){
+                selectedItem = item;
+            }
+        }
+
+        if (selectedItem != null){
+            groundInventory.remove(selectedItem);
+            ArrayList<Item> tempInv = getInventory();
+            tempInv.add(selectedItem);
+            setInventory(tempInv);
+            System.out.println(getName()+" has picked up the "+selectedItem.getName());
+
+        }else{
+            System.out.println("Item not found.");
+        }
 
 
     }
 
     public void wield(String[] userInput){
-        Item tempItem = null;
+        Item tempItem = new Weapon();
         ArrayList<Item> tempInv = getInventory();
         for (Item item:getInventory()){
             if (userInput[2].equals(item.getName())&&(item.getClass().equals(Shield.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Wand.class))){
@@ -129,7 +146,7 @@ public abstract class Character {
                 setWeapon((Weapon) tempItem);
 
             }else{
-                System.out.println("Item.Item not found.");
+                System.out.println("Item not found.");
             }
         }
 
@@ -149,6 +166,7 @@ public abstract class Character {
             }else{
                 System.out.println("Item.Item not found.");
             }
+
         }
 
         tempInv.remove(tempItem);

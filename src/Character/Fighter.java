@@ -19,4 +19,6 @@ public class Fighter extends Character {
         setInventory(new ArrayList<Item>());
     }
 
+
+
 }
