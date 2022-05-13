@@ -42,7 +42,10 @@ public abstract class Item{
     }
 
     public void examine(){
-
+        System.out.println("Item Name: "+getName());
+        System.out.println("Item Type: "+getClass());
+        System.out.println("Item Weight: "+getWeight());
+        System.out.println("Item Tier: "+ getTier());
     }
 
 }

@@ -5,6 +5,7 @@ package Item;
 public class Clothing extends Item {
     private int endurance;
 
+
     public int getEndurance() {
         return endurance;
     }
@@ -15,11 +16,8 @@ public class Clothing extends Item {
 
     @Override
     public void examine(){
-        System.out.println("Item.Item Name: "+getName());
-        System.out.println("Item.Item Type: "+getClass());
-        System.out.println("Item.Item Weight: "+getWeight());
-        System.out.println("Item.Item Tier: "+getTier());
-        System.out.println("Item.Item Endurance"+getEndurance());
+        super.examine();
+        System.out.println("Item Endurance"+getEndurance());
     }
 
 

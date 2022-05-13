@@ -24,10 +24,7 @@ public class Weapon extends Item {
 
     @Override
     public void examine(){
-        System.out.println("Item.Item Name: "+getName());
-        System.out.println("Item.Item Type: "+getClass());
-        System.out.println("Item.Item Weight: "+getWeight());
-        System.out.println("Item.Item Tier: "+ getTier());
-        System.out.println("Item.Item Damage"+getAttackDmg());
+        super.examine();
+        System.out.println("Item Damage"+getAttackDmg());
     }
 }
