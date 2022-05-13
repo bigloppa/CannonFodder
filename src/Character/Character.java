@@ -115,6 +115,21 @@ public abstract class Character {
 
     }
 
+    // TODO: 13.05.2022 write the max weight value
+    public boolean checkWeight(Item pickedItem){
+        int sum = pickedItem.getWeight();
+        for (Item item:getInventory()){
+            sum += item.getWeight();
+
+        }
+
+        if (sum<=getVitality()*4){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public void pick(String[] userInput,ArrayList<Item> groundInventory){
         Item selectedItem = null;
         for (Item item:groundInventory){
@@ -123,7 +138,7 @@ public abstract class Character {
             }
         }
 
-        if (selectedItem != null){
+        if (selectedItem != null&&checkWeight(selectedItem)){
             groundInventory.remove(selectedItem);
             ArrayList<Item> tempInv = getInventory();
             tempInv.add(selectedItem);
@@ -131,7 +146,7 @@ public abstract class Character {
             System.out.println(getName()+" has picked up the "+selectedItem.getName());
 
         }else{
-            System.out.println("Item not found.");
+            System.out.println("Item not found or "+getName()+" doesn't have enough strength to carry.");
         }
 
 

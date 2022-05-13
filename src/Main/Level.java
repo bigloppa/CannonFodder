@@ -9,6 +9,7 @@ public class Level {
     private static int levelNum;
     private static int enemyNum;
     private ArrayList<Item> generalInv;
+    private ArrayList<Character> characters;
 
     public static int getLevelNum() {
         return levelNum;
@@ -41,5 +42,13 @@ public class Level {
 
     public void setGeneralInv(ArrayList<Item> generalInv) {
         this.generalInv = generalInv;
+    }
+
+    public ArrayList<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(ArrayList<Character> characters) {
+        this.characters = characters;
     }
 }
