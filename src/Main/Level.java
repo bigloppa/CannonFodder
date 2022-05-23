@@ -51,4 +51,9 @@ public class Level {
     public void setCharacters(ArrayList<Character> characters) {
         this.characters = characters;
     }
+
+
+    public static void main(String[] args) {
+        
+    }
 }
