@@ -24,6 +24,11 @@ public abstract class Character {
     public Character(){
 
     }
+    public Character(Weapon weapon,Clothing clothing,ArrayList<Item> inventory){
+        this.weapon = weapon;
+        this.clothing = clothing;
+        this.inventory = inventory;
+    }
 
     public String getName() {
         return name;

@@ -25,6 +25,12 @@ public class Test {
 
         System.out.println(arrayList.size());
 
+        Clothing cloth = new Clothing("Med Armor",10,15,25);
+        Weapon weapon = new Sword("Dark Sword",12,10,25);
+        ArrayList<Item> arrayList1 = new ArrayList<>();
+        Fighter fighter = new Fighter(weapon,cloth,arrayList1);
+
+
 
 
     }
