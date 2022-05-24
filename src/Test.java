@@ -11,6 +11,7 @@ public class Test {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Item> arrayList = new ArrayList<>();
 
+
         arrayList.add(new Sword("Excalibur",12,12,12));
         tank.setInventory(new ArrayList<Item>());
 

@@ -46,6 +46,7 @@ public abstract class Item{
         System.out.println("Item Type: "+getClass());
         System.out.println("Item Weight: "+getWeight());
         System.out.println("Item Tier: "+ getTier());
+
     }
 
 }

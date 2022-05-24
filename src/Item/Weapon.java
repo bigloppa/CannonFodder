@@ -25,6 +25,7 @@ public class Weapon extends Item {
     @Override
     public void examine(){
         super.examine();
+
         System.out.println("Item Damage"+getAttackDmg());
     }
 }

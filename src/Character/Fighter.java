@@ -9,6 +9,7 @@ public class Fighter extends Character {
 
 
 
+
     public Fighter(){
         setName("Character.Fighter");
         SecureRandom secureRandom = new SecureRandom();

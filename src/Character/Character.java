@@ -146,7 +146,8 @@ public abstract class Character {
             System.out.println(getName()+" has picked up the "+selectedItem.getName());
 
         }else{
-            System.out.println("Item not found or "+getName()+" doesn't have enough strength to carry.");
+            System.out.println("Item not found or "+getName()+" doesn't have enough strength to carry." +
+                    "");
         }
 
 

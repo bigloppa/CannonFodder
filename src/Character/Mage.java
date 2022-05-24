@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Mage extends Character {
 
+
     public Mage(){
         setName("Healer");
         SecureRandom secureRandom = new SecureRandom();
