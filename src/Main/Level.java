@@ -1,6 +1,8 @@
 package Main;
 
 import Item.Item;
+import Character.*;
+import  Character.Character;
 
 import java.util.ArrayList;
 
@@ -54,6 +56,11 @@ public class Level {
 
 
     public static void main(String[] args) {
+        System.out.println("CANNON FODDER");
+        Fighter fighter = new Fighter();
+
+
+
 
 
     }
