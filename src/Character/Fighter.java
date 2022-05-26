@@ -42,9 +42,17 @@ public class Fighter extends Character {
     }
 
 
+    @Override
+    public void attack(Character selectedCharacter) {
+        if (getWeapon()==null){
+            System.out.println("This Character.Character doesn't wield a weapon it cannot attack.");
 
-
-
+        }else {
+            int dmg = getWeapon().getAttackDmg()*getStrength();
+            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
+            System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
+        }
+    }
 
     public Sword selectRandomItem(ArrayList<Item>generalInv){
         SecureRandom secureRandom = new SecureRandom();

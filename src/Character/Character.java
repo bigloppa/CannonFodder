@@ -7,7 +7,7 @@ import java.lang.Math;
 import java.util.ArrayList;
 
 
-public abstract class Character {
+public abstract class Character implements CharActions {
     //FIELDS
     private String name;
     private long hp;
@@ -107,17 +107,7 @@ public abstract class Character {
     }
 
     public void attack(Character selectedCharacter){
-        if (getWeapon()==null){
-            System.out.println("This Character.Character doesn't wield a weapon it cannot attack.");
-
-        }else {
-            int dmg = getWeapon().getAttackDmg()*getStrength();
-            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
-            System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
-        }
-
-
-
+        
     }
 
     // TODO: 13.05.2022 write the max weight value
