@@ -4,6 +4,7 @@ import Item.Item;
 import Character.*;
 import  Character.Character;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -63,24 +64,57 @@ public class Level {
         Fighter fighter = new Fighter(generalInv);
         Mage mage = new Mage(generalInv);
         Tank tank = new Tank(generalInv);
+        Enemy enemy = new Enemy();// TODO: 26.05.2022 add random item
 
 
-        String userInput = scanner.nextLine();
+        String userAnswer = scanner.nextLine();
 
 
-        String[] userInp = userInput.split(" ");
-        
-
-
-
-
-
-
-
+        String[] userInp = userAnswer.split(" ");
 
 
 
 
 
     }
+
+    public void selectChar(String[] userInput){
+        switch (userInput[0]) {
+            case "Mage":
+
+            case "Fighter":
+            case "Tank":
+
+        }
+    }
+
+
+
+    public void selectAction(String[] userInput,Character character,ArrayList<Enemy> enemyList){
+        switch (userInput[1]){
+            case "attack":
+                for (Enemy enemy : enemyList){
+                    if (userInput[2].equals(enemy.getName())){
+                        character.attack(enemy);
+                    }
+                }
+            case "examine":
+                for(Item item: getGround()){
+                    if (userInput[2].equals(item.getName())){
+                        character.examine(userInput[2],ground);
+                    }
+                }
+
+            case "listInventory":
+                character.listInventory();
+            case "pick":
+
+
+            case "wield":
+
+            case "special":
+
+        }
+    }
+
 }

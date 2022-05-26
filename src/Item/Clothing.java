@@ -19,13 +19,7 @@ public class Clothing extends Item {
         this.endurance = endurance;
     }
 
-    @Override
-    public void examine(){
-        super.examine();
 
-
-        System.out.println("Item Endurance"+getEndurance());
-    }
 
 
 }

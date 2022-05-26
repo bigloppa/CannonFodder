@@ -182,6 +182,25 @@ public abstract class Character implements CharActions {
 
     }
 
+    public void examine(String name,ArrayList<Item> ground){
+        for (Item item: inventory){
+            if (item.getName().equals(name)&& (item.getClass().equals(Wand.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Shield.class))){
+                System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
+            }else if (item.getName().equals(name)&& item.getClass().equals((Clothing.class))){
+                System.out.println(item.getName()+ " has "+((Clothing) item).getEndurance()+" and "+item.getWeight()+" unit of weight.");
+            }
+        }
+
+        for (Item item: ground){
+            if (item.getName().equals(name)&& (item.getClass().equals(Wand.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Shield.class))){
+                System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
+            }else if (item.getName().equals(name)&& item.getClass().equals((Clothing.class))){
+                System.out.println(item.getName()+ " has "+((Clothing) item).getEndurance()+" and "+item.getWeight()+" unit of weight.");
+            }
+        }
+
+    }
+
 
 
 

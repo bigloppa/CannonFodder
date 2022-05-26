@@ -10,12 +10,15 @@ public class Test {
         ArrayList<Item>generaInv = new ArrayList<Item>();
         generaInv.add(new Sword("asd",23,23));
         generaInv.add(new Sword("exca",434,123));
-        generaInv.add(new Wand());
-        generaInv.add(new Shield());
+        generaInv.add(new Weapon("asda",12,23));
 
         Fighter fighter = new Fighter(generaInv);
 
-        System.out.println(fighter.getWeapon().getName());
+        fighter.setInventory(generaInv);
+
+        fighter.examine("exca",generaInv);
+
+
 
         ArrayList<Item> FighterInv = new ArrayList<>();
         FighterInv.add(new Sword("asd",23,23));
@@ -24,6 +27,8 @@ public class Test {
         Fighter fighter2 = new Fighter(FighterInv);
         fighter2.selectRandomItem(FighterInv);
         System.out.println(fighter2.getWeapon().getName());
+
+
 
 
 

@@ -47,7 +47,7 @@ public class Fighter extends Character {
     @Override
     public void attack(Character selectedCharacter) {
         if (getWeapon()==null){
-            System.out.println("This Character.Character doesn't wield a weapon it cannot attack.");
+            System.out.println("This Character doesn't wield a weapon it cannot attack.");
 
         }else {
             int dmg = getWeapon().getAttackDmg()*getStrength();
