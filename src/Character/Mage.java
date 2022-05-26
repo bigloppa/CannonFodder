@@ -19,6 +19,15 @@ public class Mage extends Character {
         setHp(calculateHp());
         setInventory(new ArrayList<Item>());
     }
+    public Mage(ArrayList<Item> GeneralInv){
+        setName("Healer");
+        SecureRandom secureRandom = new SecureRandom();
+        setStrength(secureRandom.nextInt(5)+3);
+        setVitality(secureRandom.nextInt(5)+1);
+        setIntelligence(secureRandom.nextInt(5)+6);
+        setHp(calculateHp());
+        setInventory(new ArrayList<Item>());
+    }
     public Mage(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
         super(weapon, clothing, inventory);
         setName("Healer");

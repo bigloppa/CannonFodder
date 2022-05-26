@@ -10,7 +10,7 @@ public class Level {
     private ArrayList<Item> ground;
     private static int levelNum;
     private static int enemyNum;
-    private ArrayList<Item> generalInv;
+    private static ArrayList<Item> generalInv;
     private ArrayList<Character> characters;
 
     public static int getLevelNum() {
@@ -57,7 +57,12 @@ public class Level {
 
     public static void main(String[] args) {
         System.out.println("CANNON FODDER");
-        Fighter fighter = new Fighter();
+        Fighter fighter = new Fighter(generalInv);
+        Mage mage = new Mage(generalInv);
+        Tank tank = new Tank(generalInv);
+
+
+
 
 
 

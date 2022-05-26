@@ -7,28 +7,16 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
-        Tank tank = new Tank();
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Item> arrayList = new ArrayList<>();
+        ArrayList<Item>generaInv = new ArrayList<Item>();
+        generaInv.add(new Sword("asd",23,23));
+        generaInv.add(new Sword("exca",434,123));
+        generaInv.add(new Wand());
+        generaInv.add(new Shield());
 
+        Fighter fighter = new Fighter(generaInv);
 
-        arrayList.add(new Sword("Excalibur",12,12,12));
-        tank.setInventory(new ArrayList<Item>());
+        System.out.println(fighter.getWeapon().getName());
 
-
-        String[] userInput = scanner.nextLine().split(" ");
-
-        tank.pick(userInput,arrayList);
-
-        System.out.println(tank.getWeapon());
-        tank.listInventory();
-
-        System.out.println(arrayList.size());
-
-        Clothing cloth = new Clothing("Med Armor",10,15,25);
-        Weapon weapon = new Sword("Dark Sword",12,10,25);
-        ArrayList<Item> arrayList1 = new ArrayList<>();
-        Fighter fighter = new Fighter(weapon,cloth,arrayList1);
 
 
 

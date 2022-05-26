@@ -6,7 +6,7 @@ public class Clothing extends Item {
     private int endurance;
 
     public Clothing(String name,int tier,int weight,int endurance){
-        super(name,tier,weight);
+        super(name,weight);
         this.endurance = endurance;
     }
 

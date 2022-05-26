@@ -12,8 +12,8 @@ public class Shield extends Weapon {
 
     }
 
-    public Shield(String name, int value, int weight, int attackDmg) {
-        super(name, value, weight, attackDmg);
+    public Shield(String name, int weight, int attackDmg) {
+        super(name, weight, attackDmg);
 
     }
 

@@ -10,9 +10,9 @@ public abstract class Item{
 
     }
 
-    public Item(String name, int value, int weight) {
+    public Item(String name, int weight) {
         this.name = name;
-        this.tier = value;
+
         this.weight = weight;
 
     }

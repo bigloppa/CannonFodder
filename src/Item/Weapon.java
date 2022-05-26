@@ -9,8 +9,8 @@ public class Weapon extends Item {
 
     }
 
-    public Weapon(String name, int value, int weight, int attackDmg) {
-        super(name, value, weight);
+    public Weapon(String name, int weight, int attackDmg) {
+        super(name, weight);
         this.attackDmg = attackDmg;
     }
 

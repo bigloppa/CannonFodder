@@ -198,6 +198,8 @@ public abstract class Character {
 
 
 
+
+
     public void listInventory(){
         System.out.println("Inventory: ");
         for (Item item:getInventory()){
