@@ -5,6 +5,7 @@ import Character.*;
 import  Character.Character;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Level {
     private ArrayList<Item> ground;
@@ -56,10 +57,22 @@ public class Level {
 
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("CANNON FODDER");
         Fighter fighter = new Fighter(generalInv);
         Mage mage = new Mage(generalInv);
         Tank tank = new Tank(generalInv);
+
+
+        String userInput = scanner.nextLine();
+
+
+        String[] userInp = userInput.split(" ");
+        
+
+
+
 
 
 
