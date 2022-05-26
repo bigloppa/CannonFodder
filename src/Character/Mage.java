@@ -52,4 +52,25 @@ public class Mage extends Character {
             System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
         }
     }
+
+    @Override
+    public Weapon selectRandomItem(ArrayList<Item>generalInv){
+        SecureRandom secureRandom = new SecureRandom();
+        Wand selectedItem = null;
+
+        while(selectedItem == null) {
+            int randomNum = secureRandom.nextInt(generalInv.size());
+            for (Item item : generalInv) {
+                if(randomNum == generalInv.indexOf(item)&& item.getClass().equals(Wand.class)){
+                    selectedItem = (Wand)item;
+                }
+
+            }
+        }
+        return selectedItem;
+
+
+    }
+
+
 }

@@ -20,6 +20,7 @@ public class Fighter extends Character {
         setWeapon(selectRandomItem(generalInv));
         setInventory(new ArrayList<Item>());
     }
+
     public Fighter(){
         setName("Fighter");
         SecureRandom secureRandom = new SecureRandom();
@@ -29,6 +30,7 @@ public class Fighter extends Character {
         setHp(calculateHp());
         setInventory(new ArrayList<Item>());
     }
+
     public Fighter(Weapon weapon,Clothing clothing,ArrayList<Item> inventory){
         super(weapon, clothing, inventory);
         setName("Fighter");
@@ -54,7 +56,13 @@ public class Fighter extends Character {
         }
     }
 
-    public Sword selectRandomItem(ArrayList<Item>generalInv){
+
+
+
+
+
+    @Override
+    public Weapon selectRandomItem(ArrayList<Item>generalInv){
         SecureRandom secureRandom = new SecureRandom();
         Sword selectedItem = null;
 

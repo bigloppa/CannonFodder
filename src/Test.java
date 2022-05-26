@@ -17,6 +17,17 @@ public class Test {
 
         System.out.println(fighter.getWeapon().getName());
 
+        ArrayList<Item> FighterInv = new ArrayList<>();
+        FighterInv.add(new Sword("asd",23,23));
+        FighterInv.add(new Shield("exca",434,123));
+        FighterInv.add(new Wand("Merhaba",45,245));
+        Fighter fighter2 = new Fighter(FighterInv);
+        fighter2.selectRandomItem(FighterInv);
+        System.out.println(fighter2.getWeapon().getName());
+
+
+
+
 
 
 

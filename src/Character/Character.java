@@ -106,10 +106,6 @@ public abstract class Character implements CharActions {
         }
     }
 
-    public void attack(Character selectedCharacter){
-        
-    }
-
     // TODO: 13.05.2022 write the max weight value
     public boolean checkWeight(Item pickedItem){
         int sum = pickedItem.getWeight();
@@ -196,10 +192,6 @@ public abstract class Character implements CharActions {
             System.out.println(item.getName());
         }
         System.out.println("********************");
-    }
-
-    public void death(){
-
     }
 
 
