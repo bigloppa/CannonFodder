@@ -42,9 +42,7 @@ public class Fighter extends Character {
     }
 
 
-    public void setWeapon(Sword sword){
 
-    }
 
 
 
