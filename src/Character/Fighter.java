@@ -10,12 +10,13 @@ public class Fighter extends Character {
 
 
 
-    public Fighter(ArrayList<Item> generalInv){
+    public Fighter(ArrayList<Item> allItems){
         setName("Fighter");
         SecureRandom secureRandom = new SecureRandom();
         setStrength(secureRandom.nextInt(5)+6);
         setVitality(secureRandom.nextInt(5)+3);
         setIntelligence(secureRandom.nextInt(5)+1);
+        setWeapon(createWeapon(allItems));
         setHp(calculateHp());
 
         setInventory(new ArrayList<Item>());

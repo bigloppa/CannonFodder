@@ -14,7 +14,7 @@ public class Level {
     private ArrayList<Item> ground;
     private static int levelNum;
     private static int enemyNum;
-    private static ArrayList<Item> generalInv;
+    private static ArrayList<Item> allItems;
     private ArrayList<Character> characters;
     private ArrayList<Enemy> enemies;
 
@@ -44,11 +44,11 @@ public class Level {
 
 
     public ArrayList<Item> getGeneralInv() {
-        return generalInv;
+        return allItems;
     }
 
-    public void setGeneralInv(ArrayList<Item> generalInv) {
-        this.generalInv = generalInv;
+    public void setGeneralInv(ArrayList<Item> allItems) {
+        this.allItems = allItems;
     }
 
     public ArrayList<Character> getCharacters() {
@@ -72,17 +72,17 @@ public class Level {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("CANNON FODDER");
-        Fighter fighter = new Fighter();
-        Healer mage = new Healer();
-        Tank tank = new Tank();
-        Enemy enemy = new Enemy();// TODO: 26.05.2022 add random item
+        Fighter fighter = new Fighter(allItems);
+        Healer mage = new Healer(allItems);
+        Tank tank = new Tank(allItems);
+
         Level level = new Level();
 
 
         ArrayList<Character> characters = new ArrayList<Character>();
         characters.add(fighter);
         characters.add(mage);
-        characters.add(enemy);
+        characters.add(tank);
 
         ArrayList<Enemy> enemies = new ArrayList<>();
 
@@ -169,9 +169,9 @@ public class Level {
     public Item selectRandomItem() {
         SecureRandom secureRandom = new SecureRandom();
 
-        int randomNum = secureRandom.nextInt(generalInv.size());
-        for (Item item : generalInv) {
-            if(randomNum == generalInv.indexOf(item)&& item instanceof Sword){
+        int randomNum = secureRandom.nextInt(allItems.size());
+        for (Item item : allItems) {
+            if(randomNum == allItems.indexOf(item)&& item instanceof Sword){
                 return item;
             }
 

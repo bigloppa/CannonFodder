@@ -2,31 +2,31 @@
 import Item.*;
 import Character.*;
 
+import java.lang.Character;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
-        ArrayList<Item> generaInv = new ArrayList<Item>();
-        generaInv.add(new Sword("asd",23,23));
-        generaInv.add(new Sword("exca",434,123));
-        generaInv.add(new Weapon("asda",12,23));
+        ArrayList<Item> allItems = new ArrayList<Item>();
+        allItems.add(new Wand("hoks",23,12));
+        allItems.add(new Wand("123",22,12));
+        allItems.add(new Sword("exca",22,12));
+        allItems.add(new Sword("excalibi",22,12));
+        allItems.add(new Shield("shielee",22,12));
+        allItems.add(new Shield("shieleelessdd",22,12));
 
-        Fighter fighter = new Fighter(generaInv);
-
-        fighter.setInventory(generaInv);
-
-        fighter.examine("exca",generaInv);
+        Healer healer = new Healer(allItems);
+        Tank tank = new Tank(allItems);
+        Fighter fighter = new Fighter(allItems);
 
 
+        System.out.println(fighter.getWeapon().getName());
+        System.out.println(healer.getWeapon().getName());
+        System.out.println(tank.getWeapon().getName());
 
-        ArrayList<Item> FighterInv = new ArrayList<Item>();
-        FighterInv.add(new Sword("asd",23,23));
-        FighterInv.add(new Shield("exca",434,123));
-        FighterInv.add(new Wand("Merhaba",45,245));
-        Fighter fighter2 = new Fighter(FighterInv);
 
-        System.out.println(fighter2.getWeapon().getName());
+        System.out.println(fighter.getWeapon().getAttackDmg());
 
 
 

@@ -10,11 +10,12 @@ import Main.Level;
 
 public class Enemy extends Character {
 
-    public Enemy(){
+    public Enemy(ArrayList<Item> allItems){
         SecureRandom secureRandom = new SecureRandom();
         setStrength(secureRandom.nextInt(5)+1);
         setVitality(secureRandom.nextInt(5)+1);
         setIntelligence(secureRandom.nextInt(5)+1);
+        createWeapon(allItems);
         setHp(calculateHp());
     }
 

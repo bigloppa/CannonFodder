@@ -20,19 +20,17 @@ public class Healer extends Character {
         setHp(calculateHp());
         setWeapon(createWeapon(allItems));
         setInventory(new ArrayList<Item>());
-    }
-    public Healer(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
-        super(weapon, clothing, inventory);
-        setName("Healer");
-        SecureRandom secureRandom = new SecureRandom();
-        setStrength(secureRandom.nextInt(5)+3);
-        setVitality(secureRandom.nextInt(5)+1);
-        setIntelligence(secureRandom.nextInt(5)+6);
-        setHp(calculateHp());
         System.out.println("Healer created with S: " + getStrength() + " V: " + getVitality() + " I: " + getIntelligence() + " The HP is: " + getHp() + " Healer wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
-
-
     }
+
+
+
+
+
+
+
+
+
 
     @Override
     public void attack(Character selectedCharacter) {
