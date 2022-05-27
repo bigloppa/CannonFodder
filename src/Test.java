@@ -25,7 +25,7 @@ public class Test {
         FighterInv.add(new Shield("exca",434,123));
         FighterInv.add(new Wand("Merhaba",45,245));
         Fighter fighter2 = new Fighter(FighterInv);
-        fighter2.selectRandomItem(FighterInv);
+
         System.out.println(fighter2.getWeapon().getName());
 
 

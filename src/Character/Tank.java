@@ -54,22 +54,7 @@ public class Tank extends Character {
         }
     }
 
-    @Override
-    public Weapon selectRandomItem(ArrayList<Item> generalInv) {
-        SecureRandom secureRandom = new SecureRandom();
-        Sword selectedItem = null;
 
-        while(selectedItem == null) {
-            int randomNum = secureRandom.nextInt(generalInv.size());
-            for (Item item : generalInv) {
-                if(randomNum == generalInv.indexOf(item)&& item.getClass().equals(Sword.class)){
-                    selectedItem = (Sword)item;
-                }
 
-            }
-        }
-        return selectedItem;
-
-    }
 
 }

@@ -7,7 +7,7 @@ import java.lang.Math;
 import java.util.ArrayList;
 
 
-public abstract class Character implements CharActions {
+public abstract class Character {
     //FIELDS
     private String name;
     private long hp;
@@ -144,21 +144,12 @@ public abstract class Character implements CharActions {
 
     }
 
-    public void wield(String[] userInput){
-        Item tempItem = new Weapon();
-        ArrayList<Item> tempInv = getInventory();
-        for (Item item:getInventory()){
-            if (userInput[2].equals(item.getName())&&(item.getClass().equals(Shield.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Wand.class))){
-                tempItem = item;
-                setWeapon((Weapon) tempItem);
+    public void wield(){
 
-            }else{
-                System.out.println("Item not found.");
-            }
-        }
 
-        tempInv.remove(tempItem);
-        setInventory(tempInv);
+
+
+
 
     }
 
@@ -187,7 +178,7 @@ public abstract class Character implements CharActions {
             if (item.getName().equals(name)&& (item.getClass().equals(Wand.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Shield.class))){
                 System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
             }else if (item.getName().equals(name)&& item.getClass().equals((Clothing.class))){
-                System.out.println(item.getName()+ " has "+((Clothing) item).getEndurance()+" and "+item.getWeight()+" unit of weight.");
+                System.out.println(item.getName()+ " has "+((Clothing) item).getResistance()+" and "+item.getWeight()+" unit of weight.");
             }
         }
 
@@ -195,11 +186,14 @@ public abstract class Character implements CharActions {
             if (item.getName().equals(name)&& (item.getClass().equals(Wand.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Shield.class))){
                 System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
             }else if (item.getName().equals(name)&& item.getClass().equals((Clothing.class))){
-                System.out.println(item.getName()+ " has "+((Clothing) item).getEndurance()+" and "+item.getWeight()+" unit of weight.");
+                System.out.println(item.getName()+ " has "+((Clothing) item).getResistance()+" and "+item.getWeight()+" unit of weight.");
             }
         }
 
     }
+
+    public abstract void attack(Character selectedCharacter);
+
 
 
 

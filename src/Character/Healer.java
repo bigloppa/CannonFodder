@@ -7,10 +7,10 @@ import Item.*;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
-public class Mage extends Character {
+public class Healer extends Character {
 
 
-    public Mage(){
+    public Healer(){
         setName("Healer");
         SecureRandom secureRandom = new SecureRandom();
         setStrength(secureRandom.nextInt(5)+3);
@@ -19,7 +19,7 @@ public class Mage extends Character {
         setHp(calculateHp());
         setInventory(new ArrayList<Item>());
     }
-    public Mage(ArrayList<Item> GeneralInv){
+    public Healer(ArrayList<Item> GeneralInv){
         setName("Healer");
         SecureRandom secureRandom = new SecureRandom();
         setStrength(secureRandom.nextInt(5)+3);
@@ -28,7 +28,7 @@ public class Mage extends Character {
         setHp(calculateHp());
         setInventory(new ArrayList<Item>());
     }
-    public Mage(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
+    public Healer(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
         super(weapon, clothing, inventory);
         setName("Healer");
         SecureRandom secureRandom = new SecureRandom();
@@ -44,7 +44,7 @@ public class Mage extends Character {
     @Override
     public void attack(Character selectedCharacter) {
         if (getWeapon()==null){
-            System.out.println("This Character.Character doesn't wield a weapon it cannot attack.");
+            System.out.println("This Character doesn't wield a weapon it cannot attack.");
 
         }else {
             int dmg = getWeapon().getAttackDmg()*getIntelligence();
@@ -53,24 +53,7 @@ public class Mage extends Character {
         }
     }
 
-    @Override
-    public Weapon selectRandomItem(ArrayList<Item>generalInv){
-        SecureRandom secureRandom = new SecureRandom();
-        Wand selectedItem = null;
 
-        while(selectedItem == null) {
-            int randomNum = secureRandom.nextInt(generalInv.size());
-            for (Item item : generalInv) {
-                if(randomNum == generalInv.indexOf(item)&& item.getClass().equals(Wand.class)){
-                    selectedItem = (Wand)item;
-                }
-
-            }
-        }
-        return selectedItem;
-
-
-    }
 
 
 }

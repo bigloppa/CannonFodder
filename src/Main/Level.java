@@ -1,10 +1,12 @@
 package Main;
 
-import Item.Item;
+import Item.*;
 import Character.*;
 import  Character.Character;
+import Item.Item;
 
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,6 +16,7 @@ public class Level {
     private static int enemyNum;
     private static ArrayList<Item> generalInv;
     private ArrayList<Character> characters;
+    private ArrayList<Enemy> enemies;
 
     public static int getLevelNum() {
         return levelNum;
@@ -56,13 +59,21 @@ public class Level {
         this.characters = characters;
     }
 
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void setEnemies(ArrayList<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("CANNON FODDER");
         Fighter fighter = new Fighter(generalInv);
-        Mage mage = new Mage(generalInv);
+        Healer mage = new Healer(generalInv);
         Tank tank = new Tank(generalInv);
         Enemy enemy = new Enemy();// TODO: 26.05.2022 add random item
         Level level = new Level();
@@ -78,54 +89,103 @@ public class Level {
         String userAnswer = scanner.nextLine();
 
 
-        String[] userInp = userAnswer.split(" ");
+        String[] userInput = userAnswer.split(" ");
 
-        level.selectChar(userInp,characters,enemies);
-
-
-
-
-
-    }
-
-    public void selectChar(String[] userInput,ArrayList<Character>characters,ArrayList<Enemy> enemies){
-        switch (userInput[0]) {
-            case "Mage":
-                selectAction(userInput, characters.get(0),enemies);
-
-            case "Fighter":
-            case "Tank":
-
-        }
-    }
+        Character selectedCharacter = level.selectChar(userInput,characters);
+        Character selectedTarget = level.selectTarget(userInput,enemies);
+        Item selectedItem = level.selectItem(userInput,selectedCharacter);
 
 
-
-    public void selectAction(String[] userInput,Character character,ArrayList<Enemy> enemyList){
         switch (userInput[1]){
             case "attack":
-                for (Enemy enemy : enemyList){
-                    if (userInput[2].equals(enemy.getName())){
-                        character.attack(enemy);
-                    }
-                }
+                selectedCharacter.attack(selectedTarget);
+                break;
             case "examine":
-                for(Item item: getGround()){
-                    if (userInput[2].equals(item.getName())){
-                        character.examine(userInput[2],ground);
-                    }
+                if (selectedItem instanceof Weapon) {
+                    selectedItem.display();
+                }else if ((selectedItem instanceof Clothing)){
+                    selectedItem.display();
                 }
-
+                break;
             case "listInventory":
-                character.listInventory();
+                selectedCharacter.listInventory();
+                break;
             case "pick":
+
 
 
             case "wield":
 
             case "special":
+            case "NEXT":
+
 
         }
+
+
+
+
     }
+
+    public Character selectChar(String[] userInput,ArrayList<Character>characters){
+        for(Character character: characters){
+            if (character.getName().equals(userInput[0])){
+                return character;
+            }
+        }
+
+        return null;
+
+    }
+
+    public Enemy selectTarget(String[] userInput,ArrayList<Enemy> enemies){
+        for (Enemy enemy: enemies){
+            if (enemy.getName().equals(userInput[2])){
+                return enemy;
+            }
+        }
+
+        return null;
+
+    }
+
+    public Item selectItem(String[] userInput,Character selectedCharacter){
+        ArrayList<Item> tempList = new ArrayList<Item>();
+        tempList.addAll(ground);
+        tempList.addAll(selectedCharacter.getInventory());
+        tempList.add(selectedCharacter.getWeapon());
+        tempList.add(selectedCharacter.getClothing());
+        for (Item item: tempList){
+            if (item.getName().equals(userInput[2])){
+                return item;
+            }
+
+        }
+
+        return null;
+    }
+
+
+    public Item selectRandomItem(ArrayList<Item> generalInv) {
+        SecureRandom secureRandom = new SecureRandom();
+
+        int randomNum = secureRandom.nextInt(generalInv.size());
+        for (Item item : generalInv) {
+            if(randomNum == generalInv.indexOf(item)&& item instanceof Sword){
+                return item;
+            }
+
+        }
+        return null;
+
+
+
+    }
+
+
+
+
+
+
 
 }

@@ -51,20 +51,4 @@ public class Enemy extends Character {
     }
 
 
-    @Override
-    public Weapon selectRandomItem(ArrayList<Item>generalInv) {
-        SecureRandom secureRandom = new SecureRandom();
-        Weapon selectedItem = null;
-
-        while(selectedItem == null) {
-            int randomNum = secureRandom.nextInt(generalInv.size());
-            for (Item item : generalInv) {
-                if(randomNum == generalInv.indexOf(item)){
-                    selectedItem = (Weapon)item;
-                }
-
-            }
-        }
-        return selectedItem;
-    }
 }

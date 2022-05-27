@@ -17,7 +17,7 @@ public class Fighter extends Character {
         setVitality(secureRandom.nextInt(5)+3);
         setIntelligence(secureRandom.nextInt(5)+1);
         setHp(calculateHp());
-        setWeapon(selectRandomItem(generalInv));
+
         setInventory(new ArrayList<Item>());
     }
 
@@ -39,7 +39,6 @@ public class Fighter extends Character {
         setVitality(secureRandom.nextInt(5)+3);
         setIntelligence(secureRandom.nextInt(5)+1);
         setHp(calculateHp());
-        setWeapon(selectRandomItem(inventory));
         System.out.println("Fighter created with S:" + getStrength() + " V: " + getVitality() + " I: " + getIntelligence() + " The HP is: " + getHp() + " Fighter wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
     }
 
@@ -61,24 +60,7 @@ public class Fighter extends Character {
 
 
 
-    @Override
-    public Weapon selectRandomItem(ArrayList<Item>generalInv){
-        SecureRandom secureRandom = new SecureRandom();
-        Sword selectedItem = null;
 
-        while(selectedItem == null) {
-            int randomNum = secureRandom.nextInt(generalInv.size());
-            for (Item item : generalInv) {
-                if(randomNum == generalInv.indexOf(item)&& item.getClass().equals(Sword.class)){
-                    selectedItem = (Sword)item;
-                }
-
-            }
-        }
-        return selectedItem;
-
-
-    }
 
 
 

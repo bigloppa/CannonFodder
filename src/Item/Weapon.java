@@ -22,5 +22,8 @@ public class Weapon extends Item {
         this.attackDmg = attackDmg;
     }
 
-
+    @Override
+    public void display() {
+        System.out.println(getName()+ " has "+ getAttackDmg()+ " damage, and "+ getWeight()+" units of weight.");
+    }
 }
