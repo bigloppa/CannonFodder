@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) {
         ArrayList<Item> allItems = new ArrayList<Item>();
+        Scanner scanner = new Scanner(System.in);
         allItems.add(new Wand("hoks",23,12));
         allItems.add(new Wand("123",22,12));
         allItems.add(new Sword("exca",22,12));
@@ -19,6 +20,10 @@ public class Test {
         Healer healer = new Healer(allItems);
         Tank tank = new Tank(allItems);
         Fighter fighter = new Fighter(allItems);
+
+        String[] user = scanner.nextLine().split(" ");
+
+        fighter.wield(allItems,user);
 
 
         System.out.println(fighter.getWeapon().getName());
