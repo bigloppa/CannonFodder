@@ -2,7 +2,7 @@ package Item;
 
 
 
-public class Shield extends Weapon {
+public class Shield extends Item {
 
 
 
@@ -13,7 +13,7 @@ public class Shield extends Weapon {
     }
 
     public Shield(String name, int weight, int attackDmg) {
-        super(name, weight, attackDmg);
+        super(name, weight);
 
     }
 

@@ -2,7 +2,7 @@ package Item;
 
 public abstract class Item{
     private String name;
-    private int tier;
+    private int value;
     private int weight;
 
 
@@ -12,7 +12,6 @@ public abstract class Item{
 
     public Item(String name, int weight) {
         this.name = name;
-
         this.weight = weight;
 
     }
@@ -25,12 +24,12 @@ public abstract class Item{
         this.name = name;
     }
 
-    public int getTier() {
-        return tier;
+    public int getValue() {
+        return value;
     }
 
-    public void setTier(int value) {
-        this.tier = value;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public int getWeight() {

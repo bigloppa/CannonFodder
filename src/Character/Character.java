@@ -7,7 +7,7 @@ import java.lang.Math;
 import java.util.ArrayList;
 
 
-public abstract class Character implements CharActions {
+public abstract class Character {
     //FIELDS
     private String name;
     private long hp;
@@ -212,6 +212,9 @@ public abstract class Character implements CharActions {
         }
         System.out.println("********************");
     }
+
+    public abstract void attack(Character character);
+    public abstract Weapon selectRandomItem(ArrayList<Item>Inventory);
 
 
 

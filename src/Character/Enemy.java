@@ -51,6 +51,8 @@ public class Enemy extends Character {
     }
 
 
+
+
     @Override
     public Weapon selectRandomItem(ArrayList<Item>generalInv) {
         SecureRandom secureRandom = new SecureRandom();
