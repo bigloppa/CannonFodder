@@ -108,8 +108,9 @@ public abstract class Character {
         }
     }
 
-    // TODO: 13.05.2022 write the max weight value
-    public boolean checkWeight(Item pickedItem){
+
+
+    public boolean pick(Item pickedItem){
         int sum = pickedItem.getWeight();
         for (Item item:getInventory()){
             sum += item.getWeight();
@@ -117,39 +118,31 @@ public abstract class Character {
         }
 
         if (sum<=getVitality()*4){
+            inventory.add(pickedItem);
             return true;
         }else{
+            System.out.println("The character's weight limit has been reached can't pick up.");
             return false;
         }
+
     }
 
-    public void pick(String[] userInput, ArrayList<Weapon> groundInventory){
-        Weapon selectedItem = null;
-        for (Weapon item:groundInventory){
-            if (item.getName().equals(userInput[2])){
-                selectedItem = item;
+    public Item wield(ArrayList<Item> groundInv,String[] userInp){
+        for (Item item: groundInv){
+            if (item.getName().equals(userInp[2])&& item instanceof Weapon){
+                weapon = (Weapon) item;
+                return item;
             }
         }
 
-        if (selectedItem != null&&checkWeight(selectedItem)){
-            groundInventory.remove(selectedItem);
-            ArrayList<Item> tempInv = getInventory();
-            tempInv.add(selectedItem);
-            setInventory(tempInv);
-            System.out.println(getName()+" has picked up the "+selectedItem.getName());
-
-        }else{
-            System.out.println("Item not found or "+getName()+" doesn't have enough strength to carry." +
-                    "");
+        for (Item item: inventory){
+            if (item.getName().equals(userInp[2])&& item instanceof Weapon){
+                weapon = (Weapon) item;
+                return null;
+            }
         }
 
-
-    }
-
-    public void wield(){
-
-
-
+        return null;
 
 
 
@@ -194,8 +187,11 @@ public abstract class Character {
 
     }
 
+
     public abstract void attack(Character selectedCharacter);
     public abstract Item createWeapon(ArrayList<Item> allWeapons);
+    // TODO: 28.05.2022 add special attack.
+
 
 
 

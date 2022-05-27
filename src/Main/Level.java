@@ -47,8 +47,8 @@ public class Level {
         return allItems;
     }
 
-    public void setGeneralInv(ArrayList<Item> allItems) {
-        this.allItems = allItems;
+    public void setGeneralInv(ArrayList<Item> allItem) {
+        allItems = allItem;
     }
 
     public ArrayList<Character> getCharacters() {
@@ -73,15 +73,19 @@ public class Level {
 
         System.out.println("CANNON FODDER");
         Fighter fighter = new Fighter(allItems);
-        Healer mage = new Healer(allItems);
+        Healer healer = new Healer(allItems);
         Tank tank = new Tank(allItems);
 
         Level level = new Level();
 
 
+
+
+
+
         ArrayList<Character> characters = new ArrayList<Character>();
         characters.add(fighter);
-        characters.add(mage);
+        characters.add(healer);
         characters.add(tank);
 
         ArrayList<Enemy> enemies = new ArrayList<>();
@@ -97,26 +101,43 @@ public class Level {
 
 
         switch (userInput[1]){
+
             case "attack":
+
                 selectedCharacter.attack(selectedTarget);
                 break;
+
             case "examine":
+
                 if (selectedItem instanceof Weapon) {
                     selectedItem.display();
                 }else if ((selectedItem instanceof Clothing)){
                     selectedItem.display();
                 }
                 break;
+
             case "listInventory":
+
                 selectedCharacter.listInventory();
                 break;
+
             case "pick":
 
-
+                if (selectedCharacter.pick(selectedItem)){
+                    allItems.remove(selectedItem);
+                }
+                break;
 
             case "wield":
 
+                Item wieldedItem = selectedCharacter.wield(level.ground,userInput);
+                if (wieldedItem != null){
+                    allItems.remove(wieldedItem);
+                }
+                break;
+
             case "special":
+
             case "NEXT":
 
 

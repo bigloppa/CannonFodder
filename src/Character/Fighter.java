@@ -18,8 +18,8 @@ public class Fighter extends Character {
         setIntelligence(secureRandom.nextInt(5)+1);
         setWeapon(createWeapon(allItems));
         setHp(calculateHp());
-
         setInventory(new ArrayList<Item>());
+        System.out.println("Fighter created with S:" + getStrength() + " V: " + getVitality() + " I: " + getIntelligence() + " The HP is: " + getHp() + " Fighter wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
     }
 
     public Fighter(){
@@ -32,16 +32,7 @@ public class Fighter extends Character {
         setInventory(new ArrayList<Item>());
     }
 
-    public Fighter(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
-        super(weapon, clothing, inventory);
-        setName("Fighter");
-        SecureRandom secureRandom = new SecureRandom();
-        setStrength(secureRandom.nextInt(5)+6);
-        setVitality(secureRandom.nextInt(5)+3);
-        setIntelligence(secureRandom.nextInt(5)+1);
-        setHp(calculateHp());
-        System.out.println("Fighter created with S:" + getStrength() + " V: " + getVitality() + " I: " + getIntelligence() + " The HP is: " + getHp() + " Fighter wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
-    }
+
 
 
     @Override
