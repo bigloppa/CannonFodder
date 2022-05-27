@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Tank extends Character {
 
-    public Tank(ArrayList<Item> generalInv){
+    public Tank(ArrayList<Item> allWeapons){
         SecureRandom secureRandom = new SecureRandom();
         setName("Tank");
         setStrength(secureRandom.nextInt(5)+1);
@@ -53,6 +53,26 @@ public class Tank extends Character {
             System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
         }
     }
+
+
+    @Override
+    public Weapon createWeapon(ArrayList<Item> allItems) {
+        SecureRandom secureRandom = new SecureRandom();
+        Weapon selectedItem = null;
+        while (selectedItem == null) {
+            int randomNum = secureRandom.nextInt(allItems.size());
+            for (Item item : allItems) {
+                if (allItems.indexOf(item) == randomNum&& item instanceof Weapon) {
+                    selectedItem = (Weapon) item;
+                }
+
+            }
+        }
+        return selectedItem;
+    }
+
+
+
 
 
 

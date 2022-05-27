@@ -24,7 +24,7 @@ public abstract class Character {
     public Character(){
 
     }
-    public Character(Weapon weapon,Clothing clothing,ArrayList<Item> inventory){
+    public Character(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
         this.weapon = weapon;
         this.clothing = clothing;
         this.inventory = inventory;
@@ -74,6 +74,8 @@ public abstract class Character {
         return weapon;
     }
 
+
+
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
@@ -121,9 +123,9 @@ public abstract class Character {
         }
     }
 
-    public void pick(String[] userInput,ArrayList<Item> groundInventory){
-        Item selectedItem = null;
-        for (Item item:groundInventory){
+    public void pick(String[] userInput, ArrayList<Weapon> groundInventory){
+        Weapon selectedItem = null;
+        for (Weapon item:groundInventory){
             if (item.getName().equals(userInput[2])){
                 selectedItem = item;
             }
@@ -173,7 +175,7 @@ public abstract class Character {
 
     }
 
-    public void examine(String name,ArrayList<Item> ground){
+    public void examine(String name, ArrayList<Item> ground){
         for (Item item: inventory){
             if (item.getName().equals(name)&& (item.getClass().equals(Wand.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Shield.class))){
                 System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
@@ -193,6 +195,7 @@ public abstract class Character {
     }
 
     public abstract void attack(Character selectedCharacter);
+    public abstract Item createWeapon(ArrayList<Item> allWeapons);
 
 
 

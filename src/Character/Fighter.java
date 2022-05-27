@@ -31,7 +31,7 @@ public class Fighter extends Character {
         setInventory(new ArrayList<Item>());
     }
 
-    public Fighter(Weapon weapon,Clothing clothing,ArrayList<Item> inventory){
+    public Fighter(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
         super(weapon, clothing, inventory);
         setName("Fighter");
         SecureRandom secureRandom = new SecureRandom();
@@ -55,13 +55,19 @@ public class Fighter extends Character {
         }
     }
 
+    @Override
+    public Weapon createWeapon(ArrayList<Item> allItems) {
+        SecureRandom secureRandom = new SecureRandom();
+        Weapon selectedItem = null;
+        while (selectedItem == null) {
+            int randomNum = secureRandom.nextInt(allItems.size());
+            for (Item item : allItems) {
+                if (allItems.indexOf(item) == randomNum&& item instanceof Sword) {
+                    selectedItem = (Weapon) item;
+                }
 
-
-
-
-
-
-
-
-
+            }
+        }
+        return selectedItem;
+    }
 }

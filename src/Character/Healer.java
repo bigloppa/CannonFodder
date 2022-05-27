@@ -10,22 +10,15 @@ import java.util.ArrayList;
 public class Healer extends Character {
 
 
-    public Healer(){
+
+    public Healer(ArrayList<Item> allItems){
         setName("Healer");
         SecureRandom secureRandom = new SecureRandom();
         setStrength(secureRandom.nextInt(5)+3);
         setVitality(secureRandom.nextInt(5)+1);
         setIntelligence(secureRandom.nextInt(5)+6);
         setHp(calculateHp());
-        setInventory(new ArrayList<Item>());
-    }
-    public Healer(ArrayList<Item> GeneralInv){
-        setName("Healer");
-        SecureRandom secureRandom = new SecureRandom();
-        setStrength(secureRandom.nextInt(5)+3);
-        setVitality(secureRandom.nextInt(5)+1);
-        setIntelligence(secureRandom.nextInt(5)+6);
-        setHp(calculateHp());
+        setWeapon(createWeapon(allItems));
         setInventory(new ArrayList<Item>());
     }
     public Healer(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
@@ -53,7 +46,21 @@ public class Healer extends Character {
         }
     }
 
+    @Override
+    public Weapon createWeapon(ArrayList<Item> allItems) {
+        SecureRandom secureRandom = new SecureRandom();
+        Weapon selectedItem = null;
+        while (selectedItem == null) {
+            int randomNum = secureRandom.nextInt(allItems.size());
+            for (Item item : allItems) {
+                if (allItems.indexOf(item) == randomNum&& item instanceof Wand) {
+                    selectedItem = (Weapon) item;
+                }
 
+            }
+        }
+        return selectedItem;
+    }
 
 
 }

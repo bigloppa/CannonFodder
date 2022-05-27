@@ -72,9 +72,9 @@ public class Level {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("CANNON FODDER");
-        Fighter fighter = new Fighter(generalInv);
-        Healer mage = new Healer(generalInv);
-        Tank tank = new Tank(generalInv);
+        Fighter fighter = new Fighter();
+        Healer mage = new Healer();
+        Tank tank = new Tank();
         Enemy enemy = new Enemy();// TODO: 26.05.2022 add random item
         Level level = new Level();
 
@@ -166,7 +166,7 @@ public class Level {
     }
 
 
-    public Item selectRandomItem(ArrayList<Item> generalInv) {
+    public Item selectRandomItem() {
         SecureRandom secureRandom = new SecureRandom();
 
         int randomNum = secureRandom.nextInt(generalInv.size());
