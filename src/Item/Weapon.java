@@ -1,5 +1,6 @@
 package Item;
 
+import Character.Character;
 
 
 public class Weapon extends Item {
@@ -26,4 +27,11 @@ public class Weapon extends Item {
     public void display() {
         System.out.println(getName()+ " has "+ getAttackDmg()+ " damage, and "+ getWeight()+" units of weight.");
     }
+
+
+    public void specialAttack(){
+
+    }
+
+
 }

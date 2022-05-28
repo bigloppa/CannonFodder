@@ -1,5 +1,8 @@
 package Item;
 
+import Character.Character;
+import Character.*;
+
 public abstract class Item{
     private String name;
     private int value;
@@ -41,7 +44,12 @@ public abstract class Item{
     }
 
     public abstract void display();
-    // TODO: 28.05.2022 add specialAttack.
+
+    public int calculateDmg(Character character){
+        return 0;
+    }
+
+
 
 
 }

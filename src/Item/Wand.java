@@ -1,5 +1,7 @@
 package Item;
 
+import Character.Character;
+
 
 
 public class Wand extends Weapon {
@@ -11,10 +13,14 @@ public class Wand extends Weapon {
         super(name,weight,attackDmg);
     }
 
-    public void heal(){
 
 
 
+    @Override
+    public int calculateDmg(Character character) {
+        return getAttackDmg()*character.getIntelligence();
     }
+
+
 
 }

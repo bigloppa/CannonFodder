@@ -188,7 +188,17 @@ public abstract class Character {
     }
 
 
-    public abstract void attack(Character selectedCharacter);
+    public void attack(Character selectedCharacter){
+        try {
+
+            int dmg = getWeapon().calculateDmg(this);
+            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
+            System.out.println(getName() + " does " + dmg + " damage. " + selectedCharacter.getName() + " has " + selectedCharacter.getHp() + " HP left.");
+
+        }catch (NullPointerException exception){
+            System.out.println("This Character doesn't wield a weapon it cannot attack.");
+        }
+    }
     public abstract Item createWeapon(ArrayList<Item> allWeapons);
 
 

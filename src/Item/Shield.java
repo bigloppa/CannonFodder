@@ -1,5 +1,6 @@
 package Item;
 
+import Character.Character;
 
 
 public class Shield extends Weapon {
@@ -17,5 +18,8 @@ public class Shield extends Weapon {
 
     }
 
-
+    @Override
+    public int calculateDmg(Character character) {
+        return getAttackDmg()*character.getVitality();
+    }
 }

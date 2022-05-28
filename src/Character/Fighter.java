@@ -34,19 +34,6 @@ public class Fighter extends Character {
 
 
 
-
-    @Override
-    public void attack(Character selectedCharacter) {
-        if (getWeapon()==null){
-            System.out.println("This Character doesn't wield a weapon it cannot attack.");
-
-        }else {
-            int dmg = getWeapon().getAttackDmg()*getStrength();
-            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
-            System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
-        }
-    }
-
     @Override
     public Weapon createWeapon(ArrayList<Item> allItems) {
         SecureRandom secureRandom = new SecureRandom();
@@ -62,4 +49,6 @@ public class Fighter extends Character {
         }
         return selectedItem;
     }
+
+
 }

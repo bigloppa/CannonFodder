@@ -80,67 +80,74 @@ public class Level {
 
 
 
-
-
-
         ArrayList<Character> characters = new ArrayList<Character>();
         characters.add(fighter);
         characters.add(healer);
         characters.add(tank);
 
         ArrayList<Enemy> enemies = new ArrayList<>();
-
-        String userAnswer = scanner.nextLine();
-
-
-        String[] userInput = userAnswer.split(" ");
-
-        Character selectedCharacter = level.selectChar(userInput,characters);
-        Character selectedTarget = level.selectTarget(userInput,enemies);
-        Item selectedItem = level.selectItem(userInput,selectedCharacter);
+        boolean flag =true;
+        while (flag) {
+            String[] userInput = scanner.nextLine().split(" ");
 
 
-        switch (userInput[1]){
 
-            case "attack":
+            try {
 
-                selectedCharacter.attack(selectedTarget);
-                break;
+                for (int i = 0; i < 2; i++) {
+                    String arrayCheck = userInput[i];
+                }
 
-            case "examine":
+            } catch (ArrayIndexOutOfBoundsException exception) {
+                System.out.println("Action entered incorrectly.");
+                continue;
+            }
 
-                if (selectedItem instanceof Weapon) {
+
+            Character selectedCharacter = level.selectChar(userInput, characters);
+            Character selectedTarget = level.selectTarget(userInput, enemies);
+            Item selectedItem = level.selectItem(userInput, selectedCharacter);
+
+
+
+
+            switch (userInput[1]) {
+
+                case "attack":
+
+                    selectedCharacter.attack(selectedTarget);
+                    break;
+
+                case "examine":
                     selectedItem.display();
-                }else if ((selectedItem instanceof Clothing)){
-                    selectedItem.display();
-                }
-                break;
+                    break;
 
-            case "listInventory":
+                case "listInventory":
 
-                selectedCharacter.listInventory();
-                break;
+                    selectedCharacter.listInventory();
+                    break;
 
-            case "pick":
+                case "pick":
 
-                if (selectedCharacter.pick(selectedItem)){
-                    allItems.remove(selectedItem);
-                }
-                break;
+                    if (selectedCharacter.pick(selectedItem)) {
+                        allItems.remove(selectedItem);
+                    }
+                    break;
 
-            case "wield":
+                case "wield":
 
-                Item wieldedItem = selectedCharacter.wield(level.ground,userInput);
-                if (wieldedItem != null){
-                    allItems.remove(wieldedItem);
-                }
-                break;
+                    Item wieldedItem = selectedCharacter.wield(level.ground, userInput);
+                    if (wieldedItem != null) {
+                        allItems.remove(wieldedItem);
+                    }
+                    break;
 
-            case "special":
+                case "special":
 
-            case "NEXT":
+                case "NEXT":
 
 
+            }
         }
 
 

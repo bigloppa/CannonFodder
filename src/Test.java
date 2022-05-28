@@ -21,9 +21,19 @@ public class Test {
         Tank tank = new Tank(allItems);
         Fighter fighter = new Fighter(allItems);
 
+
         String[] user = scanner.nextLine().split(" ");
 
         fighter.wield(allItems,user);
+
+        HardArmor hardArmor = new HardArmor("af",32,32,32);
+
+        Wand wand = new Wand("23",34,12);
+
+
+
+        hardArmor.display();
+        wand.display();
 
 
         System.out.println(fighter.getWeapon().getName());
@@ -32,6 +42,16 @@ public class Test {
 
 
         System.out.println(fighter.getWeapon().getAttackDmg());
+
+        Item item = new Wand("123",23,23);
+        allItems.add(item);
+
+        System.out.println(allItems.get(6).calculateDmg(fighter));
+
+
+
+
+
 
 
 
