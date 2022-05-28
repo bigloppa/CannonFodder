@@ -190,7 +190,7 @@ public abstract class Character {
 
     public abstract void attack(Character selectedCharacter);
     public abstract Item createWeapon(ArrayList<Item> allWeapons);
-    // TODO: 28.05.2022 add special attack.
+
 
 
 

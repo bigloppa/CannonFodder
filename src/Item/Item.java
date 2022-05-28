@@ -41,6 +41,7 @@ public abstract class Item{
     }
 
     public abstract void display();
+    // TODO: 28.05.2022 add specialAttack.
 
 
 }
