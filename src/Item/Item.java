@@ -45,9 +45,7 @@ public abstract class Item{
 
     public abstract void display();
 
-    public int calculateDmg(Character character){
-        return 0;
-    }
+
 
 
 

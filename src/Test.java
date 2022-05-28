@@ -46,7 +46,7 @@ public class Test {
         Item item = new Wand("123",23,23);
         allItems.add(item);
 
-        System.out.println(allItems.get(6).calculateDmg(fighter));
+
 
 
 

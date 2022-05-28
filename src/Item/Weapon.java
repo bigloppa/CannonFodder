@@ -33,5 +33,9 @@ public class Weapon extends Item {
 
     }
 
+    public int calculateDmg(Character character){
+        return 0;
+    }
+
 
 }
