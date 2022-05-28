@@ -17,6 +17,7 @@ public abstract class Character {
     private Weapon weapon;
     private Clothing clothing;
     private ArrayList<Item> inventory;
+    private int state;
 
 
 
@@ -24,10 +25,12 @@ public abstract class Character {
     public Character(){
 
     }
-    public Character(Weapon weapon, Clothing clothing, ArrayList<Item> inventory){
-        this.weapon = weapon;
-        this.clothing = clothing;
-        this.inventory = inventory;
+    public Character(ArrayList<Item> allItems){
+        inventory = new ArrayList<Item>();
+        state = 2;//ALIVE
+
+
+
     }
 
     public String getName() {
@@ -96,7 +99,13 @@ public abstract class Character {
         this.inventory = inventory;
     }
 
+    public int getState() {
+        return state;
+    }
 
+    public void setState(int state) {
+        this.state = state;
+    }
 
     //METHODS
 
@@ -200,6 +209,11 @@ public abstract class Character {
         }
     }
     public abstract Item createWeapon(ArrayList<Item> allWeapons);
+
+
+    public void specialAttack(Character selectedTarget){
+        getWeapon().specialAttack(selectedTarget,this);
+    }
 
 
 

@@ -28,8 +28,8 @@ public class Weapon extends Item {
         System.out.println(getName()+ " has "+ getAttackDmg()+ " damage, and "+ getWeight()+" units of weight.");
     }
 
+    public void specialAttack(Character selectedTarget,Character selectedCharacter){
 
-    public void specialAttack(){
 
     }
 

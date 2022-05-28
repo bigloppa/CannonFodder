@@ -3,6 +3,8 @@ package Item;
 import Character.Character;
 
 public class Sword extends Weapon {
+
+
     public Sword(){
 
     }

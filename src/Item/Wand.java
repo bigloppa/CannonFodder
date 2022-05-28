@@ -14,6 +14,20 @@ public class Wand extends Weapon {
     }
 
 
+    @Override
+    public void specialAttack(Character selectedTarget,Character selectedCharacter){
+        long finalHealth = selectedTarget.getHp()+(long) selectedCharacter.getIntelligence()*getValue();
+        if (finalHealth>35&& selectedTarget.getHp()>=0) {
+            selectedTarget.setHp(35);
+        }else if (selectedCharacter.getHp()>=0){
+            selectedCharacter.setHp(finalHealth);
+        }else{
+            System.out.println("A dead character cannot be healed.");
+        }
+
+    }
+
+
 
 
     @Override

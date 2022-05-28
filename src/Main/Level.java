@@ -87,6 +87,7 @@ public class Level {
 
         ArrayList<Enemy> enemies = new ArrayList<>();
         boolean flag =true;
+
         while (flag) {
             String[] userInput = scanner.nextLine().split(" ");
 
@@ -144,7 +145,9 @@ public class Level {
 
                 case "special":
 
+
                 case "NEXT":
+                    flag = false;
 
 
             }
