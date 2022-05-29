@@ -3,7 +3,7 @@ package Item;
 import Character.Character;
 import Character.*;
 
-public abstract class Item{
+public class Item{
     private String name;
     private int value;
     private int weight;
@@ -43,7 +43,7 @@ public abstract class Item{
         this.weight = weight;
     }
 
-    public abstract void display();
+
 
 
 

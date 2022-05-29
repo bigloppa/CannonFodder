@@ -85,7 +85,7 @@ public class Level {
         characters.add(healer);
         characters.add(tank);
 
-        ArrayList<Enemy> enemies = new ArrayList<>();
+
         boolean flag =true;
 
         while (flag) {
@@ -106,7 +106,7 @@ public class Level {
 
 
             Character selectedCharacter = level.selectChar(userInput, characters);
-            Character selectedTarget = level.selectTarget(userInput, enemies);
+            Character selectedTarget = level.selectTarget(userInput, characters);
             Item selectedItem = level.selectItem(userInput, selectedCharacter);
 
 
@@ -169,10 +169,10 @@ public class Level {
 
     }
 
-    public Enemy selectTarget(String[] userInput,ArrayList<Enemy> enemies){
-        for (Enemy enemy: enemies){
-            if (enemy.getName().equals(userInput[2])){
-                return enemy;
+    public Character selectTarget(String[] userInput,ArrayList<Character> characters){
+        for (Character target:characters){
+            if (target.getName().equals(userInput[2])){
+                return target;
             }
         }
 

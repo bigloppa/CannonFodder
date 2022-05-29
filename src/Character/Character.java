@@ -77,8 +77,6 @@ public abstract class Character {
         return weapon;
     }
 
-
-
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
@@ -157,39 +155,40 @@ public abstract class Character {
 
     }
 
-    public void wear(String[] userInput){
-        Item tempItem = null;
-        ArrayList<Item> tempInv = getInventory();
-        for (Item item:getInventory()){
-            if (userInput[2].equals(item.getName())&&(item.getClass().equals(MedArmor.class)||item.getClass().equals(LightArmor.class)||item.getClass().equals(HardArmor.class))){
-                tempItem = item;
-                setClothing((Clothing) tempItem);
-
-            }else{
-                System.out.println("Item not found.");
+    public Item wear(ArrayList<Item> groundInv,String[] userInput){
+        for (Item item: groundInv){
+            if (item.getName().equals(userInput[2])&& item instanceof Clothing){
+                clothing = (Clothing) item;
+                return item;
             }
-
         }
 
-        tempInv.remove(tempItem);
-        setInventory(tempInv);
+        for (Item item: inventory){
+            if (item.getName().equals(userInput[2])&& item instanceof Clothing){
+                clothing = (Clothing) item;
+                return null;
+            }
+        }
+
+        return null;
+
 
 
     }
 
     public void examine(String name, ArrayList<Item> ground){
         for (Item item: inventory){
-            if (item.getName().equals(name)&& (item.getClass().equals(Wand.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Shield.class))){
+            if (item.getName().equals(name)&& (item instanceof Weapon)){
                 System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
-            }else if (item.getName().equals(name)&& item.getClass().equals((Clothing.class))){
+            }else if (item.getName().equals(name)&& item instanceof Clothing){
                 System.out.println(item.getName()+ " has "+((Clothing) item).getResistance()+" and "+item.getWeight()+" unit of weight.");
             }
         }
 
         for (Item item: ground){
-            if (item.getName().equals(name)&& (item.getClass().equals(Wand.class)||item.getClass().equals(Sword.class)||item.getClass().equals(Shield.class))){
+            if (item.getName().equals(name)&& item instanceof Weapon){
                 System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
-            }else if (item.getName().equals(name)&& item.getClass().equals((Clothing.class))){
+            }else if (item.getName().equals(name)&& item instanceof Clothing){
                 System.out.println(item.getName()+ " has "+((Clothing) item).getResistance()+" and "+item.getWeight()+" unit of weight.");
             }
         }
@@ -212,14 +211,8 @@ public abstract class Character {
 
 
     public void specialAttack(Character selectedTarget){
-        getWeapon().specialAttack(selectedTarget,this);
+
     }
-
-
-
-
-
-
 
 
     public void listInventory(){

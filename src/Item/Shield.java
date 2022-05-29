@@ -3,15 +3,11 @@ package Item;
 import Character.Character;
 
 
-public class Shield extends Weapon {
+public class Shield extends Weapon implements WeaponOperations {
 
      private int leftChancesToStun;
 
 
-    public Shield() {
-
-
-    }
 
     public Shield(String name, int weight, int attackDmg) {
         super(name, weight, attackDmg);
@@ -24,6 +20,8 @@ public class Shield extends Weapon {
     }
 
 
+
+
     @Override
     public void specialAttack(Character selectedTarget, Character selectedCharacter) {
         if (leftChancesToStun>0){
@@ -33,5 +31,6 @@ public class Shield extends Weapon {
         }
         leftChancesToStun--;
     }
+
 
 }

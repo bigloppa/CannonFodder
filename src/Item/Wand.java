@@ -4,7 +4,7 @@ import Character.Character;
 
 
 
-public class Wand extends Weapon {
+public class Wand extends Weapon implements WeaponOperations {
     public Wand(){
 
     }
@@ -17,7 +17,7 @@ public class Wand extends Weapon {
     @Override
     public void specialAttack(Character selectedTarget,Character selectedCharacter){
         long finalHealth = selectedTarget.getHp()+(long) selectedCharacter.getIntelligence()*getValue();
-        if (finalHealth>35&& selectedTarget.getHp()>=0) {
+        if (finalHealth>35&& selectedCharacter.getState() == 2) {
             selectedTarget.setHp(35);
         }else if (selectedCharacter.getHp()>=0){
             selectedCharacter.setHp(finalHealth);
