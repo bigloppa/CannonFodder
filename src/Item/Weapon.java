@@ -1,18 +1,17 @@
 package Item;
 
+import Character.Character;
 
 
-public class Weapon extends Item {
+public  class Weapon extends Item implements ItemOperations {
     private int attackDmg;
 
-    public Weapon(){
-
-    }
-
     public Weapon(String name, int weight, int attackDmg) {
-        super(name, weight);
+        setName(name);
+        setWeight(weight);
         this.attackDmg = attackDmg;
     }
+
 
     public int getAttackDmg() {
         return attackDmg;
@@ -23,9 +22,10 @@ public class Weapon extends Item {
     }
 
     @Override
-    public void examine(){
-        super.examine();
-
-        System.out.println("Item Damage"+getAttackDmg());
+    public void display() {
+        System.out.println(getName()+ " has "+ getAttackDmg()+ " damage, and "+ getWeight()+" units of weight.");
     }
+
+
+
 }

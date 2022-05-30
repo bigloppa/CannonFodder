@@ -1,8 +1,11 @@
 package Item;
 
-public abstract class Item{
+import Character.Character;
+import Character.*;
+
+public class Item{
     private String name;
-    private int tier;
+    private int value;
     private int weight;
 
 
@@ -12,7 +15,6 @@ public abstract class Item{
 
     public Item(String name, int weight) {
         this.name = name;
-
         this.weight = weight;
 
     }
@@ -25,12 +27,12 @@ public abstract class Item{
         this.name = name;
     }
 
-    public int getTier() {
-        return tier;
+    public int getValue() {
+        return value;
     }
 
-    public void setTier(int value) {
-        this.tier = value;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public int getWeight() {
@@ -41,12 +43,11 @@ public abstract class Item{
         this.weight = weight;
     }
 
-    public void examine(){
-        System.out.println("Item Name: "+getName());
-        System.out.println("Item Type: "+getClass());
-        System.out.println("Item Weight: "+getWeight());
-        System.out.println("Item Tier: "+ getTier());
 
-    }
+
+
+
+
+
 
 }
