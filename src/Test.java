@@ -8,7 +8,9 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
-        Character character = new Healer(new ArrayList<Item>())
+        ItemOperations itemOperations = new Wand("23",2323,32);
+
+        itemOperations.ge
 
 
 

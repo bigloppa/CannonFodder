@@ -1,16 +1,12 @@
 package Item;
 
-import Character.Character;
 
-
-public  class Weapon extends Item implements ItemOperations {
+public  class Weapon implements Item {
     private int attackDmg;
+    String name;
 
-    public Weapon(String name, int weight, int attackDmg) {
-        setName(name);
-        setWeight(weight);
-        this.attackDmg = attackDmg;
-    }
+
+
 
 
     public int getAttackDmg() {
