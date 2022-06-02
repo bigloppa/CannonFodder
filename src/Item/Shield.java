@@ -3,10 +3,9 @@ package Item;
 import Character.Character;
 
 
-public class Shield extends Weapon implements WeaponOperations {
+public class Shield extends Weapon{
 
      private int leftChancesToStun;
-
 
 
     public Shield(String name, int weight, int attackDmg) {
@@ -31,6 +30,7 @@ public class Shield extends Weapon implements WeaponOperations {
         }
         leftChancesToStun--;
     }
+
 
 
 }

@@ -1,26 +1,14 @@
 package Item;
 
-
-public  class Weapon implements Item {
-    private int attackDmg;
-    String name;
+import  Character.Character;
+public interface Weapon extends ItemFields implements Item  {
 
 
 
+    public abstract void specialAttack(Character selectedTarget,Character selectedCharacter);
+    public abstract int calculateDmg(Character selectedCharacter);
 
 
-    public int getAttackDmg() {
-        return attackDmg;
-    }
-
-    public void setAttackDmg(int attackDmg) {
-        this.attackDmg = attackDmg;
-    }
-
-    @Override
-    public void display() {
-        System.out.println(getName()+ " has "+ getAttackDmg()+ " damage, and "+ getWeight()+" units of weight.");
-    }
 
 
 

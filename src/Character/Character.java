@@ -33,33 +33,41 @@ public abstract class Character {
 
     }
 
+
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
+
     public long getHp() {
         return hp;
     }
+
 
     public void setHp(long hp) {
         this.hp = hp;
     }
 
+
     public int getVitality() {
         return vitality;
     }
+
 
     public void setVitality(int vitality) {
         this.vitality = vitality;
     }
 
+
     public int getStrength() {
         return strength;
     }
+
 
     public void setStrength(int strength) {
         this.strength = strength;
@@ -69,9 +77,11 @@ public abstract class Character {
         return intelligence;
     }
 
+
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
+
 
     public Weapon getWeapon() {
         return weapon;
@@ -210,9 +220,6 @@ public abstract class Character {
     public abstract Item createWeapon(ArrayList<Item> allWeapons);
 
 
-    public void specialAttack(Character selectedTarget){
-
-    }
 
 
     public void listInventory(){
