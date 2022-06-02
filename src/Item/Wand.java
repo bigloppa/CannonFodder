@@ -4,10 +4,8 @@ import Character.Character;
 
 
 
-public class Wand extends Weapon implements WeaponOperations {
-    public Wand(){
+public class Wand extends Weapon  {
 
-    }
 
     public Wand(String name,int weight,int attackDmg){
         super(name,weight,attackDmg);
