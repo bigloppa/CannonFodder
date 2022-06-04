@@ -18,6 +18,16 @@ public class Level {
     private ArrayList<Character> characters;
     private ArrayList<Enemy> enemies;
 
+    public Level(){
+
+    }
+
+    public Level(ArrayList<Item> ground, ArrayList<Character> characters, ArrayList<Enemy> enemies) {
+        this.ground = ground;
+        this.characters = characters;
+        this.enemies = enemies;
+    }
+
     public static int getLevelNum() {
         return levelNum;
     }
@@ -68,95 +78,9 @@ public class Level {
     }
 
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("CANNON FODDER");
-        Fighter fighter = new Fighter(allItems);
-        Healer healer = new Healer(allItems);
-        Tank tank = new Tank(allItems);
-
-        Level level = new Level();
 
 
 
-        ArrayList<Character> characters = new ArrayList<Character>();
-        characters.add(fighter);
-        characters.add(healer);
-        characters.add(tank);
-
-
-        boolean flag =true;
-
-        while (flag) {
-            String[] userInput = scanner.nextLine().split(" ");
-
-
-
-            try {
-
-                for (int i = 0; i < 2; i++) {
-                    String arrayCheck = userInput[i];
-                }
-
-            } catch (ArrayIndexOutOfBoundsException exception) {
-                System.out.println("Action entered incorrectly.");
-                continue;
-            }
-
-
-            Character selectedCharacter = level.selectChar(userInput, characters);
-            Character selectedTarget = level.selectTarget(userInput, characters);
-            Item selectedItem = level.selectItem(userInput, selectedCharacter);
-
-
-
-
-            switch (userInput[1]) {
-
-                case "attack":
-
-                    selectedCharacter.attack(selectedTarget);
-                    break;
-
-                case "examine":
-                    selectedItem.display();
-                    break;
-
-                case "listInventory":
-
-                    selectedCharacter.listInventory();
-                    break;
-
-                case "pick":
-
-                    if (selectedCharacter.pick(selectedItem)) {
-                        allItems.remove(selectedItem);
-                    }
-                    break;
-
-                case "wield":
-
-                    Item wieldedItem = selectedCharacter.wield(level.ground, userInput);
-                    if (wieldedItem != null) {
-                        allItems.remove(wieldedItem);
-                    }
-                    break;
-
-                case "special":
-
-
-                case "NEXT":
-                    flag = false;
-
-
-            }
-        }
-
-
-
-
-    }
 
     public Character selectChar(String[] userInput,ArrayList<Character>characters){
         for(Character character: characters){
@@ -212,6 +136,8 @@ public class Level {
 
 
     }
+
+
 
 
 

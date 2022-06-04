@@ -14,15 +14,22 @@ public class Program {
 
         Scanner scanner = new Scanner(System.in);
         Level level = new Level();
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        itemArrayList.add(new Wand("wand2",12,34));
+        itemArrayList.add(new Shield("Shield1",12,12));
+        itemArrayList.add(new Sword("Sword1",21,23));
+        itemArrayList.add(new Wand("wand1",12,34));
+        itemArrayList.add(new Shield("Shield2",12,12));
+        itemArrayList.add(new Sword("Sword2",21,23));
+
+        level.setAllItems(itemArrayList);
+
+
 
         System.out.println("CANNON FODDER");
         Fighter fighter = new Fighter(level.getAllItems());
         Healer healer = new Healer(level.getAllItems());
         Tank tank = new Tank(level.getAllItems());
-
-
-
-
 
         ArrayList<Character> characters = new ArrayList<Character>();
         characters.add(fighter);
@@ -92,7 +99,15 @@ public class Program {
                     break;
 
                 case "special":
+                    selectedCharacter.getWeapon().specialAttack(selectedTarget,selectedCharacter);
                 case "wear":
+                    Item wearedItem = selectedCharacter.wear(level.getGround(),userInput);
+                    if (wearedItem!= null){
+                        ArrayList<Item> tempList = level.getAllItems();
+                        tempList.remove(wearedItem);
+                        level.setAllItems(tempList);
+                    }
+                    break;
 
 
 

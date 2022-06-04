@@ -5,6 +5,11 @@ import Character.Character;
 public class Sword extends Weapon {
 
 
+    public Sword(String name, int weight, int attackDmg) {
+        setName(name);
+        setWeight(weight);
+        setAttackDmg(attackDmg);
+    }
 
     public Sword() {
 
