@@ -1,12 +1,12 @@
 package Item;
 
 import  Character.Character;
-public interface Weapon extends ItemFields implements Item  {
+public interface Weapon extends Item  {
 
 
-
-    public abstract void specialAttack(Character selectedTarget,Character selectedCharacter);
-    public abstract int calculateDmg(Character selectedCharacter);
+    int getAttackd
+    void specialAttack(Character selectedTarget,Character selectedCharacter);
+    int calculateDmg(Character selectedCharacter);
 
 
 

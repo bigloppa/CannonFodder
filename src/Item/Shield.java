@@ -3,7 +3,7 @@ package Item;
 import Character.Character;
 
 
-public class Shield extends Weapon{
+public class Shield implements Weapon{
 
      private int leftChancesToStun;
 
