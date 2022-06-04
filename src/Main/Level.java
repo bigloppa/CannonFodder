@@ -8,7 +8,7 @@ import Item.Item;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Level {
     private ArrayList<Item> ground;
@@ -19,11 +19,11 @@ public class Level {
     private ArrayList<Enemy> enemies;
 
     public Level(){
-
+        this.ground = new ArrayList<Item>();
     }
 
     public Level(ArrayList<Item> ground, ArrayList<Character> characters, ArrayList<Enemy> enemies) {
-        this.ground = ground;
+        this.ground = new ArrayList<Item>();
         this.characters = characters;
         this.enemies = enemies;
     }
@@ -111,9 +111,18 @@ public class Level {
         tempList.add(selectedCharacter.getWeapon());
         tempList.add(selectedCharacter.getClothing());
         for (Item item: tempList){
-            if (item.getName().equals(userInput[2])){
-                return item;
+
+
+            try {
+
+
+                if (item.getName().equals(userInput[2])) {
+                    return item;
+                }
+            }catch (NullPointerException ignored){
+
             }
+
 
         }
 
