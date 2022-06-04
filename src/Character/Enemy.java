@@ -41,11 +41,11 @@ public class Enemy extends Character {
     public Level drop(Level level){
 
         SecureRandom secureRandom = new SecureRandom();
-        Item selectedItem = level.getGeneralInv().get(secureRandom.nextInt());
-        ArrayList<Item> tempInv = level.getGeneralInv();
+        Item selectedItem = level.getAllItems().get(secureRandom.nextInt());
+        ArrayList<Item> tempInv = level.getAllItems();
         tempInv.remove(selectedItem);
 
-        level.setGeneralInv(tempInv);
+        level.setAllItems(tempInv);
         tempInv = level.getGround();
         tempInv.add(selectedItem);
         level.setGround(tempInv);

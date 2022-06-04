@@ -43,11 +43,11 @@ public class Level {
     }
 
 
-    public ArrayList<Item> getGeneralInv() {
+    public ArrayList<Item> getAllItems() {
         return allItems;
     }
 
-    public void setGeneralInv(ArrayList<Item> allItem) {
+    public void setAllItems(ArrayList<Item> allItem) {
         allItems = allItem;
     }
 

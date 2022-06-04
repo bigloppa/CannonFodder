@@ -186,6 +186,7 @@ public abstract class Character {
 
     }
 
+    /*
     public void examine(String name, ArrayList<Item> ground){
         for (Item item: inventory){
             if (item.getName().equals(name)&& (item instanceof Weapon)){
@@ -204,6 +205,7 @@ public abstract class Character {
         }
 
     }
+     */
 
 
     public void attack(Character selectedCharacter){
