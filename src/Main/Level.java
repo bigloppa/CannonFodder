@@ -8,7 +8,7 @@ import Item.Item;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Level {
     private ArrayList<Item> ground;
@@ -17,6 +17,16 @@ public class Level {
     private static ArrayList<Item> allItems;
     private ArrayList<Character> characters;
     private ArrayList<Enemy> enemies;
+
+    public Level(){
+        this.ground = new ArrayList<Item>();
+    }
+
+    public Level(ArrayList<Item> ground, ArrayList<Character> characters, ArrayList<Enemy> enemies) {
+        this.ground = new ArrayList<Item>();
+        this.characters = characters;
+        this.enemies = enemies;
+    }
 
     public static int getLevelNum() {
         return levelNum;
@@ -43,11 +53,11 @@ public class Level {
     }
 
 
-    public ArrayList<Item> getGeneralInv() {
+    public ArrayList<Item> getAllItems() {
         return allItems;
     }
 
-    public void setGeneralInv(ArrayList<Item> allItem) {
+    public void setAllItems(ArrayList<Item> allItem) {
         allItems = allItem;
     }
 
@@ -68,95 +78,9 @@ public class Level {
     }
 
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("CANNON FODDER");
-        Fighter fighter = new Fighter(allItems);
-        Healer healer = new Healer(allItems);
-        Tank tank = new Tank(allItems);
-
-        Level level = new Level();
 
 
 
-        ArrayList<Character> characters = new ArrayList<Character>();
-        characters.add(fighter);
-        characters.add(healer);
-        characters.add(tank);
-
-
-        boolean flag =true;
-
-        while (flag) {
-            String[] userInput = scanner.nextLine().split(" ");
-
-
-
-            try {
-
-                for (int i = 0; i < 2; i++) {
-                    String arrayCheck = userInput[i];
-                }
-
-            } catch (ArrayIndexOutOfBoundsException exception) {
-                System.out.println("Action entered incorrectly.");
-                continue;
-            }
-
-
-            Character selectedCharacter = level.selectChar(userInput, characters);
-            Character selectedTarget = level.selectTarget(userInput, characters);
-            Item selectedItem = level.selectItem(userInput, selectedCharacter);
-
-
-
-
-            switch (userInput[1]) {
-
-                case "attack":
-
-                    selectedCharacter.attack(selectedTarget);
-                    break;
-
-                case "examine":
-                    selectedItem.display();
-                    break;
-
-                case "listInventory":
-
-                    selectedCharacter.listInventory();
-                    break;
-
-                case "pick":
-
-                    if (selectedCharacter.pick(selectedItem)) {
-                        allItems.remove(selectedItem);
-                    }
-                    break;
-
-                case "wield":
-
-                    Item wieldedItem = selectedCharacter.wield(level.ground, userInput);
-                    if (wieldedItem != null) {
-                        allItems.remove(wieldedItem);
-                    }
-                    break;
-
-                case "special":
-
-
-                case "NEXT":
-                    flag = false;
-
-
-            }
-        }
-
-
-
-
-    }
 
     public Character selectChar(String[] userInput,ArrayList<Character>characters){
         for(Character character: characters){
@@ -187,9 +111,18 @@ public class Level {
         tempList.add(selectedCharacter.getWeapon());
         tempList.add(selectedCharacter.getClothing());
         for (Item item: tempList){
-            if (item.getName().equals(userInput[2])){
-                return item;
+
+
+            try {
+
+
+                if (item.getName().equals(userInput[2])) {
+                    return item;
+                }
+            }catch (NullPointerException ignored){
+
             }
+
 
         }
 
@@ -212,6 +145,8 @@ public class Level {
 
 
     }
+
+
 
 
 

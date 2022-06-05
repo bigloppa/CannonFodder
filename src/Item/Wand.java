@@ -6,11 +6,15 @@ import Character.Character;
 
 public class Wand extends Weapon {
 
+    public Wand(){
 
-    public Wand(String name,int weight,int attackDmg){
-        super(name,weight,attackDmg);
     }
 
+    public Wand(String name, int weight, int attackDmg) {
+        setName(name);
+        setWeight(weight);
+        setAttackDmg(attackDmg);
+    }
 
     @Override
     public void specialAttack(Character selectedTarget,Character selectedCharacter){

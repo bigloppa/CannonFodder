@@ -2,12 +2,17 @@ package Item;
 
 import Character.Character;
 
-public class Sword extends Weapon implements WeaponOperations {
-
+public class Sword extends Weapon {
 
 
     public Sword(String name, int weight, int attackDmg) {
-        super(name, weight, attackDmg);
+        setName(name);
+        setWeight(weight);
+        setAttackDmg(attackDmg);
+    }
+
+    public Sword() {
+
 
     }
 

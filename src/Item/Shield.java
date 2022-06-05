@@ -7,11 +7,16 @@ public class Shield extends Weapon{
 
      private int leftChancesToStun;
 
-
-    public Shield(String name, int weight, int attackDmg) {
-        super(name, weight, attackDmg);
+    public Shield(){
 
     }
+
+    public Shield(String name, int weight, int attackDmg) {
+        setName(name);
+        setWeight(weight);
+        setAttackDmg(attackDmg);
+    }
+
 
     @Override
     public int calculateDmg(Character character) {

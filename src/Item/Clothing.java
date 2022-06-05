@@ -2,12 +2,35 @@ package Item;
 
 
 
-public class Clothing extends Item {
+public class Clothing extends ItemFields implements Item {
     private int resistance;
 
-    public Clothing(String name,int tier,int weight,int endurance){
-        super(name,weight);
-        this.resistance = endurance;
+    public Clothing(){
+
+    }
+
+    public Clothing(int resistance) {
+        this.resistance = resistance;
+    }
+
+    @Override
+    public int getWeight() {
+        return weight;
+    }
+
+    @Override
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
 
@@ -18,6 +41,7 @@ public class Clothing extends Item {
     public void setResistance(int resistance) {
         this.resistance = resistance;
     }
+
 
     @Override
     public void display() {
