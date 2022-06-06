@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class Level {
     private ArrayList<Item> ground;
-    private static int levelNum;
-    private static int enemyNum;
-    private static ArrayList<Item> allItems;
+    private int levelNum;
+    private int enemyNum;
+    private ArrayList<Item> allItems;
     private ArrayList<Character> characters;
     private ArrayList<Enemy> enemies;
 
@@ -28,20 +28,20 @@ public class Level {
         this.enemies = enemies;
     }
 
-    public static int getLevelNum() {
+    public int getLevelNum() {
         return levelNum;
     }
 
-    public static void setLevelNum(int levelNum) {
-        Level.levelNum = levelNum;
+    public void setLevelNum(int levelNum) {
+        this.levelNum = levelNum;
     }
 
-    public static int getEnemyNum() {
+    public  int getEnemyNum() {
         return enemyNum;
     }
 
-    public static void setEnemyNum(int enemyNum) {
-        Level.enemyNum = enemyNum;
+    public void setEnemyNum(int enemyNum) {
+        this.enemyNum = enemyNum;
     }
 
     public ArrayList<Item> getGround() {
@@ -84,7 +84,7 @@ public class Level {
 
     public Character selectChar(String[] userInput,ArrayList<Character>characters){
         for(Character character: characters){
-            if (character.getName().equals(userInput[0])){
+            if (character.getName().equals(userInput[0])&& characters.indexOf(character)<4){
                 return character;
             }
         }
@@ -114,8 +114,6 @@ public class Level {
 
 
             try {
-
-
                 if (item.getName().equals(userInput[2])) {
                     return item;
                 }
@@ -144,6 +142,34 @@ public class Level {
 
 
 
+    }
+
+
+    public void display(ArrayList<Character>characters){
+        System.out.print("\nCreating Level "+levelNum+", with "+enemyNum+" enemy soldiers.\nEntering level "+enemyNum+ "; ");
+        for (Character character: characters){
+            if (character.getState() == 2){
+                System.out.print(character.getName()+" enters.");
+            }
+        }
+        System.out.println();
+
+    }
+
+    public void groundAdd(Item item){
+        ground.add(item);
+    }
+
+    public void groundRemove(Item item){
+        ground.remove(item);
+    }
+
+    public void allItemsAdd(Item item){
+        allItems.add(item);
+    }
+
+    public void allItemsRemove(Item item){
+        allItems.remove(item);
     }
 
 

@@ -16,8 +16,7 @@ public class Tank extends Character {
         setIntelligence(secureRandom.nextInt(5)+3);
         setHp(calculateHp());
         setWeapon(createWeapon(allItems));
-        setInventory(new ArrayList<Item>());
-        System.out.println("Tank created with S: " + getStrength() + " V: " + getVitality() + " I: " + getIntelligence() + " The HP is: " + getHp() + " Tank wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
+        System.out.println("Tank created with S: " + getStrength() + ", V: " + getVitality() + ", I: " + getIntelligence() + ", The HP is: " + getHp() + ". Tank wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
     }
 
 

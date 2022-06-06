@@ -2,6 +2,7 @@ package Character;
 
 
 import Item.*;
+import Main.Level;
 
 import java.lang.Math;
 import java.util.ArrayList;
@@ -23,15 +24,11 @@ public abstract class Character {
 
     //CONSTRUCTORS + GET-SET
     public Character(){
-
-    }
-    public Character(ArrayList<Item> allItems){
         inventory = new ArrayList<Item>();
         state = 2;//ALIVE
 
-
-
     }
+
 
 
     public String getName() {
@@ -138,28 +135,13 @@ public abstract class Character {
             inventory.add(pickedItem);
             return true;
         }else{
-            System.out.println("The character's weight limit has been reached can't pick up.");
+            System.out.println("The character's weight limit has been reached. "+pickedItem.getName()+ "dropped.");
             return false;
         }
 
     }
 
-    public Item wield(ArrayList<Item> groundInv,String[] userInp){
-        for (Item item: groundInv){
-            if (item.getName().equals(userInp[2])&& item instanceof Weapon){
-                weapon = (Weapon) item;
-                return item;
-            }
-        }
-
-        for (Item item: inventory){
-            if (item.getName().equals(userInp[2])&& item instanceof Weapon){
-                weapon = (Weapon) item;
-                return null;
-            }
-        }
-
-        return null;
+    public void wield(String itemName, Level level){
 
 
 
@@ -186,42 +168,22 @@ public abstract class Character {
 
     }
 
-    /*
-    public void examine(String name, ArrayList<Item> ground){
-        for (Item item: inventory){
-            if (item.getName().equals(name)&& (item instanceof Weapon)){
-                System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
-            }else if (item.getName().equals(name)&& item instanceof Clothing){
-                System.out.println(item.getName()+ " has "+((Clothing) item).getResistance()+" and "+item.getWeight()+" unit of weight.");
-            }
-        }
 
-        for (Item item: ground){
-            if (item.getName().equals(name)&& item instanceof Weapon){
-                System.out.println(item.getName()+" has "+((Weapon) item).getAttackDmg()+" and "+item.getWeight()+" unit of weight.");
-            }else if (item.getName().equals(name)&& item instanceof Clothing){
-                System.out.println(item.getName()+ " has "+((Clothing) item).getResistance()+" and "+item.getWeight()+" unit of weight.");
-            }
-        }
-
-    }
-     */
 
 
     public void attack(Character selectedCharacter){
         try {
 
             int dmg = getWeapon().calculateDmg(this);
-            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
+            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg + selectedCharacter.clothing.getResistance());
             System.out.println(getName() + " does " + dmg + " damage. " + selectedCharacter.getName() + " has " + selectedCharacter.getHp() + " HP left.");
 
         }catch (NullPointerException exception){
             System.out.println("This Character doesn't wield a weapon it cannot attack.");
         }
     }
+
     public abstract Item createWeapon(ArrayList<Item> allWeapons);
-
-
 
 
     public void listInventory(){

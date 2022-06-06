@@ -47,4 +47,6 @@ public class Clothing extends ItemFields implements Item {
     public void display() {
         System.out.println(getName() + " has"+ getResistance()+" resistance, and "+getWeight()+ " units of weight.");
     }
+
+
 }

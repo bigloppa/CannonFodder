@@ -18,7 +18,7 @@ public class Fighter extends Character {
         setIntelligence(secureRandom.nextInt(5)+1);
         setWeapon(createWeapon(allItems));
         setHp(calculateHp());
-        System.out.println("Fighter created with S:" + getStrength() + " V: " + getVitality() + " I: " + getIntelligence() + " The HP is: " + getHp() + " Fighter wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
+        System.out.println("Fighter created with S: " + getStrength() + ", V: " + getVitality() + ", I: " + getIntelligence() + ", The HP is: " + getHp() + ". Fighter wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
     }
 
     public Fighter(){

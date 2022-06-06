@@ -10,9 +10,8 @@ import java.util.Scanner;
 public class Program {
 
     public static void main(String[] args) {
-
-
         Scanner scanner = new Scanner(System.in);
+
         Level level = new Level();
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
         itemArrayList.add(new Wand("wand2",12,34));
@@ -27,14 +26,18 @@ public class Program {
 
 
         System.out.println("CANNON FODDER");
-        Fighter fighter = new Fighter(level.getAllItems());
-        Healer healer = new Healer(level.getAllItems());
-        Tank tank = new Tank(level.getAllItems());
+        Character fighter = new Fighter(level.getAllItems());
+        Character healer = new Healer(level.getAllItems());
+        Character tank = new Tank(level.getAllItems());
 
         ArrayList<Character> characters = new ArrayList<Character>();
         characters.add(fighter);
         characters.add(healer);
         characters.add(tank);
+
+        level.groundAdd(new Wand("wand",2,3));
+
+        level.display(characters);
 
 
         boolean flag =true;
@@ -90,22 +93,13 @@ public class Program {
 
                 case "wield":
 
-                    Item wieldedItem = selectedCharacter.wield(level.getGround(), userInput);
-                    if (wieldedItem != null) {
-                        ArrayList<Item> tempList = level.getAllItems();
-                        tempList.remove(wieldedItem);
-                        level.setAllItems(tempList);
-                    }
-                    break;
 
                 case "special":
                     selectedCharacter.getWeapon().specialAttack(selectedTarget,selectedCharacter);
                 case "wear":
-                    Item wearedItem = selectedCharacter.wear(level.getGround(),userInput);
-                    if (wearedItem!= null){
-                        ArrayList<Item> tempList = level.getAllItems();
-                        tempList.remove(wearedItem);
-                        level.setAllItems(tempList);
+                    Item wornItem = selectedCharacter.wear(level.getGround(),userInput);
+                    if (wornItem!= null){
+                        level.groundRemove(wornItem);
                     }
                     break;
 
@@ -113,7 +107,7 @@ public class Program {
 
                 case "NEXT":
                     flag = false;
-
+                    break;
 
             }
         }

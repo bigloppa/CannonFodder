@@ -19,8 +19,7 @@ public class Healer extends Character {
         setIntelligence(secureRandom.nextInt(5)+6);
         setHp(calculateHp());
         setWeapon(createWeapon(allItems));
-        setInventory(new ArrayList<Item>());
-        System.out.println("Healer created with S: " + getStrength() + " V: " + getVitality() + " I: " + getIntelligence() + " The HP is: " + getHp() + " Healer wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
+        System.out.println("Healer created with S: " + getStrength() + ", V: " + getVitality() + ", I: " + getIntelligence() + ", The HP is: " + getHp() + ". Healer wields " + getWeapon().getName() + " with " + getWeapon().getAttackDmg() + " damage and " + getWeapon().getWeight() + " unit of weight." );
     }
 
 
