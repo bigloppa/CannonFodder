@@ -79,26 +79,54 @@ public class Program {
 
 
                 if (userInput[1].equals("attack")){
-                    Character selectedTarget = level.selectTarget(userInput);
-                    Character selectedCharacter = level.selectChar(userInput);
-                    selectedCharacter.attack(selectedTarget);
+                    try {
+
+
+                        Character selectedTarget = level.selectTarget(userInput);
+                        Character selectedCharacter = level.selectChar(userInput);
+                        selectedCharacter.attack(selectedTarget);
+                    }catch (NullPointerException exception){
+                        System.out.println("Character cannot be found.");
+                        continue;
+                    }
 
                 }else if (userInput[1].equals("examine")){
-                    Character selectedCharacter = level.selectChar(userInput);
-                    Item selectedItem = level.selectItem(userInput,selectedCharacter);
-                    selectedItem.display();
+                    try {
+
+
+                        Character selectedCharacter = level.selectChar(userInput);
+                        Item selectedItem = level.selectItem(userInput, selectedCharacter);
+                        selectedItem.display();
+                    }catch (NullPointerException exception){
+                        System.out.println("The Item or the Character cannot be found");
+                        continue;
+                    }
 
                 }else if (userInput[1].equals("listinventory")){
-                    Character selectedCharacter = level.selectChar(userInput);
-                    selectedCharacter.listInventory();
+                    try {
+
+                        Character selectedCharacter = level.selectChar(userInput);
+                        selectedCharacter.listInventory();
+
+                    }catch (NullPointerException exception){
+                        System.out.println("Character cannot be found");
+                        continue;
+                    }
 
                 }else if (userInput[1].equals("pick")){
-                    Character selectedCharacter = level.selectChar(userInput);
-                    Item selectedItem = level.selectItem(userInput,selectedCharacter);
-                    if (selectedCharacter.pick(selectedItem)) {
-                        ArrayList<Item> tempList = level.getAllItems();
-                        tempList.remove(selectedItem);
-                        level.setAllItems(tempList);
+                    try {
+
+
+                        Character selectedCharacter = level.selectChar(userInput);
+                        Item selectedItem = level.selectItem(userInput, selectedCharacter);
+                        if (selectedCharacter.pick(selectedItem)) {
+                            ArrayList<Item> tempList = level.getAllItems();
+                            tempList.remove(selectedItem);
+                            level.setAllItems(tempList);
+                        }
+                    }catch (NullPointerException exception){
+                        System.out.println("The Item or the Character cannot be found");
+                        continue;
                     }
 
                 }else if (userInput[1].equals("wield")){
@@ -109,7 +137,12 @@ public class Program {
                     if (wornItem != null) {
                         level.groundRemove(wornItem);
                     }
+                }else {
+                    System.out.println("Action entered incorrectly.");
+                    continue;
                 }
+
+                level.checkDeath();
 
 
 
@@ -118,6 +151,12 @@ public class Program {
                     if (!(character instanceof Enemy)){
                         doesGameContinue = true;
                     }
+                }
+
+                try {
+                    level.enemyAttacks();
+                }catch (Exception ignored){
+
                 }
 
 

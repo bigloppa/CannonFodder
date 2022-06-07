@@ -204,15 +204,38 @@ public class Level implements ILevelManager {
         allItems.remove(item);
     }
 
+    public Character selectTargetForEnemy(){
+        Character returnedChar;
+        for (Character character:characters){
+            if (character instanceof Tank){
+                return character;
+            }
+        }
+
+        for (Character character:characters){
+            if (character instanceof Fighter){
+                return character;
+            }
+        }
+
+        for (Character character:characters){
+            if (character instanceof Healer){
+                return character;
+            }
+        }
+
+        return null;
+
+
+
+
+    }
+
     public void enemyAttacks(){
 
         for (Character character: characters){
             if (character instanceof Enemy){
-                for (Character character1: characters){
-                    if (character1 instanceof Tank){
-
-                    }
-                }
+                character.attack(selectTargetForEnemy());
             }
         }
     }

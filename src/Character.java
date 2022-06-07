@@ -167,18 +167,19 @@ public abstract class Character implements Killable {
 
 
     public void attack(Character selectedCharacter){
-        try {
 
+        if (getWeapon() != null) {
             int dmg = getWeapon().calculateDmg(this);
             selectedCharacter.setHp(selectedCharacter.hp - (long) dmg + selectedCharacter.clothing.getResistance());
-            if (selectedCharacter.hp<0){
+            if (selectedCharacter.hp < 0) {
                 selectedCharacter.hp = 0;
             }
             System.out.println(getName() + " does " + dmg + " damage. " + selectedCharacter.name + " has " + selectedCharacter.hp + " HP left.");
-
-        }catch (NullPointerException exception){
+        }else{
             System.out.println("This Character doesn't wield a weapon it cannot attack.");
         }
+
+
     }
 
     public abstract Item createWeapon(ArrayList<Item> allWeapons);

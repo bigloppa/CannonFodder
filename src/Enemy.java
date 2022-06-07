@@ -24,6 +24,9 @@ public class Enemy extends Character {
 
             int dmg = getWeapon().calculateDmg(this);
             selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
+            if (selectedCharacter.getHp()<0){
+                selectedCharacter.setHp(0);
+            }
             System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
         }
     }
