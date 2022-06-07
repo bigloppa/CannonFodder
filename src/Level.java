@@ -136,7 +136,7 @@ public class Level implements ILevelManager {
 
         int randomNum = secureRandom.nextInt(allItems.size());
         for (Item item : allItems) {
-            if(randomNum == allItems.indexOf(item)&& item instanceof Sword){
+            if(randomNum == allItems.indexOf(item)){
                 return item;
             }
 
@@ -176,7 +176,16 @@ public class Level implements ILevelManager {
     public void checkDeath(){
         for (int i = 0; i < characters.size(); i++) {
             if (characters.get(i).getHp() == 0){
-                characters.remove(characters.get(i));
+                Character character = characters.get(i);
+                characters.remove(character);
+
+                if (character instanceof Enemy) {
+                    Item randomItem = selectRandomItem();
+                    System.out.println(character.getName() + " is dead. " + character.getName() + " drops "+randomItem.getName());
+                    ground.add(randomItem);
+                }
+
+
             }
         }
     }
@@ -239,6 +248,8 @@ public class Level implements ILevelManager {
             }
         }
     }
+
+
 
 
 

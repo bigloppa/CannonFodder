@@ -160,9 +160,10 @@ public class Program {
                 }
 
 
-                level.setLevelNum(level.getLevelNum()+1);
+
 
             }
+            level.setLevelNum(level.getLevelNum()+1);
         }
 
     }
