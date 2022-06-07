@@ -24,19 +24,8 @@ public abstract class Weapon extends ItemFields implements IWeaponManager,Item {
         System.out.println(getName() + " has "+ attackDmg+" damage and "+getWeight()+ " units of weight.");
     }
 
-    public abstract void specialAttack(Character selectedTarget, Character selectedCharacter);
 
 
-    @Override
-    public  Item findItem(String name, ArrayList<Item> items) {
-        Item selectedItem = null;
-        for (Item item: items){
-            if (this.name.equals(name)){
-                selectedItem = item;
-            }
-        }
 
-        return selectedItem;
 
-    }
 }

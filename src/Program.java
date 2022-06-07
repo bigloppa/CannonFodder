@@ -41,7 +41,9 @@ public class Program {
 
 
             while (true) {
+                level.checkDeath();
                 String[] userInput = scanner.nextLine().split(" ");
+
 
                 if("NEXT".equals(userInput[0])){
                     boolean doesRoundEnd = true;
@@ -63,8 +65,6 @@ public class Program {
 
                 }
 
-
-
                 try {
 
                     for (int i = 0; i < 2; i++) {
@@ -77,59 +77,49 @@ public class Program {
                 }
 
 
-                Character selectedCharacter = level.selectChar(userInput);
-                Character selectedTarget = level.selectTarget(userInput);
-                Item selectedItem = level.selectItem(userInput, selectedCharacter);
 
+                if (userInput[1].equals("attack")){
+                    Character selectedTarget = level.selectTarget(userInput);
+                    Character selectedCharacter = level.selectChar(userInput);
+                    selectedCharacter.attack(selectedTarget);
 
+                }else if (userInput[1].equals("examine")){
+                    Character selectedCharacter = level.selectChar(userInput);
+                    Item selectedItem = level.selectItem(userInput,selectedCharacter);
+                    selectedItem.display();
 
-                switch (userInput[1]) {
+                }else if (userInput[1].equals("listinventory")){
+                    Character selectedCharacter = level.selectChar(userInput);
+                    selectedCharacter.listInventory();
 
-                    case "attack":
+                }else if (userInput[1].equals("pick")){
+                    Character selectedCharacter = level.selectChar(userInput);
+                    Item selectedItem = level.selectItem(userInput,selectedCharacter);
+                    if (selectedCharacter.pick(selectedItem)) {
+                        ArrayList<Item> tempList = level.getAllItems();
+                        tempList.remove(selectedItem);
+                        level.setAllItems(tempList);
+                    }
 
-                        selectedCharacter.attack(selectedTarget);
-                        break;
+                }else if (userInput[1].equals("wield")){
 
-                    case "examine":
-                        Displayable displayable = selectedItem;
-                        displayable.display();
-                        break;
-
-                    case "listInventory":
-
-                        selectedCharacter.listInventory();
-                        break;
-
-                    case "pick":
-
-                        if (selectedCharacter.pick(selectedItem)) {
-                            ArrayList<Item> tempList = level.getAllItems();
-                            tempList.remove(selectedItem);
-                            level.setAllItems(tempList);
-                        }
-                        break;
-
-                    case "wield":
-
-
-                    case "special":
-                        selectedCharacter.getWeapon().specialAttack(selectedTarget, selectedCharacter);
-                    case "wear":
-                        Item wornItem = selectedCharacter.wear(level.getGround(), userInput);
-                        if (wornItem != null) {
-                            level.groundRemove(wornItem);
-                        }
-                        break;
-
-
-
+                }else if (userInput[1].equals("wear")){
+                    Character selectedCharacter = level.selectChar(userInput);
+                    Item wornItem = selectedCharacter.wear(level.getGround(), userInput);
+                    if (wornItem != null) {
+                        level.groundRemove(wornItem);
+                    }
                 }
+
+
+
                 doesGameContinue = false;
                 for (Character character: level.getCharacters()){
                     if (!(character instanceof Enemy)){
                         doesGameContinue = true;
                     }
                 }
+
 
                 level.setLevelNum(level.getLevelNum()+1);
 

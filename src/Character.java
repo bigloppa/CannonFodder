@@ -121,7 +121,7 @@ public abstract class Character implements Killable {
 
     public boolean pick(Item pickedItem){
         int sum = pickedItem.getWeight();
-        for (IItemManager item:getInventory()){
+        for (Item item:getInventory()){
             sum += item.getWeight();
 
         }
@@ -170,8 +170,11 @@ public abstract class Character implements Killable {
         try {
 
             int dmg = getWeapon().calculateDmg(this);
-            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg + selectedCharacter.clothing.getResistance());
-            System.out.println(getName() + " does " + dmg + " damage. " + selectedCharacter.getName() + " has " + selectedCharacter.getHp() + " HP left.");
+            selectedCharacter.setHp(selectedCharacter.hp - (long) dmg + selectedCharacter.clothing.getResistance());
+            if (selectedCharacter.hp<0){
+                selectedCharacter.hp = 0;
+            }
+            System.out.println(getName() + " does " + dmg + " damage. " + selectedCharacter.name + " has " + selectedCharacter.hp + " HP left.");
 
         }catch (NullPointerException exception){
             System.out.println("This Character doesn't wield a weapon it cannot attack.");

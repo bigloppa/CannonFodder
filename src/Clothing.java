@@ -51,4 +51,5 @@ public class Clothing extends ItemFields implements Displayable,Item {
     public Item generateItem(ArrayList<Item> items) {
         return null;
     }
+
 }

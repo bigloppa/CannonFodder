@@ -1,4 +1,3 @@
-import javax.imageio.event.IIOReadProgressListener;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
@@ -98,7 +97,7 @@ public class Level implements ILevelManager {
 
     public Character selectTarget(String[] userInput){
         for (Character target:characters){
-            if (target.getName().equals(userInput[2])){
+            if (target.getName().equals(userInput[2])&&target instanceof Enemy){
                 return target;
             }
         }
@@ -107,9 +106,6 @@ public class Level implements ILevelManager {
 
     }
 
-    public void death(){
-
-    }
 
     public Item selectItem(String[] userInput, Character selectedCharacter){
         ArrayList<Item> tempList = new ArrayList<Item>();
@@ -120,7 +116,11 @@ public class Level implements ILevelManager {
         for (Item item: tempList){
 
 
-            item.findItem(userInput[2],tempList);
+            try {
+                if (item.getName().equals(userInput[2])) {
+                    return item;
+                }
+            }catch (NullPointerException ignored){
 
             }
 
@@ -172,6 +172,15 @@ public class Level implements ILevelManager {
 
     }
 
+
+    public void checkDeath(){
+        for (int i = 0; i < characters.size(); i++) {
+            if (characters.get(i).getHp() == 0){
+                characters.remove(characters.get(i));
+            }
+        }
+    }
+
     public void addItems(){
 
 
@@ -194,6 +203,21 @@ public class Level implements ILevelManager {
     public void allItemsRemove(Item item){
         allItems.remove(item);
     }
+
+    public void enemyAttacks(){
+
+        for (Character character: characters){
+            if (character instanceof Enemy){
+                for (Character character1: characters){
+                    if (character1 instanceof Tank){
+
+                    }
+                }
+            }
+        }
+    }
+
+
 
 
 

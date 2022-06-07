@@ -4,53 +4,16 @@ import java.util.ArrayList;
 
 public class Enemy extends Character {
 
-    private Weapon weaponSelector;
-
-
-
-
     public Enemy(ArrayList<Item> allItems){
         SecureRandom secureRandom = new SecureRandom();
 
         setStrength(secureRandom.nextInt(5)+1);
         setVitality(secureRandom.nextInt(5)+1);
         setIntelligence(secureRandom.nextInt(5)+1);
-
-
-        int randomNum = secureRandom.nextInt(10)+1;
-
-        if (randomNum<=8){
-            new Sword().generateItem(allItems);
-        }else if ((randomNum==9)){
-
-        }else{
-
-        }
-
         setWeapon(createWeapon(allItems));
         setHp(calculateHp());
     }
 
-    // TODO: 13.05.2022 add the number of items
-    public Level drop(Level level){
-
-        SecureRandom secureRandom = new SecureRandom();
-        Item selectedItem = level.getAllItems().get(secureRandom.nextInt());
-        ArrayList<Item> tempInv = level.getAllItems();
-        tempInv.remove(selectedItem);
-
-        level.setAllItems(tempInv);
-        tempInv = level.getGround();
-        tempInv.add(selectedItem);
-        level.setGround(tempInv);
-        System.out.println(getName()+" has dropped "+selectedItem.getName());
-
-        return level;
-
-
-
-
-    }
 
     @Override
     public void attack(Character selectedCharacter) {
@@ -58,6 +21,7 @@ public class Enemy extends Character {
             System.out.println("This Character doesn't wield a weapon it cannot attack.");
 
         }else {
+
             int dmg = getWeapon().calculateDmg(this);
             selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
             System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
@@ -67,18 +31,16 @@ public class Enemy extends Character {
     @Override
     public Weapon createWeapon(ArrayList<Item> allItems) {
         SecureRandom secureRandom = new SecureRandom();
+        int randomNum = secureRandom.nextInt(10)+1;
 
-        Weapon selectedItem = null;
-        while (selectedItem == null) {
-            int randomNum = secureRandom.nextInt(allItems.size());
-            for (Item item : allItems) {
-                if (allItems.indexOf(item) == randomNum&& item.getClass().equals(weaponSelector.getClass()) ) {
-                    selectedItem = (Weapon) item;
-                }
-
-            }
+        if (randomNum<=8){
+            return (Weapon) new Sword().generateItem(allItems);
+        }else if ((randomNum==9)){
+            return (Weapon) new Wand().generateItem(allItems);
+        }else{
+            return (Weapon) new Shield().generateItem(allItems);
         }
-        return selectedItem;
+
     }
 
 
