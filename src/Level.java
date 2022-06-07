@@ -1,30 +1,24 @@
-package Main;
-
-import Item.*;
-import Character.*;
-import  Character.Character;
-
-
+import javax.imageio.event.IIOReadProgressListener;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
 
 public class Level implements ILevelManager {
-    private ArrayList<IItemManager> ground;
+    private ArrayList<Item> ground;
     private int levelNum;
     private int enemyNum;
-    private ArrayList<IItemManager> allItems;
+    private ArrayList<Item> allItems;
     private ArrayList<Character> characters;
     private ArrayList<Enemy> enemies;
 
     public Level(){
-        this.ground = new ArrayList<IItemManager>();
+        this.ground = new ArrayList<Item>();
         this.characters = new ArrayList<Character>();
 
     }
 
-    public Level(ArrayList<IItemManager> ground, ArrayList<Character> characters, ArrayList<Enemy> enemies) {
-        this.ground = new ArrayList<IItemManager>();
+    public Level(ArrayList<Item> ground, ArrayList<Character> characters, ArrayList<Enemy> enemies) {
+        this.ground = new ArrayList<Item>();
         this.characters = characters;
         this.enemies = enemies;
     }
@@ -45,20 +39,20 @@ public class Level implements ILevelManager {
         this.enemyNum = enemyNum;
     }
 
-    public ArrayList<IItemManager> getGround() {
+    public ArrayList<Item> getGround() {
         return ground;
     }
 
-    public void setGround(ArrayList<IItemManager> ground) {
+    public void setGround(ArrayList<Item> ground) {
         this.ground = ground;
     }
 
 
-    public ArrayList<IItemManager> getAllItems() {
+    public ArrayList<Item> getAllItems() {
         return allItems;
     }
 
-    public void setAllItems(ArrayList<IItemManager> allItem) {
+    public void setAllItems(ArrayList<Item> allItem) {
         allItems = allItem;
     }
 
@@ -117,20 +111,16 @@ public class Level implements ILevelManager {
 
     }
 
-    public IItemManager selectItem(String[] userInput, Character selectedCharacter){
-        ArrayList<IItemManager> tempList = new ArrayList<IItemManager>();
+    public Item selectItem(String[] userInput, Character selectedCharacter){
+        ArrayList<Item> tempList = new ArrayList<Item>();
         tempList.addAll(ground);
         tempList.addAll(selectedCharacter.getInventory());
         tempList.add(selectedCharacter.getWeapon());
         tempList.add(selectedCharacter.getClothing());
-        for (IItemManager item: tempList){
+        for (Item item: tempList){
 
 
-            try {
-                if (item.getName().equals(userInput[2])) {
-                    return item;
-                }
-            }catch (NullPointerException ignored){
+            item.findItem(userInput[2],tempList);
 
             }
 
@@ -141,11 +131,11 @@ public class Level implements ILevelManager {
     }
 
 
-    public IItemManager selectRandomItem() {
+    public Item selectRandomItem() {
         SecureRandom secureRandom = new SecureRandom();
 
         int randomNum = secureRandom.nextInt(allItems.size());
-        for (IItemManager item : allItems) {
+        for (Item item : allItems) {
             if(randomNum == allItems.indexOf(item)&& item instanceof Sword){
                 return item;
             }
@@ -189,19 +179,19 @@ public class Level implements ILevelManager {
 
 
 
-    public void groundAdd(IItemManager item){
+    public void groundAdd(Item item){
         ground.add(item);
     }
 
-    public void groundRemove(IItemManager item){
+    public void groundRemove(Item item){
         ground.remove(item);
     }
 
-    public void allItemsAdd(IItemManager item){
+    public void allItemsAdd(Item item){
         allItems.add(item);
     }
 
-    public void allItemsRemove(IItemManager item){
+    public void allItemsRemove(Item item){
         allItems.remove(item);
     }
 

@@ -1,10 +1,7 @@
-package Item;
+import java.security.SecureRandom;
+import java.util.ArrayList;
 
-import Character.Character;
-
-
-
-public class Wand extends Weapon {
+public class Wand extends Weapon implements CanSpecialAttack {
 
     public Wand(){
 
@@ -37,6 +34,16 @@ public class Wand extends Weapon {
         return getAttackDmg()*character.getIntelligence();
     }
 
-
-
+    @Override
+    public Item generateItem(ArrayList<Item> items) {
+        SecureRandom secureRandom = new SecureRandom();
+        while (true) {
+            int randomNum = secureRandom.nextInt(items.size());
+            for (int i = 0; i < items.size(); i++) {
+                if (i == randomNum && items.get(i) instanceof Wand) {
+                    return items.get(i);
+                }
+            }
+        }
+    }
 }

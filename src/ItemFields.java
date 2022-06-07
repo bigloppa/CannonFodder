@@ -1,6 +1,4 @@
-package Item;
-
-public class ItemFields {
+public abstract class ItemFields implements Item {
     protected String name;
     protected int weight;
 

@@ -1,8 +1,6 @@
-package Item;
+import java.util.ArrayList;
 
-
-
-public class Clothing extends ItemFields implements IItemManager {
+public class Clothing extends ItemFields implements Displayable,Item {
     private int resistance;
 
     public Clothing(){
@@ -49,4 +47,8 @@ public class Clothing extends ItemFields implements IItemManager {
     }
 
 
+    @Override
+    public Item generateItem(ArrayList<Item> items) {
+        return null;
+    }
 }

@@ -1,9 +1,3 @@
-package Main;
-
-import Character.Character;
-import Character.*;
-import Item.*;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +7,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
 
         Level level = new Level();
-        ArrayList<IItemManager> itemArrayList = new ArrayList<IItemManager>();
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
         itemArrayList.add(new Wand("wand2",12,34));
         itemArrayList.add(new Shield("Shield1",12,12));
         itemArrayList.add(new Sword("Sword1",21,23));
@@ -85,7 +79,7 @@ public class Program {
 
                 Character selectedCharacter = level.selectChar(userInput);
                 Character selectedTarget = level.selectTarget(userInput);
-                IItemManager selectedItem = level.selectItem(userInput, selectedCharacter);
+                Item selectedItem = level.selectItem(userInput, selectedCharacter);
 
 
 
@@ -97,7 +91,8 @@ public class Program {
                         break;
 
                     case "examine":
-                        selectedItem.display();
+                        Displayable displayable = selectedItem;
+                        displayable.display();
                         break;
 
                     case "listInventory":
@@ -108,7 +103,7 @@ public class Program {
                     case "pick":
 
                         if (selectedCharacter.pick(selectedItem)) {
-                            ArrayList<IItemManager> tempList = level.getAllItems();
+                            ArrayList<Item> tempList = level.getAllItems();
                             tempList.remove(selectedItem);
                             level.setAllItems(tempList);
                         }
@@ -120,7 +115,7 @@ public class Program {
                     case "special":
                         selectedCharacter.getWeapon().specialAttack(selectedTarget, selectedCharacter);
                     case "wear":
-                        IItemManager wornItem = selectedCharacter.wear(level.getGround(), userInput);
+                        Item wornItem = selectedCharacter.wear(level.getGround(), userInput);
                         if (wornItem != null) {
                             level.groundRemove(wornItem);
                         }

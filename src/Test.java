@@ -1,6 +1,4 @@
 
-import Item.*;
-import Character.*;
 
 import java.lang.Character;
 import java.util.ArrayList;

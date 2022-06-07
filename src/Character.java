@@ -1,14 +1,8 @@
-package Character;
-
-
-import Item.*;
-import Main.Level;
-
 import java.lang.Math;
 import java.util.ArrayList;
 
 
-public abstract class Character {
+public abstract class Character implements Killable {
     //FIELDS
     private String name;
     private long hp;
@@ -17,14 +11,14 @@ public abstract class Character {
     private int intelligence;
     private IWeaponManager weapon;
     private Clothing clothing;
-    private ArrayList<IItemManager> inventory;
+    private ArrayList<Item> inventory;
     private int state;
 
 
 
     //CONSTRUCTORS + GET-SET
     public Character(){
-        inventory = new ArrayList<IItemManager>();
+        inventory = new ArrayList<Item>();
         state = 2;//ALIVE
         clothing = new Clothing(0);
 
@@ -97,11 +91,11 @@ public abstract class Character {
         this.clothing = clothing;
     }
 
-    public ArrayList<IItemManager> getInventory() {
+    public ArrayList<Item> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<IItemManager> inventory) {
+    public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
     }
 
@@ -125,7 +119,7 @@ public abstract class Character {
 
 
 
-    public boolean pick(IItemManager pickedItem){
+    public boolean pick(Item pickedItem){
         int sum = pickedItem.getWeight();
         for (IItemManager item:getInventory()){
             sum += item.getWeight();
@@ -148,15 +142,15 @@ public abstract class Character {
 
     }
 
-    public IItemManager wear(ArrayList<IItemManager> groundInv, String[] userInput){
-        for (IItemManager item: groundInv){
+    public Item wear(ArrayList<Item> groundInv, String[] userInput){
+        for (Item item: groundInv){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
                 clothing = (Clothing) item;
                 return item;
             }
         }
 
-        for (IItemManager item: inventory){
+        for (Item item: inventory){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
                 clothing = (Clothing) item;
                 return null;
@@ -184,20 +178,23 @@ public abstract class Character {
         }
     }
 
-    public abstract IItemManager createWeapon(ArrayList<IItemManager> allWeapons);
+    public abstract Item createWeapon(ArrayList<Item> allWeapons);
 
 
     public void listInventory(){
         System.out.println("Inventory: ");
-        for (IItemManager item:getInventory()){
+        for (Item item:getInventory()){
             System.out.println(item.getName());
         }
         System.out.println("********************");
     }
 
-
-
-
-
-
+    @Override
+    public boolean checkDeath() {
+        if (hp==0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

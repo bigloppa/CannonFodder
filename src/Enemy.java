@@ -1,11 +1,5 @@
-package Character;
-
-
-import Item.*;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import Main.Level;
 
 
 public class Enemy extends Character {
@@ -15,7 +9,7 @@ public class Enemy extends Character {
 
 
 
-    public Enemy(ArrayList<IItemManager> allItems){
+    public Enemy(ArrayList<Item> allItems){
         SecureRandom secureRandom = new SecureRandom();
 
         setStrength(secureRandom.nextInt(5)+1);
@@ -26,11 +20,11 @@ public class Enemy extends Character {
         int randomNum = secureRandom.nextInt(10)+1;
 
         if (randomNum<=8){
-            weaponSelector = new Sword();
+            new Sword().generateItem(allItems);
         }else if ((randomNum==9)){
-            weaponSelector = new Wand();
+
         }else{
-            weaponSelector = new Shield();
+
         }
 
         setWeapon(createWeapon(allItems));
@@ -41,8 +35,8 @@ public class Enemy extends Character {
     public Level drop(Level level){
 
         SecureRandom secureRandom = new SecureRandom();
-        IItemManager selectedItem = level.getAllItems().get(secureRandom.nextInt());
-        ArrayList<IItemManager> tempInv = level.getAllItems();
+        Item selectedItem = level.getAllItems().get(secureRandom.nextInt());
+        ArrayList<Item> tempInv = level.getAllItems();
         tempInv.remove(selectedItem);
 
         level.setAllItems(tempInv);
@@ -64,20 +58,20 @@ public class Enemy extends Character {
             System.out.println("This Character doesn't wield a weapon it cannot attack.");
 
         }else {
-            int dmg = getWeapon().getAttackDmg()*(getStrength()+getVitality()+getIntelligence())/3;
+            int dmg = getWeapon().calculateDmg(this);
             selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
             System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
         }
     }
 
     @Override
-    public Weapon createWeapon(ArrayList<IItemManager> allItems) {
+    public Weapon createWeapon(ArrayList<Item> allItems) {
         SecureRandom secureRandom = new SecureRandom();
 
         Weapon selectedItem = null;
         while (selectedItem == null) {
             int randomNum = secureRandom.nextInt(allItems.size());
-            for (IItemManager item : allItems) {
+            for (Item item : allItems) {
                 if (allItems.indexOf(item) == randomNum&& item.getClass().equals(weaponSelector.getClass()) ) {
                     selectedItem = (Weapon) item;
                 }
