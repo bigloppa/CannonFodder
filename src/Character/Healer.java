@@ -11,7 +11,7 @@ public class Healer extends Character {
 
 
 
-    public Healer(ArrayList<Item> allItems){
+    public Healer(ArrayList<IItemManager> allItems){
         setName("Healer");
         SecureRandom secureRandom = new SecureRandom();
         setStrength(secureRandom.nextInt(5)+3);
@@ -25,12 +25,12 @@ public class Healer extends Character {
 
 
     @Override
-    public Weapon createWeapon(ArrayList<Item> allItems) {
+    public Weapon createWeapon(ArrayList<IItemManager> allItems) {
         SecureRandom secureRandom = new SecureRandom();
         Weapon selectedItem = null;
         while (selectedItem == null) {
             int randomNum = secureRandom.nextInt(allItems.size());
-            for (Item item : allItems) {
+            for (IItemManager item : allItems) {
                 if (allItems.indexOf(item) == randomNum&& item instanceof Wand) {
                     selectedItem = (Weapon) item;
                 }

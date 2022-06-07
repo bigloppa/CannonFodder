@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Tank extends Character {
 
-    public Tank(ArrayList<Item> allItems){
+    public Tank(ArrayList<IItemManager> allItems){
         SecureRandom secureRandom = new SecureRandom();
         setName("Tank");
         setStrength(secureRandom.nextInt(5)+1);
@@ -22,12 +22,12 @@ public class Tank extends Character {
 
 
     @Override
-    public Weapon createWeapon(ArrayList<Item> allItems) {
+    public Weapon createWeapon(ArrayList<IItemManager> allItems) {
         SecureRandom secureRandom = new SecureRandom();
         Weapon selectedItem = null;
         while (selectedItem == null) {
             int randomNum = secureRandom.nextInt(allItems.size());
-            for (Item item : allItems) {
+            for (IItemManager item : allItems) {
                 if (allItems.indexOf(item) == randomNum&& item instanceof Shield) {
                     selectedItem = (Weapon) item;
                 }

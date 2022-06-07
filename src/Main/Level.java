@@ -3,27 +3,28 @@ package Main;
 import Item.*;
 import Character.*;
 import  Character.Character;
-import Item.Item;
 
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
 
-public class Level {
-    private ArrayList<Item> ground;
+public class Level implements ILevelManager {
+    private ArrayList<IItemManager> ground;
     private int levelNum;
     private int enemyNum;
-    private ArrayList<Item> allItems;
+    private ArrayList<IItemManager> allItems;
     private ArrayList<Character> characters;
     private ArrayList<Enemy> enemies;
 
     public Level(){
-        this.ground = new ArrayList<Item>();
+        this.ground = new ArrayList<IItemManager>();
+        this.characters = new ArrayList<Character>();
+
     }
 
-    public Level(ArrayList<Item> ground, ArrayList<Character> characters, ArrayList<Enemy> enemies) {
-        this.ground = new ArrayList<Item>();
+    public Level(ArrayList<IItemManager> ground, ArrayList<Character> characters, ArrayList<Enemy> enemies) {
+        this.ground = new ArrayList<IItemManager>();
         this.characters = characters;
         this.enemies = enemies;
     }
@@ -44,20 +45,20 @@ public class Level {
         this.enemyNum = enemyNum;
     }
 
-    public ArrayList<Item> getGround() {
+    public ArrayList<IItemManager> getGround() {
         return ground;
     }
 
-    public void setGround(ArrayList<Item> ground) {
+    public void setGround(ArrayList<IItemManager> ground) {
         this.ground = ground;
     }
 
 
-    public ArrayList<Item> getAllItems() {
+    public ArrayList<IItemManager> getAllItems() {
         return allItems;
     }
 
-    public void setAllItems(ArrayList<Item> allItem) {
+    public void setAllItems(ArrayList<IItemManager> allItem) {
         allItems = allItem;
     }
 
@@ -77,12 +78,20 @@ public class Level {
         this.enemies = enemies;
     }
 
+    public void addCharacter(Character character){
+        characters.add(character);
+    }
+
+    public void removeCharacter(Character character){
+        characters.remove(character);
+    }
 
 
 
 
 
-    public Character selectChar(String[] userInput,ArrayList<Character>characters){
+
+    public Character selectChar(String[] userInput){
         for(Character character: characters){
             if (character.getName().equals(userInput[0])&& characters.indexOf(character)<4){
                 return character;
@@ -93,7 +102,7 @@ public class Level {
 
     }
 
-    public Character selectTarget(String[] userInput,ArrayList<Character> characters){
+    public Character selectTarget(String[] userInput){
         for (Character target:characters){
             if (target.getName().equals(userInput[2])){
                 return target;
@@ -104,13 +113,17 @@ public class Level {
 
     }
 
-    public Item selectItem(String[] userInput,Character selectedCharacter){
-        ArrayList<Item> tempList = new ArrayList<Item>();
+    public void death(){
+
+    }
+
+    public IItemManager selectItem(String[] userInput, Character selectedCharacter){
+        ArrayList<IItemManager> tempList = new ArrayList<IItemManager>();
         tempList.addAll(ground);
         tempList.addAll(selectedCharacter.getInventory());
         tempList.add(selectedCharacter.getWeapon());
         tempList.add(selectedCharacter.getClothing());
-        for (Item item: tempList){
+        for (IItemManager item: tempList){
 
 
             try {
@@ -128,11 +141,11 @@ public class Level {
     }
 
 
-    public Item selectRandomItem() {
+    public IItemManager selectRandomItem() {
         SecureRandom secureRandom = new SecureRandom();
 
         int randomNum = secureRandom.nextInt(allItems.size());
-        for (Item item : allItems) {
+        for (IItemManager item : allItems) {
             if(randomNum == allItems.indexOf(item)&& item instanceof Sword){
                 return item;
             }
@@ -143,9 +156,22 @@ public class Level {
 
 
     }
+    public void generateEnemy(){
+        enemyNum = (int)Math.pow(2,levelNum);
+        for (int i = 1; i <= enemyNum; i++) {
+            Character enemy = new Enemy(allItems);
+            enemy.setName("Enemy"+i);
+            characters.add(enemy);
 
 
-    public void display(ArrayList<Character>characters){
+        }
+    }
+
+
+
+
+
+    public void display(){
         System.out.print("\nCreating Level "+levelNum+", with "+enemyNum+" enemy soldiers.\nEntering level "+enemyNum+ "; ");
         for (Character character: characters){
             if (character.getState() == 2){
@@ -156,19 +182,26 @@ public class Level {
 
     }
 
-    public void groundAdd(Item item){
+    public void addItems(){
+
+
+    }
+
+
+
+    public void groundAdd(IItemManager item){
         ground.add(item);
     }
 
-    public void groundRemove(Item item){
+    public void groundRemove(IItemManager item){
         ground.remove(item);
     }
 
-    public void allItemsAdd(Item item){
+    public void allItemsAdd(IItemManager item){
         allItems.add(item);
     }
 
-    public void allItemsRemove(Item item){
+    public void allItemsRemove(IItemManager item){
         allItems.remove(item);
     }
 

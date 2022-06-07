@@ -15,7 +15,7 @@ public class Enemy extends Character {
 
 
 
-    public Enemy(ArrayList<Item> allItems){
+    public Enemy(ArrayList<IItemManager> allItems){
         SecureRandom secureRandom = new SecureRandom();
 
         setStrength(secureRandom.nextInt(5)+1);
@@ -41,8 +41,8 @@ public class Enemy extends Character {
     public Level drop(Level level){
 
         SecureRandom secureRandom = new SecureRandom();
-        Item selectedItem = level.getAllItems().get(secureRandom.nextInt());
-        ArrayList<Item> tempInv = level.getAllItems();
+        IItemManager selectedItem = level.getAllItems().get(secureRandom.nextInt());
+        ArrayList<IItemManager> tempInv = level.getAllItems();
         tempInv.remove(selectedItem);
 
         level.setAllItems(tempInv);
@@ -71,13 +71,13 @@ public class Enemy extends Character {
     }
 
     @Override
-    public Weapon createWeapon(ArrayList<Item> allItems) {
+    public Weapon createWeapon(ArrayList<IItemManager> allItems) {
         SecureRandom secureRandom = new SecureRandom();
 
         Weapon selectedItem = null;
         while (selectedItem == null) {
             int randomNum = secureRandom.nextInt(allItems.size());
-            for (Item item : allItems) {
+            for (IItemManager item : allItems) {
                 if (allItems.indexOf(item) == randomNum&& item.getClass().equals(weaponSelector.getClass()) ) {
                     selectedItem = (Weapon) item;
                 }

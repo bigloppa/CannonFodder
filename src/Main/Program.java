@@ -13,7 +13,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
 
         Level level = new Level();
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        ArrayList<IItemManager> itemArrayList = new ArrayList<IItemManager>();
         itemArrayList.add(new Wand("wand2",12,34));
         itemArrayList.add(new Shield("Shield1",12,12));
         itemArrayList.add(new Sword("Sword1",21,23));
@@ -30,84 +30,113 @@ public class Program {
         Character healer = new Healer(level.getAllItems());
         Character tank = new Tank(level.getAllItems());
 
-        ArrayList<Character> characters = new ArrayList<Character>();
-        characters.add(fighter);
-        characters.add(healer);
-        characters.add(tank);
+
+        level.addCharacter(fighter);
+        level.addCharacter(healer);
+        level.addCharacter(tank);
 
         level.groundAdd(new Wand("wand",2,3));
 
-        level.display(characters);
+        boolean doesGameContinue = true;
 
 
-        boolean flag =true;
+        while (doesGameContinue) {
+            boolean doesRoundContinue = true;
+            level.generateEnemy();
+            level.display();
 
-        while (flag) {
-            String[] userInput = scanner.nextLine().split(" ");
+
+            while (true) {
+                String[] userInput = scanner.nextLine().split(" ");
+
+                if("NEXT".equals(userInput[0])){
+                    boolean doesRoundEnd = true;
+                    for (Character character : level.getCharacters()) {
+                        if (character instanceof Enemy) {
+                            doesRoundEnd = false;
+
+                        }
+                    }
+
+                    if (doesRoundEnd){
+                        break;
+                    }else {
+                        System.out.println("There are enemies you can't go to the next level.");
+                        continue;
+
+                    }
 
 
-
-            try {
-
-                for (int i = 0; i < 2; i++) {
-                    String arrayCheck = userInput[i];
                 }
 
-            } catch (ArrayIndexOutOfBoundsException exception) {
-                System.out.println("Action entered incorrectly.");
-                continue;
-            }
 
 
-            Character selectedCharacter = level.selectChar(userInput, characters);
-            Character selectedTarget = level.selectTarget(userInput, characters);
-            Item selectedItem = level.selectItem(userInput, selectedCharacter);
+                try {
 
-
-
-
-            switch (userInput[1]) {
-
-                case "attack":
-
-                    selectedCharacter.attack(selectedTarget);
-                    break;
-
-                case "examine":
-                    selectedItem.display();
-                    break;
-
-                case "listInventory":
-
-                    selectedCharacter.listInventory();
-                    break;
-
-                case "pick":
-
-                    if (selectedCharacter.pick(selectedItem)) {
-                       ArrayList<Item> tempList = level.getAllItems();
-                       tempList.remove(selectedItem);
-                       level.setAllItems(tempList);
+                    for (int i = 0; i < 2; i++) {
+                        String arrayCheck = userInput[i];
                     }
-                    break;
 
-                case "wield":
+                } catch (ArrayIndexOutOfBoundsException exception) {
+                    System.out.println("Action entered incorrectly.");
+                    continue;
+                }
 
 
-                case "special":
-                    selectedCharacter.getWeapon().specialAttack(selectedTarget,selectedCharacter);
-                case "wear":
-                    Item wornItem = selectedCharacter.wear(level.getGround(),userInput);
-                    if (wornItem!= null){
-                        level.groundRemove(wornItem);
+                Character selectedCharacter = level.selectChar(userInput);
+                Character selectedTarget = level.selectTarget(userInput);
+                IItemManager selectedItem = level.selectItem(userInput, selectedCharacter);
+
+
+
+                switch (userInput[1]) {
+
+                    case "attack":
+
+                        selectedCharacter.attack(selectedTarget);
+                        break;
+
+                    case "examine":
+                        selectedItem.display();
+                        break;
+
+                    case "listInventory":
+
+                        selectedCharacter.listInventory();
+                        break;
+
+                    case "pick":
+
+                        if (selectedCharacter.pick(selectedItem)) {
+                            ArrayList<IItemManager> tempList = level.getAllItems();
+                            tempList.remove(selectedItem);
+                            level.setAllItems(tempList);
+                        }
+                        break;
+
+                    case "wield":
+
+
+                    case "special":
+                        selectedCharacter.getWeapon().specialAttack(selectedTarget, selectedCharacter);
+                    case "wear":
+                        IItemManager wornItem = selectedCharacter.wear(level.getGround(), userInput);
+                        if (wornItem != null) {
+                            level.groundRemove(wornItem);
+                        }
+                        break;
+
+
+
+                }
+                doesGameContinue = false;
+                for (Character character: level.getCharacters()){
+                    if (!(character instanceof Enemy)){
+                        doesGameContinue = true;
                     }
-                    break;
+                }
 
-
-
-                case "NEXT":
-                    flag = false;
-                    break;
+                level.setLevelNum(level.getLevelNum()+1);
 
             }
         }

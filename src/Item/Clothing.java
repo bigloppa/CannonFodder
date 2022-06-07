@@ -2,7 +2,7 @@ package Item;
 
 
 
-public class Clothing extends ItemFields implements Item {
+public class Clothing extends ItemFields implements IItemManager {
     private int resistance;
 
     public Clothing(){
