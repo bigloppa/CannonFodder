@@ -8,12 +8,12 @@ public class Program {
 
         Level level = new Level();
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
-        itemArrayList.add(new Wand("wand2",12,34));
-        itemArrayList.add(new Shield("Shield1",12,12));
-        itemArrayList.add(new Sword("Sword1",21,23));
-        itemArrayList.add(new Wand("wand1",12,34));
-        itemArrayList.add(new Shield("Shield2",12,12));
-        itemArrayList.add(new Sword("Sword2",21,23));
+        itemArrayList.add(new Wand("wand2",12,3));
+        itemArrayList.add(new Shield("Shield1",12,3));
+        itemArrayList.add(new Sword("Sword1",21,3));
+        itemArrayList.add(new Wand("wand1",12,3));
+        itemArrayList.add(new Shield("Shield2",12,3));
+        itemArrayList.add(new Sword("Sword2",21,3));
 
         level.setAllItems(itemArrayList);
 
@@ -42,6 +42,7 @@ public class Program {
 
             while (true) {
                 level.checkDeath();
+
                 String[] userInput = scanner.nextLine().split(" ");
 
 
@@ -80,7 +81,6 @@ public class Program {
 
                 if (userInput[1].equals("attack")){
                     try {
-
 
                         Character selectedTarget = level.selectTarget(userInput);
                         Character selectedCharacter = level.selectChar(userInput);
@@ -131,13 +131,15 @@ public class Program {
                     try {
                         Character selectedCharacter = level.selectChar(userInput);
                         Item item = level.searchGroundForWeapon(userInput[2]);
+                        System.out.println(selectedCharacter.getName()+ " wielded "+ item.getName() + " successfully.");
                         if (selectedCharacter.wield(level.getGround(),userInput)){
                             level.groundRemove(item);
 
                         }
-                        System.out.println(selectedCharacter.getName()+ " wielded "+ selectedCharacter.getWeapon().getName() + " successfully.");
+
                     }catch (NullPointerException exception){
                         System.out.println("Item or character cannot be found.");
+                        System.out.println(exception);
                         continue;
                     }
 
@@ -148,12 +150,36 @@ public class Program {
                         if (selectedCharacter.wear(level.getGround(),userInput)){
                             level.groundRemove(item);
                         }
-                        System.out.println(selectedCharacter.getName()+ " worn "+ selectedCharacter.getWeapon().getName()+ " successfully.");
+                        System.out.println(selectedCharacter.getName()+ " worn "+ item.getName()+ " successfully.");
                     }catch (NullPointerException exception){
                         System.out.println("Item or character cannot be found.");
                         continue;
                     }
-                }else {
+                }else if (userInput[1].equals("specialattack")){
+                    try{
+                        Character selectedCharacter = level.selectChar(userInput);
+                        Character selectedTarget = null;
+                        ArrayList<Character>characterArrayList = new ArrayList<>();
+                        if (selectedCharacter.getWeapon() instanceof Wand){
+                            selectedTarget = level.selectHealingTarget(userInput);
+                            characterArrayList.add(selectedCharacter);
+                            characterArrayList.add(selectedTarget);
+                            selectedCharacter.getWeapon().specialAttack(characterArrayList);
+                        }else if (selectedCharacter.getWeapon() instanceof Sword){
+                            characterArrayList.add(selectedCharacter);
+                            selectedCharacter.getWeapon().specialAttack(characterArrayList);
+                        }else{
+
+                            selectedCharacter.getWeapon().specialAttack(characterArrayList);
+                        }
+
+
+
+                    }catch (NullPointerException exception){
+                        System.out.println("Character or target cannot be found.");
+                    }
+                }
+                else {
                     System.out.println("Action entered incorrectly.");
                     continue;
                 }

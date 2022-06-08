@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class Shield extends Weapon{
 
-     private int leftChancesToStun;
+     private int turnsForStun;
 
     public Shield(){
-
+        turnsForStun = 3;
     }
 
     public Shield(String name, int weight, int attackDmg) {
@@ -21,17 +21,22 @@ public class Shield extends Weapon{
         return getAttackDmg()*character.getVitality();
     }
 
+    @Override
+    public boolean turnPassed() {
+        if (turnsForStun<3&&turnsForStun>0){
+            turnsForStun--;
+            return false;
+        }else{
+            turnsForStun = 3;
+            return true;
 
+        }
+    }
 
 
     @Override
-    public void specialAttack(Character selectedTarget, Character selectedCharacter) {
-        if (leftChancesToStun>0){
-            selectedTarget.setState(1);
-        }else {
-            System.out.println("This character cannot stun anymore.");
-        }
-        leftChancesToStun--;
+    public void specialAttack(ArrayList<Character> characters) {
+
     }
 
     @Override

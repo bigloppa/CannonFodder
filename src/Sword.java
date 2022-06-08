@@ -3,16 +3,30 @@ import java.util.ArrayList;
 
 public class Sword extends Weapon implements CanSpecialAttack {
 
+    private int turnsForParry;
+
+
+
+
 
     public Sword(String name, int weight, int attackDmg) {
         setName(name);
         setWeight(weight);
         setAttackDmg(attackDmg);
+        turnsForParry = 4;
     }
 
     public Sword() {
 
 
+    }
+
+    public int getTurnsForParry() {
+        return turnsForParry;
+    }
+
+    public void setTurnsForParry(int turnsForParry) {
+        this.turnsForParry = turnsForParry;
     }
 
     @Override
@@ -21,9 +35,24 @@ public class Sword extends Weapon implements CanSpecialAttack {
     }
 
     @Override
-    public void specialAttack(Character selectedTarget, Character selectedCharacter) {
-
+    public void specialAttack(ArrayList<Character> characters) {
+        characters.get(0).setState(0);
+        turnsForParry--;
     }
+
+    @Override
+    public boolean turnPassed(){
+        if (turnsForParry<3&&turnsForParry>0){
+            turnsForParry--;
+            return false;
+        }else{
+            turnsForParry = 3;
+            return true;
+
+        }
+    }
+
+
 
 
     @Override
@@ -38,4 +67,7 @@ public class Sword extends Weapon implements CanSpecialAttack {
             }
         }
     }
+
+
+
 }

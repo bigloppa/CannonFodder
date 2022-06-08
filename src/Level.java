@@ -10,6 +10,7 @@ public class Level implements ILevelManager {
     private ArrayList<Character> characters;
     private ArrayList<Enemy> enemies;
 
+
     public Level(){
         this.ground = new ArrayList<Item>();
         this.characters = new ArrayList<Character>();
@@ -93,6 +94,16 @@ public class Level implements ILevelManager {
 
         return null;
 
+    }
+
+    public Character selectHealingTarget(String[]userInput){
+        for (Character target:characters){
+            if (target.getName().equals(userInput[2])&&!(target instanceof Enemy)){
+                return target;
+            }
+        }
+
+        return null;
     }
 
     public Character selectTarget(String[] userInput){
@@ -192,6 +203,20 @@ public class Level implements ILevelManager {
         return null;
     }
 
+    public void updateTurn(){
+        for (Character character:characters){
+            if (!(character instanceof Enemy)&&character.getWeapon() instanceof Sword){
+                if (character.getWeapon().turnPassed()){
+                    character.setState(2);
+                }
+            }else if (!(character instanceof Enemy)&&character.getWeapon() instanceof Shield){
+                if (character.getWeapon().turnPassed()){
+
+                }
+            }
+        }
+    }
+
 
     public void checkDeath(){
         for (int i = 0; i < characters.size(); i++) {
@@ -234,7 +259,7 @@ public class Level implements ILevelManager {
     }
 
     public Character selectTargetForEnemy(){
-        Character returnedChar;
+
         for (Character character:characters){
             if (character instanceof Tank){
                 return character;
@@ -242,7 +267,7 @@ public class Level implements ILevelManager {
         }
 
         for (Character character:characters){
-            if (character instanceof Fighter){
+            if (character instanceof Fighter&& character.getState() !=0){
                 return character;
             }
         }
@@ -258,22 +283,25 @@ public class Level implements ILevelManager {
     }
 
     public void enemyAttacks(){
+        SecureRandom secureRandom = new SecureRandom();
+
+
+        ArrayList<Character>enemyList = new ArrayList<>();
 
         for (Character character: characters){
-            if (character instanceof Enemy){
+            if (character instanceof Enemy&& character.getState() ==2){
+                enemyList.add(character);
+            }
+        }
+
+        int randomNum = secureRandom.nextInt(enemyList.size());
+
+        for (Character character:enemyList){
+            if (randomNum == enemyList.indexOf(character)){
                 character.attack(selectTargetForEnemy());
             }
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 

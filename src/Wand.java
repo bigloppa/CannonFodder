@@ -14,14 +14,21 @@ public class Wand extends Weapon implements CanSpecialAttack {
     }
 
     @Override
-    public void specialAttack(Character selectedTarget,Character selectedCharacter){
+    public boolean turnPassed() {
+        return false;
+    }
+
+    @Override
+    public void specialAttack(ArrayList<Character>characters){
+        Character selectedCharacter = characters.get(0);
+        Character selectedTarget = characters.get(1);
         long finalHealth = selectedTarget.getHp()+(long) selectedCharacter.getIntelligence();
-        if (finalHealth>35&& selectedCharacter.getState() == 2) {
-            selectedTarget.setHp(35);
-        }else if (selectedCharacter.getHp()>=0){
-            selectedCharacter.setHp(finalHealth);
-        }else{
-            System.out.println("A dead character cannot be healed.");
+        if (finalHealth>selectedTarget.calculateHp()) {
+            selectedTarget.setHp(selectedTarget.calculateHp());
+            System.out.println(selectedTarget.getName()+ " is healed by "+ selectedCharacter.getIntelligence()+". "+ selectedTarget.getName()+ "'s hp is now "+ selectedTarget.getHp()+".");
+        }else {
+            selectedTarget.setHp(finalHealth);
+            System.out.println(selectedTarget.getName()+ " is healed by "+ selectedCharacter.getIntelligence()+". "+ selectedTarget.getName()+ "'s hp is now "+ selectedTarget.getHp()+".");
         }
 
     }

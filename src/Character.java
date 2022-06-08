@@ -132,6 +132,8 @@ public abstract class Character implements Killable {
 
 
 
+
+
     public boolean pick(Item pickedItem){
 
         if (checkWeight(pickedItem.getWeight())){
@@ -148,6 +150,12 @@ public abstract class Character implements Killable {
     public boolean wield(ArrayList<Item> groundInv,String[]userInput){
         for (Item item: groundInv){
             if (item.getName().equals(userInput[2])&& item instanceof Weapon){
+                if (checkWeight(item.getWeight())){
+                    inventory.add(weapon);
+                }else {
+                    System.out.println("The old weapon cannot be added to inventory so it has been thrown away.");
+                }
+
                 weapon = (Weapon) item;
                 return true;
             }
@@ -155,6 +163,11 @@ public abstract class Character implements Killable {
 
         for (Item item: inventory){
             if (item.getName().equals(userInput[2])&& item instanceof Weapon){
+                if (checkWeight(item.getWeight())){
+                    inventory.add(weapon);
+                }else {
+                    System.out.println("The old weapon cannot be added to inventory so it has been thrown away.");
+                }
                 weapon = (Weapon) item;
                 return false;
             }
@@ -168,6 +181,11 @@ public abstract class Character implements Killable {
     public boolean wear(ArrayList<Item> groundInv, String[] userInput){
         for (Item item: groundInv){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
+                if (checkWeight(item.getWeight())){
+                    inventory.add(clothing);
+                }else {
+                    System.out.println("The old clothing cannot be added to inventory so it has been thrown away.");
+                }
                 clothing = (Clothing) item;
                 return true;
             }
@@ -175,6 +193,11 @@ public abstract class Character implements Killable {
 
         for (Item item: inventory){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
+                if (checkWeight(item.getWeight())){
+                    inventory.add(clothing);
+                }else {
+                    System.out.println("The old clothing cannot be added to inventory so it has been thrown away.");
+                }
                 clothing = (Clothing) item;
                 return false;
             }
@@ -191,7 +214,7 @@ public abstract class Character implements Killable {
 
     public void attack(Character selectedCharacter){
 
-        if (getWeapon() != null) {
+        if (getWeapon() != null&&state !=0) {
             int dmg = getWeapon().calculateDmg(this);
             selectedCharacter.setHp(selectedCharacter.hp - (long) dmg + selectedCharacter.clothing.getResistance());
             if (selectedCharacter.hp < 0) {
@@ -199,7 +222,7 @@ public abstract class Character implements Killable {
             }
             System.out.println(getName() + " does " + dmg + " damage. " + selectedCharacter.name + " has " + selectedCharacter.hp + " HP left.");
         }else{
-            System.out.println("This Character doesn't wield a weapon it cannot attack.");
+            System.out.println("This Character cannot attack.");
         }
 
 
