@@ -29,7 +29,7 @@ public class Program {
         level.addCharacter(healer);
         level.addCharacter(tank);
 
-        level.groundAdd(new Wand("wand",2,3));
+
 
         boolean doesGameContinue = true;
 
@@ -120,22 +120,38 @@ public class Program {
                         Character selectedCharacter = level.selectChar(userInput);
                         Item selectedItem = level.selectItem(userInput, selectedCharacter);
                         if (selectedCharacter.pick(selectedItem)) {
-                            ArrayList<Item> tempList = level.getAllItems();
-                            tempList.remove(selectedItem);
-                            level.setAllItems(tempList);
+                            level.groundRemove(selectedItem);
                         }
                     }catch (NullPointerException exception){
-                        System.out.println("The Item or the Character cannot be found");
+                        System.out.println("Item or Character cannot be found");
                         continue;
                     }
 
                 }else if (userInput[1].equals("wield")){
+                    try {
+                        Character selectedCharacter = level.selectChar(userInput);
+                        Item item = level.searchGroundForWeapon(userInput[2]);
+                        if (selectedCharacter.wield(level.getGround(),userInput)){
+                            level.groundRemove(item);
+
+                        }
+                        System.out.println(selectedCharacter.getName()+ " wielded "+ selectedCharacter.getWeapon().getName() + " successfully.");
+                    }catch (NullPointerException exception){
+                        System.out.println("Item or character cannot be found.");
+                        continue;
+                    }
 
                 }else if (userInput[1].equals("wear")){
-                    Character selectedCharacter = level.selectChar(userInput);
-                    Item wornItem = selectedCharacter.wear(level.getGround(), userInput);
-                    if (wornItem != null) {
-                        level.groundRemove(wornItem);
+                    try {
+                        Character selectedCharacter = level.selectChar(userInput);
+                        Item item = level.searchGroundForClothing(userInput[2]);
+                        if (selectedCharacter.wear(level.getGround(),userInput)){
+                            level.groundRemove(item);
+                        }
+                        System.out.println(selectedCharacter.getName()+ " worn "+ selectedCharacter.getWeapon().getName()+ " successfully.");
+                    }catch (NullPointerException exception){
+                        System.out.println("Item or character cannot be found.");
+                        continue;
                     }
                 }else {
                     System.out.println("Action entered incorrectly.");

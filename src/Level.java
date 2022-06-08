@@ -172,6 +172,26 @@ public class Level implements ILevelManager {
 
     }
 
+    public Item searchGroundForWeapon(String name){
+        for (Item item:ground){
+            if (item.getName().equals(name)&&item instanceof Weapon){
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    public Item searchGroundForClothing(String name){
+        for (Item item:ground){
+            if (item.getName().equals(name)&&item instanceof Clothing){
+                return item;
+            }
+        }
+
+        return null;
+    }
+
 
     public void checkDeath(){
         for (int i = 0; i < characters.size(); i++) {
@@ -234,9 +254,6 @@ public class Level implements ILevelManager {
         }
 
         return null;
-
-
-
 
     }
 

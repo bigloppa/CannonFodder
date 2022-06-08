@@ -110,54 +110,77 @@ public abstract class Character implements Killable {
     //METHODS
 
     public long calculateHp(){
-        if (Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength())>35){
+        if (Math.round(2*getVitality()+0.5*getIntelligence()+0.8*getStrength())>35){
             return 35;
         }else{
-            return  Math.round(0.7*getVitality()+0.1*getIntelligence()+0.2*getStrength());
+            return  Math.round(2*getVitality()+0.5*getIntelligence()+0.8*getStrength());
+        }
+    }
+
+    public boolean checkWeight(int weightValue){
+        int sum = weightValue;
+        for (Item item :inventory){
+            sum+= item.getWeight();
+        }
+
+        if (sum>strength*5){
+            return false;
+        }else{
+            return true;
         }
     }
 
 
 
     public boolean pick(Item pickedItem){
-        int sum = pickedItem.getWeight();
-        for (Item item:getInventory()){
-            sum += item.getWeight();
 
-        }
-
-        if (sum<=getVitality()*4){
+        if (checkWeight(pickedItem.getWeight())){
             inventory.add(pickedItem);
+            System.out.println(getName()+" picked the "+pickedItem.getName()+ " successfully.");
             return true;
         }else{
-            System.out.println("The character's weight limit has been reached. "+pickedItem.getName()+ "dropped.");
+            System.out.println("The strength limit has been reached this character cant carry no more item.");
             return false;
         }
 
     }
 
-    public void wield(String itemName, Level level){
+    public boolean wield(ArrayList<Item> groundInv,String[]userInput){
+        for (Item item: groundInv){
+            if (item.getName().equals(userInput[2])&& item instanceof Weapon){
+                weapon = (Weapon) item;
+                return true;
+            }
+        }
 
+        for (Item item: inventory){
+            if (item.getName().equals(userInput[2])&& item instanceof Weapon){
+                weapon = (Weapon) item;
+                return false;
+            }
+        }
+
+        return false;
 
 
     }
 
-    public Item wear(ArrayList<Item> groundInv, String[] userInput){
+    public boolean wear(ArrayList<Item> groundInv, String[] userInput){
         for (Item item: groundInv){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
                 clothing = (Clothing) item;
-                return item;
+                return true;
             }
         }
 
         for (Item item: inventory){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
                 clothing = (Clothing) item;
-                return null;
+                return false;
             }
         }
 
-        return null;
+        return false;
 
 
 

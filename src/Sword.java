@@ -24,6 +24,8 @@ public class Sword extends Weapon implements CanSpecialAttack {
     public void specialAttack(Character selectedTarget, Character selectedCharacter) {
 
     }
+
+
     @Override
     public Item generateItem(ArrayList<Item> items) {
         SecureRandom secureRandom = new SecureRandom();
