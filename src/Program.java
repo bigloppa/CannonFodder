@@ -38,11 +38,11 @@ public class Program {
             boolean doesRoundContinue = true;
             level.generateEnemy();
             level.display();
+            level.updateTurn();
 
 
             while (true) {
                 level.checkDeath();
-
                 String[] userInput = scanner.nextLine().split(" ");
 
 
@@ -62,7 +62,6 @@ public class Program {
                         continue;
 
                     }
-
 
                 }
 
@@ -169,20 +168,22 @@ public class Program {
                             characterArrayList.add(selectedCharacter);
                             selectedCharacter.getWeapon().specialAttack(characterArrayList);
                         }else{
-
-                            selectedCharacter.getWeapon().specialAttack(characterArrayList);
+                            selectedCharacter.getWeapon().specialAttack(level.getCharacters());
                         }
 
 
 
                     }catch (NullPointerException exception){
                         System.out.println("Character or target cannot be found.");
+                        continue;
                     }
                 }
                 else {
                     System.out.println("Action entered incorrectly.");
                     continue;
                 }
+
+
 
                 level.checkDeath();
 
@@ -200,9 +201,6 @@ public class Program {
                 }catch (Exception ignored){
 
                 }
-
-
-
 
             }
             level.setLevelNum(level.getLevelNum()+1);

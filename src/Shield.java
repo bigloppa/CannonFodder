@@ -6,7 +6,7 @@ public class Shield extends Weapon{
      private int turnsForStun;
 
     public Shield(){
-        turnsForStun = 3;
+        turnsForStun = 4;
     }
 
     public Shield(String name, int weight, int attackDmg) {
@@ -23,11 +23,11 @@ public class Shield extends Weapon{
 
     @Override
     public boolean turnPassed() {
-        if (turnsForStun<3&&turnsForStun>0){
+        if (turnsForStun<4&&turnsForStun>0){
             turnsForStun--;
             return false;
         }else{
-            turnsForStun = 3;
+
             return true;
 
         }
@@ -36,7 +36,34 @@ public class Shield extends Weapon{
 
     @Override
     public void specialAttack(ArrayList<Character> characters) {
+        SecureRandom secureRandom = new SecureRandom();
+        ArrayList<Character>enemyList = new ArrayList<>();
+        for (Character character:characters){
+            if (character instanceof Enemy){
+                enemyList.add(character);
+            }
+        }
+        int bound;
+        if (enemyList.size()>getAttackDmg()){
+            bound = getAttackDmg();
+        }else{
+            bound = enemyList.size();
+        }
 
+        for (int i = 0; i < bound; i++) {
+            int randomNum = secureRandom.nextInt(enemyList.size());
+
+            for (int j = 0; j < enemyList.size(); j++) {
+
+                if (randomNum == j){
+                    enemyList.get(j).setState(1);
+                    enemyList.remove(enemyList.get(j));
+                    System.out.print(enemyList.get(j).getName()+ " is stunned. ");
+                }
+            }
+            System.out.println();
+            turnsForStun--;
+        }
     }
 
     @Override

@@ -85,14 +85,15 @@ public class Level implements ILevelManager {
 
 
 
-    public Character selectChar(String[] userInput){
-        for(Character character: characters){
-            if (character.getName().equals(userInput[0])&& characters.indexOf(character)<4){
+    public Character selectChar(String[] userInput) {
+        for (Character character : characters) {
+            if (character.getName().equals(userInput[0]) && !(character instanceof Enemy)) {
                 return character;
             }
         }
 
         return null;
+
 
     }
 
@@ -204,6 +205,7 @@ public class Level implements ILevelManager {
     }
 
     public void updateTurn(){
+        boolean isStunningDone = false;
         for (Character character:characters){
             if (!(character instanceof Enemy)&&character.getWeapon() instanceof Sword){
                 if (character.getWeapon().turnPassed()){
@@ -215,6 +217,8 @@ public class Level implements ILevelManager {
                 }
             }
         }
+
+
     }
 
 

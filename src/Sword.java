@@ -42,11 +42,11 @@ public class Sword extends Weapon implements CanSpecialAttack {
 
     @Override
     public boolean turnPassed(){
-        if (turnsForParry<3&&turnsForParry>0){
+        if (turnsForParry<4&&turnsForParry>0){
             turnsForParry--;
             return false;
         }else{
-            turnsForParry = 3;
+
             return true;
 
         }

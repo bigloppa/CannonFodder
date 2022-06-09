@@ -17,10 +17,7 @@ public class Enemy extends Character {
 
     @Override
     public void attack(Character selectedCharacter) {
-        if (getWeapon()==null){
-            System.out.println("This Character doesn't wield a weapon it cannot attack.");
-
-        }else {
+        if (getState()!=1){
 
             int dmg = getWeapon().calculateDmg(this);
             selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
