@@ -8,12 +8,12 @@ public class Program {
 
         Level level = new Level();
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
-        itemArrayList.add(new Wand("wand2",12,3));
-        itemArrayList.add(new Shield("Shield1",12,3));
-        itemArrayList.add(new Sword("Sword1",21,3));
-        itemArrayList.add(new Wand("wand1",12,3));
-        itemArrayList.add(new Shield("Shield2",12,3));
-        itemArrayList.add(new Sword("Sword2",21,3));
+        itemArrayList.add(new Wand("wand2",12,2));
+        itemArrayList.add(new Shield("Shield1",12,2));
+        itemArrayList.add(new Sword("Sword1",21,2));
+        itemArrayList.add(new Wand("wand1",12,2));
+        itemArrayList.add(new Shield("Shield2",12,2));
+        itemArrayList.add(new Sword("Sword2",21,2));
 
         level.setAllItems(itemArrayList);
 
@@ -38,12 +38,13 @@ public class Program {
             boolean doesRoundContinue = true;
             level.generateEnemy();
             level.display();
-            level.updateTurn();
+
 
 
             while (true) {
                 level.checkDeath();
                 String[] userInput = scanner.nextLine().split(" ");
+                level.updateTurn();
 
 
                 if("NEXT".equals(userInput[0])){
@@ -133,7 +134,6 @@ public class Program {
                         System.out.println(selectedCharacter.getName()+ " wielded "+ item.getName() + " successfully.");
                         if (selectedCharacter.wield(level.getGround(),userInput)){
                             level.groundRemove(item);
-
                         }
 
                     }catch (NullPointerException exception){
@@ -167,6 +167,8 @@ public class Program {
                         }else if (selectedCharacter.getWeapon() instanceof Sword){
                             characterArrayList.add(selectedCharacter);
                             selectedCharacter.getWeapon().specialAttack(characterArrayList);
+
+
                         }else{
                             selectedCharacter.getWeapon().specialAttack(level.getCharacters());
                         }

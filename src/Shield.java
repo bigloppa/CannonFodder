@@ -4,15 +4,26 @@ import java.util.ArrayList;
 public class Shield extends Weapon{
 
      private int turnsForStun;
+     private ArrayList<Character> stunnedCharacters;
 
     public Shield(){
         turnsForStun = 4;
+        stunnedCharacters = new ArrayList<>();
     }
 
+    public ArrayList<Character> getStunnedCharacters() {
+        return stunnedCharacters;
+    }
+
+    public void setStunnedCharacters(ArrayList<Character> stunnedCharacters) {
+        this.stunnedCharacters = stunnedCharacters;
+    }
     public Shield(String name, int weight, int attackDmg) {
         setName(name);
         setWeight(weight);
         setAttackDmg(attackDmg);
+        turnsForStun = 4;
+        stunnedCharacters = new ArrayList<>();
     }
 
 
@@ -27,7 +38,6 @@ public class Shield extends Weapon{
             turnsForStun--;
             return false;
         }else{
-
             return true;
 
         }
@@ -49,6 +59,7 @@ public class Shield extends Weapon{
         }else{
             bound = enemyList.size();
         }
+        stunnedCharacters = enemyList;
 
         for (int i = 0; i < bound; i++) {
             int randomNum = secureRandom.nextInt(enemyList.size());
@@ -57,13 +68,13 @@ public class Shield extends Weapon{
 
                 if (randomNum == j){
                     enemyList.get(j).setState(1);
-                    enemyList.remove(enemyList.get(j));
                     System.out.print(enemyList.get(j).getName()+ " is stunned. ");
                 }
             }
             System.out.println();
-            turnsForStun--;
+
         }
+        turnsForStun--;
     }
 
     @Override

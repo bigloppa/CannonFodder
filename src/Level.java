@@ -210,9 +210,18 @@ public class Level implements ILevelManager {
             if (!(character instanceof Enemy)&&character.getWeapon() instanceof Sword){
                 if (character.getWeapon().turnPassed()){
                     character.setState(2);
+
+
                 }
             }else if (!(character instanceof Enemy)&&character.getWeapon() instanceof Shield){
                 if (character.getWeapon().turnPassed()){
+
+
+                        for (Character character1 : ((Shield) character.getWeapon()).getStunnedCharacters()) {
+                            character1.setState(2);
+                        }
+
+
 
                 }
             }
