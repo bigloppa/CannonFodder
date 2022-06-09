@@ -35,7 +35,7 @@ public class Program {
 
 
         while (doesGameContinue) {
-            boolean doesRoundContinue = true;
+
             level.generateEnemy();
             level.display();
 
@@ -131,14 +131,14 @@ public class Program {
                     try {
                         Character selectedCharacter = level.selectChar(userInput);
                         Item item = level.searchGroundForWeapon(userInput[2]);
-                        System.out.println(selectedCharacter.getName()+ " wielded "+ item.getName() + " successfully.");
+
                         if (selectedCharacter.wield(level.getGround(),userInput)){
                             level.groundRemove(item);
+
                         }
 
                     }catch (NullPointerException exception){
                         System.out.println("Item or character cannot be found.");
-                        System.out.println(exception);
                         continue;
                     }
 
@@ -206,6 +206,7 @@ public class Program {
 
             }
             level.setLevelNum(level.getLevelNum()+1);
+            level.getGround().clear();
         }
 
     }

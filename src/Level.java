@@ -2,13 +2,13 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 
 
-public class Level implements ILevelManager {
+public class Level {
     private ArrayList<Item> ground;
     private int levelNum;
     private int enemyNum;
     private ArrayList<Item> allItems;
     private ArrayList<Character> characters;
-    private ArrayList<Enemy> enemies;
+
 
 
     public Level(){
@@ -17,11 +17,7 @@ public class Level implements ILevelManager {
 
     }
 
-    public Level(ArrayList<Item> ground, ArrayList<Character> characters, ArrayList<Enemy> enemies) {
-        this.ground = new ArrayList<Item>();
-        this.characters = characters;
-        this.enemies = enemies;
-    }
+
 
     public int getLevelNum() {
         return levelNum;
@@ -64,13 +60,7 @@ public class Level implements ILevelManager {
         this.characters = characters;
     }
 
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
-    }
 
-    public void setEnemies(ArrayList<Enemy> enemies) {
-        this.enemies = enemies;
-    }
 
     public void addCharacter(Character character){
         characters.add(character);
@@ -205,7 +195,7 @@ public class Level implements ILevelManager {
     }
 
     public void updateTurn(){
-        boolean isStunningDone = false;
+
         for (Character character:characters){
             if (!(character instanceof Enemy)&&character.getWeapon() instanceof Sword){
                 if (character.getWeapon().turnPassed()){
@@ -249,7 +239,7 @@ public class Level implements ILevelManager {
     }
 
     public void addItems(){
-
+        allItems.add(new Sword("Excalibur",12,12));
 
     }
 
