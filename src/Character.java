@@ -2,7 +2,7 @@ import java.lang.Math;
 import java.util.ArrayList;
 
 
-public abstract class Character implements Killable {
+public abstract class Character {
     //FIELDS
     private String name;
     private long hp;
@@ -121,11 +121,7 @@ public abstract class Character implements Killable {
             sum+= item.getWeight();
         }
 
-        if (sum>strength*5){
-            return false;
-        }else{
-            return true;
-        }
+        return sum <= strength * 5;
     }
 
 
@@ -241,12 +237,6 @@ public abstract class Character implements Killable {
         System.out.println("********************");
     }
 
-    @Override
-    public boolean checkDeath() {
-        if (hp==0){
-            return true;
-        }else {
-            return false;
-        }
-    }
+
+
 }
