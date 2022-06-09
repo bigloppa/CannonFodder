@@ -335,11 +335,10 @@ public class Level {
 
         while (true){
             System.out.println("Would You like to play again?(Y/N)");
-
-
-            if (scanner.nextLine().equalsIgnoreCase("y")) {
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase("Y")) {
                 break;
-            }else if (scanner.nextLine().equalsIgnoreCase("n")){
+            }else if (answer.equalsIgnoreCase("N")){
                 System.exit(0);
             }else {
                 System.out.println("Answer entered incorrectly. Try again.");
