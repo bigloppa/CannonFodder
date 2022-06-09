@@ -1,5 +1,7 @@
+import java.io.File;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Level {
@@ -8,16 +10,24 @@ public class Level {
     private int enemyNum;
     private ArrayList<Item> allItems;
     private ArrayList<Character> characters;
+    private int score;
 
 
 
     public Level(){
         this.ground = new ArrayList<Item>();
         this.characters = new ArrayList<Character>();
+        score = 0;
 
     }
 
+    public int getScore() {
+        return score;
+    }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public int getLevelNum() {
         return levelNum;
@@ -231,6 +241,7 @@ public class Level {
                     Item randomItem = selectRandomItem();
                     System.out.println(character.getName() + " is dead. " + character.getName() + " drops "+randomItem.getName());
                     ground.add(randomItem);
+                    score+=10;
                 }
 
 
@@ -306,6 +317,37 @@ public class Level {
         }
     }
 
+    public void displayScore(){
+        System.out.println("Your Score: "+ score);
+        System.out.println();
+        System.out.println("Other Players' scores: ");
+        FileManager.ReadingScores();
+
+
+    }
+
+    public void gameOver(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Username: ");
+        String userName = scanner.nextLine();
+
+        displayScore();
+
+        while (true){
+            System.out.println("Would You like to play again?(Y/N)");
+
+
+            if (scanner.nextLine().equalsIgnoreCase("y")) {
+                break;
+            }else if (scanner.nextLine().equalsIgnoreCase("n")){
+                System.exit(0);
+            }else {
+                System.out.println("Answer entered incorrectly. Try again.");
+            }
+
+        }
+        FileManager.AddingScores(userName,score);
+    }
 
 
 
