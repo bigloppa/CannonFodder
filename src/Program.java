@@ -9,16 +9,7 @@ public class Program {
 
         while (true) {
             Level level = new Level();
-            ArrayList<Item> itemArrayList = new ArrayList<Item>();
-            itemArrayList.add(new Wand("wand2", 12, 20));
-            itemArrayList.add(new Shield("Shield1", 12, 20));
-            itemArrayList.add(new Sword("Sword1", 21, 20));
-            itemArrayList.add(new Wand("wand1", 12, 20));
-            itemArrayList.add(new Shield("Shield2", 12, 20));
-            itemArrayList.add(new Sword("Sword2", 21, 20));
-
-            level.setAllItems(itemArrayList);
-
+            level.addItems();
 
             System.out.println("CANNON FODDER");
             Character fighter = new Fighter(level.getAllItems());

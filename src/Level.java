@@ -16,6 +16,7 @@ public class Level {
 
     public Level(){
         this.ground = new ArrayList<Item>();
+        this.allItems= new ArrayList<>();
         this.characters = new ArrayList<Character>();
         score = 0;
 
@@ -97,7 +98,7 @@ public class Level {
 
     }
 
-    public Character selectHealingTarget(String[]userInput){
+    public Character selectHealingTarget(String[] userInput){
         for (Character target:characters){
             if (target.getName().equals(userInput[2])&&!(target instanceof Enemy)){
                 return target;
@@ -250,7 +251,25 @@ public class Level {
     }
 
     public void addItems(){
-        allItems.add(new Sword("Excalibur",12,12));
+        allItems.add(new Sword("Excalibur",8,12));
+        allItems.add(new Sword("Gramr",4,12));
+        allItems.add(new Sword("Zulfiqar",5,12));
+        allItems.add(new Sword("Durendal:",7,12));
+        allItems.add(new Sword("Harpe",5,12));
+        allItems.add(new Sword("Ame-no-Habakiri",5,12));
+        allItems.add(new Sword("Kusanagi-no-Tsurugi",6,12));
+        allItems.add(new Shield("Bulwark",3,12));
+        allItems.add(new Shield("Buffer.",6,12));
+        allItems.add(new Shield("Shelter",4,12));
+        allItems.add(new Shield("Absorber",5,12));
+        allItems.add(new Shield("Safeguard",6,12));
+        allItems.add(new Shield("Svalinn",5,12));
+        allItems.add(new Wand("Fagus",4,12));
+        allItems.add(new Wand("Fraxinus",3,12));
+        allItems.add(new Wand("Acacia",12,12));
+        allItems.add(new Wand("Castanea",12,12));
+        allItems.add(new Wand("Diospyros",12,12));
+        allItems.add(new Wand("Cedrus",12,12));
 
     }
 
