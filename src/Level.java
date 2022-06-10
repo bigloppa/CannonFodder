@@ -395,6 +395,9 @@ public class Level {
         }
         FileManager.AddingScores(userName,score);
     }
+    public void gameInstructor(){
+        System.out.println("");
+    }
 
 
 

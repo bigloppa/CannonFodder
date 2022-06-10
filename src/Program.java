@@ -10,7 +10,7 @@ public class Program {
         while (true) {
             Level level = new Level();
             level.addItems();
-
+            level.gameInstructor();
             System.out.println("CANNON FODDER");
             Character fighter = new Fighter(level.getAllItems());
             Character healer = new Healer(level.getAllItems());
