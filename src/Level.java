@@ -329,16 +329,11 @@ public class Level {
         }
 
         for (Character character:characters){
-            if (character instanceof Fighter&& character.getState() !=0){
+            if ((character instanceof Fighter||character instanceof Healer)&& character.getState() !=0){
                 return character;
             }
         }
 
-        for (Character character:characters){
-            if (character instanceof Healer){
-                return character;
-            }
-        }
 
         return null;
 
