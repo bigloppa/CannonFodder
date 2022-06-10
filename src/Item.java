@@ -5,6 +5,4 @@ public interface Item extends Displayable {
     String getName();
     int getWeight();
 
-
-
 }

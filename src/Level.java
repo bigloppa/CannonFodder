@@ -99,10 +99,15 @@ public class Level {
     }
 
     public Character selectHealingTarget(String[] userInput){
-        for (Character target:characters){
-            if (target.getName().equals(userInput[2])&&!(target instanceof Enemy)){
-                return target;
+        try {
+
+            for (Character target : characters) {
+                if (target.getName().equals(userInput[2]) && !(target instanceof Enemy)) {
+                    return target;
+                }
             }
+        }catch (ArrayIndexOutOfBoundsException ignored){
+
         }
 
         return null;
@@ -285,10 +290,10 @@ public class Level {
         allItems.add(new Shield("Svalinn",5,6));
         allItems.add(new Wand("Fagus",4,5));
         allItems.add(new Wand("Fraxinus",3,7));
-        allItems.add(new Wand("Acacia",12,6));
-        allItems.add(new Wand("Castanea",12,5));
-        allItems.add(new Wand("Diospyros",12,6));
-        allItems.add(new Wand("Cedrus",12,4));
+        allItems.add(new Wand("Acacia",2,6));
+        allItems.add(new Wand("Castanea",4,5));
+        allItems.add(new Wand("Diospyros",4,6));
+        allItems.add(new Wand("Cedrus",3,4));
         allItems.add(new Clothing("WoodenArmour",7,8));
         allItems.add(new Clothing("LeatherArmour",6,10));
         allItems.add(new Clothing("IronArmour",8,12));

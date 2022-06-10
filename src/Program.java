@@ -162,12 +162,25 @@ public class Program {
                                     characterArrayList.add(selectedTarget);
                                     selectedCharacter.getWeapon().specialAttack(characterArrayList);
                                 } else if (selectedCharacter.getWeapon() instanceof Sword) {
-                                    characterArrayList.add(selectedCharacter);
-                                    selectedCharacter.getWeapon().specialAttack(characterArrayList);
+                                    if (userInput.length<=2) {
+
+                                        characterArrayList.add(selectedCharacter);
+                                        selectedCharacter.getWeapon().specialAttack(characterArrayList);
+                                    }else{
+                                        System.out.println("This character's special attack cannot target anything.");
+                                        continue;
+                                    }
 
 
                                 } else {
-                                    selectedCharacter.getWeapon().specialAttack(level.getCharacters());
+                                    if (userInput.length<=2) {
+
+                                        selectedCharacter.getWeapon().specialAttack(level.getCharacters());
+                                    }else{
+                                        System.out.println("This character's special attack cannot target anything.");
+                                        continue;
+                                    }
+
                                     selectedCharacter.setSpecialAttackUsed(true);
                                 }
                             }else {
