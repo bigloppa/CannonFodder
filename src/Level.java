@@ -283,7 +283,7 @@ public class Level {
         allItems.add(new Sword("Ame-no-Habakiri",5,6));
         allItems.add(new Sword("Kusanagi-no-Tsurugi",6,5));
         allItems.add(new Shield("Bulwark",3,4));
-        allItems.add(new Shield("Buffer.",6,6));
+        allItems.add(new Shield("Buffer",6,6));
         allItems.add(new Shield("Shelter",4,5));
         allItems.add(new Shield("Absorber",5,7));
         allItems.add(new Shield("Safeguard",6,5));
