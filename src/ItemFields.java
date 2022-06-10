@@ -2,6 +2,15 @@ public abstract class ItemFields implements Item {
     protected String name;
     protected int weight;
 
+    public ItemFields(){
+
+    }
+
+    public ItemFields(String name, int weight) {
+        this.name = name;
+        this.weight = weight;
+    }
+
     public int getWeight() {
         return weight;
     }

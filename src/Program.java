@@ -33,13 +33,14 @@ public class Program {
 
                 while (true) {
                     level.checkDeath();
+                    level.updateTurn();
                     String[] userInput;
                     try {
                         userInput = scanner.nextLine().split(" ");
                     }catch (Exception exception){
                         continue;
                     }
-                    level.updateTurn();
+
 
 
                     if ("NEXT".equals(userInput[0])) {
@@ -154,18 +155,24 @@ public class Program {
                             Character selectedCharacter = level.selectChar(userInput);
                             Character selectedTarget = null;
                             ArrayList<Character> characterArrayList = new ArrayList<>();
-                            if (selectedCharacter.getWeapon() instanceof Wand) {
-                                selectedTarget = level.selectHealingTarget(userInput);
-                                characterArrayList.add(selectedCharacter);
-                                characterArrayList.add(selectedTarget);
-                                selectedCharacter.getWeapon().specialAttack(characterArrayList);
-                            } else if (selectedCharacter.getWeapon() instanceof Sword) {
-                                characterArrayList.add(selectedCharacter);
-                                selectedCharacter.getWeapon().specialAttack(characterArrayList);
+                            if (!selectedCharacter.isSpecialAttackUsed()) {
+                                if (selectedCharacter.getWeapon() instanceof Wand) {
+                                    selectedTarget = level.selectHealingTarget(userInput);
+                                    characterArrayList.add(selectedCharacter);
+                                    characterArrayList.add(selectedTarget);
+                                    selectedCharacter.getWeapon().specialAttack(characterArrayList);
+                                } else if (selectedCharacter.getWeapon() instanceof Sword) {
+                                    characterArrayList.add(selectedCharacter);
+                                    selectedCharacter.getWeapon().specialAttack(characterArrayList);
 
 
-                            } else {
-                                selectedCharacter.getWeapon().specialAttack(level.getCharacters());
+                                } else {
+                                    selectedCharacter.getWeapon().specialAttack(level.getCharacters());
+                                    selectedCharacter.setSpecialAttackUsed(true);
+                                }
+                            }else {
+                                System.out.println("This character used its special attack already.");
+                                continue;
                             }
 
 
@@ -204,9 +211,13 @@ public class Program {
                 }
                 level.setLevelNum(level.getLevelNum() + 1);
                 level.getGround().clear();
+                for (Character character : level.getCharacters()){
+                    character.setSpecialAttackUsed(false);
+                    character.levelUp();
+
+                }
 
             }
-
 
             level.gameOver();
 

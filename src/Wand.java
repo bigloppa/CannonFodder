@@ -31,6 +31,8 @@ public class Wand extends Weapon implements CanSpecialAttack {
             System.out.println(selectedTarget.getName()+ " is healed by "+ selectedCharacter.getIntelligence()+". "+ selectedTarget.getName()+ "'s hp is now "+ selectedTarget.getHp()+".");
         }
 
+        selectedCharacter.setSpecialAttackUsed(true);
+
     }
 
 
@@ -52,5 +54,10 @@ public class Wand extends Weapon implements CanSpecialAttack {
                 }
             }
         }
+    }
+    @Override
+    public void display() {
+        super.display();
+        System.out.println(getName()+ " is a "+getClass().getName()+".");
     }
 }

@@ -212,7 +212,12 @@ public class Level {
                 if (character.getWeapon().turnPassed()){
                     character.setState(2);
 
+                }
 
+                if (checkForOtherHeroes(character)) {
+                    character.setState(2);
+                }else{
+                    System.out.println("Sword user " + character.getName()+ " cannot stay away because there are no allies left.");
                 }
             }else if (!(character instanceof Enemy)&&character.getWeapon() instanceof Shield){
                 if (character.getWeapon().turnPassed()){
@@ -229,6 +234,20 @@ public class Level {
         }
 
 
+    }
+
+    public boolean checkForOtherHeroes(Character character){
+        ArrayList<Character> tempCharList = new ArrayList<>();
+        tempCharList.addAll(characters);
+        tempCharList.remove(character);
+        for (Character character1: tempCharList){
+            if (!(character1 instanceof Enemy)){
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
 
@@ -251,25 +270,30 @@ public class Level {
     }
 
     public void addItems(){
-        allItems.add(new Sword("Excalibur",8,12));
-        allItems.add(new Sword("Gramr",4,12));
-        allItems.add(new Sword("Zulfiqar",5,12));
-        allItems.add(new Sword("Durendal:",7,12));
-        allItems.add(new Sword("Harpe",5,12));
-        allItems.add(new Sword("Ame-no-Habakiri",5,12));
-        allItems.add(new Sword("Kusanagi-no-Tsurugi",6,12));
-        allItems.add(new Shield("Bulwark",3,12));
-        allItems.add(new Shield("Buffer.",6,12));
-        allItems.add(new Shield("Shelter",4,12));
-        allItems.add(new Shield("Absorber",5,12));
-        allItems.add(new Shield("Safeguard",6,12));
-        allItems.add(new Shield("Svalinn",5,12));
-        allItems.add(new Wand("Fagus",4,12));
-        allItems.add(new Wand("Fraxinus",3,12));
-        allItems.add(new Wand("Acacia",12,12));
-        allItems.add(new Wand("Castanea",12,12));
-        allItems.add(new Wand("Diospyros",12,12));
-        allItems.add(new Wand("Cedrus",12,12));
+        allItems.add(new Sword("Excalibur",8,10));
+        allItems.add(new Sword("Gramr",4,5));
+        allItems.add(new Sword("Zulfiqar",5,6));
+        allItems.add(new Sword("Durendal",7,6));
+        allItems.add(new Sword("Harpe",5,5));
+        allItems.add(new Sword("Ame-no-Habakiri",5,6));
+        allItems.add(new Sword("Kusanagi-no-Tsurugi",6,5));
+        allItems.add(new Shield("Bulwark",3,4));
+        allItems.add(new Shield("Buffer.",6,6));
+        allItems.add(new Shield("Shelter",4,5));
+        allItems.add(new Shield("Absorber",5,7));
+        allItems.add(new Shield("Safeguard",6,5));
+        allItems.add(new Shield("Svalinn",5,6));
+        allItems.add(new Wand("Fagus",4,5));
+        allItems.add(new Wand("Fraxinus",3,7));
+        allItems.add(new Wand("Acacia",12,6));
+        allItems.add(new Wand("Castanea",12,5));
+        allItems.add(new Wand("Diospyros",12,6));
+        allItems.add(new Wand("Cedrus",12,4));
+        allItems.add(new Clothing("WoodenArmour",7,8));
+        allItems.add(new Clothing("LeatherArmour",6,10));
+        allItems.add(new Clothing("IronArmour",8,12));
+        allItems.add(new Clothing("DragonArmour",10,15));
+        allItems.add(new Clothing("ObsidianArmour",9,14));
 
     }
 

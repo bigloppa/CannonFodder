@@ -7,7 +7,9 @@ public class Clothing extends ItemFields implements Displayable,Item {
 
     }
 
-    public Clothing(int resistance) {
+    public Clothing(String name,int weight,int resistance) {
+        this.name = name;
+        this.weight = weight;
         this.resistance = resistance;
     }
 
@@ -37,6 +39,7 @@ public class Clothing extends ItemFields implements Displayable,Item {
     }
 
     public void setResistance(int resistance) {
+
         this.resistance = resistance;
     }
 

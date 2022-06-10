@@ -39,6 +39,7 @@ public class Sword extends Weapon implements CanSpecialAttack {
         turnsForParry = 3;
         characters.get(0).setState(0);
         System.out.println(characters.get(0).getName()+"'s special attack has been activated. " +characters.get(0).getName()+" can't attack and be targeted.");
+        characters.get(0).setSpecialAttackUsed(true);
 
     }
 
@@ -68,6 +69,12 @@ public class Sword extends Weapon implements CanSpecialAttack {
                 }
             }
         }
+    }
+
+    @Override
+    public void display() {
+        super.display();
+        System.out.println(getName()+ " is a "+getClass().getName()+".");
     }
 
 

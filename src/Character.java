@@ -13,15 +13,21 @@ public abstract class Character {
     private Clothing clothing;
     private ArrayList<Item> inventory;
     private int state;
+    private boolean isSpecialAttackUsed;
 
+    public boolean isSpecialAttackUsed() {
+        return isSpecialAttackUsed;
+    }
 
+    public void setSpecialAttackUsed(boolean specialAttackUsed) {
+        isSpecialAttackUsed = specialAttackUsed;
+    }
 
-    //CONSTRUCTORS + GET-SET
     public Character(){
         inventory = new ArrayList<Item>();
         state = 2;
-        clothing = new Clothing(0);
-
+        clothing = new Clothing();
+        isSpecialAttackUsed = false;
     }
 
 
@@ -111,11 +117,14 @@ public abstract class Character {
 
     public long calculateHp(){
 
-        return  Math.round(5*getVitality()+getIntelligence()+2*getStrength());
+        return  Math.round(8*getVitality()+2*getIntelligence()+4*getStrength());
 
     }
 
     public boolean checkWeight(int weightValue){
+        if (weightValue == 0){
+            return false;
+        }
         int sum = weightValue;
         for (Item item :inventory){
             sum+= item.getWeight();
@@ -235,6 +244,19 @@ public abstract class Character {
             System.out.println(item.getName());
         }
         System.out.println("********************");
+    }
+
+    public void levelUp(){
+        intelligence += 1;
+        strength+=1;
+        vitality+=1;
+        long newHp = Math.round(hp*1.5);
+        if (newHp>calculateHp()){
+            setHp(calculateHp());
+        }else {
+            setHp(newHp);
+        }
+
     }
 
 

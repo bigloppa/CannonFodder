@@ -6,6 +6,7 @@ public abstract class Weapon extends ItemFields implements IWeaponManager,Item {
     private int attackDmg;
 
 
+
     public Weapon(){
 
     }
@@ -19,15 +20,10 @@ public abstract class Weapon extends ItemFields implements IWeaponManager,Item {
     }
 
 
-
-
     @Override
     public void display() {
-        System.out.println(getName() + " has "+ attackDmg+" damage and "+getWeight()+ " units of weight.");
+        System.out.print(getName() + " has "+ attackDmg+" damage and "+getWeight()+ " units of weight. ");
     }
-
-
-
 
 
 }

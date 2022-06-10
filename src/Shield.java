@@ -69,6 +69,7 @@ public class Shield extends Weapon{
                 if (randomNum == j){
                     enemyList.get(j).setState(1);
                     System.out.print(enemyList.get(j).getName()+ " is stunned. ");
+                    enemyList.remove(enemyList.get(j));
                 }
             }
             System.out.println();
@@ -90,6 +91,9 @@ public class Shield extends Weapon{
         }
     }
 
-
-
+    @Override
+    public void display() {
+        super.display();
+        System.out.println(getName()+ " is a "+getClass().getName()+".");
+    }
 }

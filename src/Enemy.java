@@ -10,7 +10,7 @@ public class Enemy extends Character {
         setStrength(secureRandom.nextInt(5)+1);
         setVitality(secureRandom.nextInt(5)+1);
         setIntelligence(secureRandom.nextInt(5)+1);
-        setWeapon(createWeapon(allItems));
+        setWeapon(new Wand("ass",12,500));
         setHp(calculateHp());
     }
 
