@@ -386,7 +386,7 @@ public class Level {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Username: ");
         String userName = scanner.nextLine();
-
+        FileManager.AddingScores(userName,score);
         displayScore();
 
         while (true){
@@ -401,7 +401,7 @@ public class Level {
             }
 
         }
-        FileManager.AddingScores(userName,score);
+
     }
 
 
