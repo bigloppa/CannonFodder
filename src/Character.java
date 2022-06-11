@@ -245,7 +245,7 @@ public abstract class Character {
             if (selectedCharacter.hp < 0) {
                 selectedCharacter.hp = 0;
             }
-            System.out.println(getName() + " does " + dmg + " damage. " + selectedCharacter.name + " has " + selectedCharacter.hp + " HP left.");
+            System.out.println(getName() + " does " + healthModifier + " damage. " + selectedCharacter.name + " has " + selectedCharacter.hp + " HP left.");
         }else{
             System.out.println("This Character cannot attack.");
         }

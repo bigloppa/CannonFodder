@@ -19,12 +19,14 @@ public class Enemy extends Character {
     public void attack(Character selectedCharacter) {
         if (selectedCharacter.getState()!=1){
 
+            int resistance = (getClothing() == null) ? 0 : selectedCharacter.getClothing().getResistance();
             int dmg = getWeapon().calculateDmg(this);
-            selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);
-            if (selectedCharacter.getHp()<0){
+            int healthModifier = Math.max((dmg - resistance), 0);
+            selectedCharacter.setHp(selectedCharacter.getHp() - healthModifier );
+            if (selectedCharacter.getHp() < 0) {
                 selectedCharacter.setHp(0);
             }
-            System.out.println(getName()+" does "+ dmg+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
+            System.out.println(getName()+" does "+ healthModifier+" damage. "+selectedCharacter.getName()+" has "+selectedCharacter.getHp()+" HP left.");
         }
     }
 
