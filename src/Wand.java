@@ -22,13 +22,13 @@ public class Wand extends Weapon implements CanSpecialAttack {
     public void specialAttack(ArrayList<Character>characters){
         Character selectedCharacter = characters.get(0);
         Character selectedTarget = characters.get(1);
-        long finalHealth = selectedTarget.getHp()+(long) selectedCharacter.getIntelligence()*getAttackDmg();
+        long finalHealth = selectedTarget.getHp()+(long) calculateDmg(selectedCharacter);
         if (finalHealth>selectedTarget.calculateHp()) {
             selectedTarget.setHp(selectedTarget.calculateHp());
-            System.out.println(selectedTarget.getName()+ " is healed by "+ selectedCharacter.getIntelligence()+". "+ selectedTarget.getName()+ "'s hp is now "+ selectedTarget.getHp()+".");
+            System.out.println(selectedTarget.getName()+ " is healed by "+ calculateDmg(selectedCharacter)+". "+ selectedTarget.getName()+ "'s hp is now "+ selectedTarget.getHp()+".");
         }else {
             selectedTarget.setHp(finalHealth);
-            System.out.println(selectedTarget.getName()+ " is healed by "+ selectedCharacter.getIntelligence()+". "+ selectedTarget.getName()+ "'s hp is now "+ selectedTarget.getHp()+".");
+            System.out.println(selectedTarget.getName()+ " is healed by "+ calculateDmg(selectedCharacter)+". "+ selectedTarget.getName()+ "'s hp is now "+ selectedTarget.getHp()+".");
         }
 
         selectedCharacter.setSpecialAttackUsed(true);

@@ -26,7 +26,7 @@ public abstract class Character {
     public Character(){
         inventory = new ArrayList<Item>();
         state = 2;
-        clothing = new Clothing();
+
         isSpecialAttackUsed = false;
     }
 
@@ -154,7 +154,13 @@ public abstract class Character {
         for (Item item: groundInv){
             if (item.getName().equals(userInput[2])&& item instanceof Weapon){
                 if (checkWeight(item.getWeight())){
-                    inventory.add(weapon);
+                    for(Item weapon: inventory){
+                        if (weapon.getName().equals(item.getName())){
+                            break;
+                        }else {
+                            inventory.add(item);
+                        }
+                    }
 
                 }else {
                     System.out.println("The old weapon cannot be added to inventory so it has been thrown away.");
@@ -166,18 +172,30 @@ public abstract class Character {
             }
         }
 
+        Item inventoryItem = null;
         for (Item item: inventory){
             if (item.getName().equals(userInput[2])&& item instanceof Weapon){
+                inventoryItem = item;
                 if (checkWeight(item.getWeight())){
-                    inventory.add(weapon);
+                    for(Item weapon: inventory){
+                        if (weapon.getName().equals(item.getName())){
+                            break;
+                        }else {
+                            inventory.add(this.weapon);
+                        }
+                    }
 
                 }else {
                     System.out.println("The old weapon cannot be added to inventory so it has been thrown away.");
                 }
                 weapon = (Weapon) item;
                 System.out.println(name+ " wielded "+ item.getName() + " successfully.");
-                return false;
+
             }
+        }
+
+        if (inventoryItem != null){
+            inventory.remove(inventoryItem);
         }
 
         return false;
@@ -189,7 +207,13 @@ public abstract class Character {
         for (Item item: groundInv){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
                 if (checkWeight(item.getWeight())){
-                    inventory.add(clothing);
+                    for(Item clothing: inventory){
+                        if (clothing.getName().equals(item.getName())){
+                            break;
+                        }else {
+                            inventory.add(this.clothing);
+                        }
+                    }
                 }else {
                     System.out.println("The old clothing cannot be added to inventory so it has been thrown away.");
                 }
@@ -198,16 +222,32 @@ public abstract class Character {
             }
         }
 
+        Item inventoryItem =null;
         for (Item item: inventory){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
+                inventoryItem = item;
+                System.out.println(getName() + " worn " + item.getName() + " successfully.");
                 if (checkWeight(item.getWeight())){
-                    inventory.add(clothing);
+                    for(Item clothing: inventory) {
+                        if (clothing.getName().equals(item.getName())) {
+                            break;
+                        } else {
+                            inventory.add(this.clothing);
+                        }
+                    }
                 }else {
                     System.out.println("The old clothing cannot be added to inventory so it has been thrown away.");
                 }
+
+
                 clothing = (Clothing) item;
-                return false;
+
             }
+
+        }
+
+        if (inventoryItem != null){
+            inventory.remove(inventoryItem);
         }
 
         return false;
@@ -222,8 +262,9 @@ public abstract class Character {
     public void attack(Character selectedCharacter){
 
         if (getWeapon() != null&&state !=0) {
+            int resistance = (clothing == null) ? 0 : clothing.getResistance();
             int dmg = getWeapon().calculateDmg(this);
-            selectedCharacter.setHp(selectedCharacter.hp - (long) dmg + selectedCharacter.clothing.getResistance());
+            selectedCharacter.setHp(selectedCharacter.hp - (long) dmg + resistance);
             if (selectedCharacter.hp < 0) {
                 selectedCharacter.hp = 0;
             }

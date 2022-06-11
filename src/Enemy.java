@@ -7,9 +7,9 @@ public class Enemy extends Character {
     public Enemy(ArrayList<Item> allItems){
         SecureRandom secureRandom = new SecureRandom();
 
-        setStrength(secureRandom.nextInt(5)+1);
-        setVitality(secureRandom.nextInt(5)+1);
-        setIntelligence(secureRandom.nextInt(5)+1);
+        setStrength(secureRandom.nextInt(5)+2);
+        setVitality(secureRandom.nextInt(5)+2);
+        setIntelligence(secureRandom.nextInt(5)+2);
         setWeapon(createWeapon(allItems));
         setHp(calculateHp());
     }

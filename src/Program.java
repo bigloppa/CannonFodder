@@ -141,10 +141,11 @@ public class Program {
                         try {
                             Character selectedCharacter = level.selectChar(userInput);
                             Item item = level.searchGroundForClothing(userInput[2]);
-                            if (selectedCharacter.wear(level.getGround(), userInput)) {
+                            if (selectedCharacter.wear(level.getGround(), userInput)&& item!=null) {
                                 level.groundRemove(item);
+                                System.out.println(selectedCharacter.getName() + " worn " + item.getName() + " successfully.");
                             }
-                            System.out.println(selectedCharacter.getName() + " worn " + item.getName() + " successfully.");
+
                         } catch (NullPointerException exception) {
                             System.out.println("Item or character cannot be found.");
                             continue;

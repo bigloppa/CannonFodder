@@ -4,7 +4,7 @@ public class Clothing extends ItemFields implements Displayable,Item {
     private int resistance;
 
     public Clothing(){
-
+        weight = 0;
     }
 
     public Clothing(String name,int weight,int resistance) {
@@ -46,7 +46,7 @@ public class Clothing extends ItemFields implements Displayable,Item {
 
     @Override
     public void display() {
-        System.out.println(getName() + " has"+ getResistance()+" resistance, and "+getWeight()+ " units of weight.");
+        System.out.println(getName() + " has "+ getResistance()+" resistance, and "+getWeight()+ " units of weight.");
     }
 
 
