@@ -238,7 +238,7 @@ public abstract class Character {
     public void attack(Character selectedCharacter){
 
         if (getWeapon() != null&&state !=0) {
-            int resistance = (clothing == null) ? 0 : clothing.getResistance();
+            int resistance = (clothing == null) ? 0 : selectedCharacter.clothing.getResistance();
             int dmg = getWeapon().calculateDmg(this);
             selectedCharacter.setHp(selectedCharacter.hp - (long) dmg + resistance);
             if (selectedCharacter.hp < 0) {
