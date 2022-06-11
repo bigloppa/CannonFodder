@@ -26,6 +26,7 @@ public abstract class Character {
     public Character(){
         inventory = new ArrayList<Item>();
         state = 2;
+        clothing = new Clothing();
 
         isSpecialAttackUsed = false;
     }
@@ -154,13 +155,7 @@ public abstract class Character {
         for (Item item: groundInv){
             if (item.getName().equals(userInput[2])&& item instanceof Weapon){
                 if (checkWeight(item.getWeight())){
-                    for(Item weapon: inventory){
-                        if (weapon.getName().equals(item.getName())){
-                            break;
-                        }else {
-                            inventory.add(item);
-                        }
-                    }
+                    inventory.add(weapon);
 
                 }else {
                     System.out.println("The old weapon cannot be added to inventory so it has been thrown away.");
@@ -172,31 +167,22 @@ public abstract class Character {
             }
         }
 
-        Item inventoryItem = null;
         for (Item item: inventory){
             if (item.getName().equals(userInput[2])&& item instanceof Weapon){
-                inventoryItem = item;
+
                 if (checkWeight(item.getWeight())){
-                    for(Item weapon: inventory){
-                        if (weapon.getName().equals(item.getName())){
-                            break;
-                        }else {
-                            inventory.add(this.weapon);
-                        }
-                    }
+                    inventory.add(weapon);
 
                 }else {
                     System.out.println("The old weapon cannot be added to inventory so it has been thrown away.");
                 }
                 weapon = (Weapon) item;
                 System.out.println(name+ " wielded "+ item.getName() + " successfully.");
-
+                return false;
             }
         }
 
-        if (inventoryItem != null){
-            inventory.remove(inventoryItem);
-        }
+
 
         return false;
 
@@ -207,12 +193,9 @@ public abstract class Character {
         for (Item item: groundInv){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
                 if (checkWeight(item.getWeight())){
-                    for(Item clothing: inventory){
-                        if (clothing.getName().equals(item.getName())){
-                            break;
-                        }else {
-                            inventory.add(this.clothing);
-                        }
+                    if (clothing.getResistance()!=0){
+                        inventory.add(clothing);
+
                     }
                 }else {
                     System.out.println("The old clothing cannot be added to inventory so it has been thrown away.");
@@ -222,38 +205,31 @@ public abstract class Character {
             }
         }
 
-        Item inventoryItem =null;
         for (Item item: inventory){
             if (item.getName().equals(userInput[2])&& item instanceof Clothing){
-                inventoryItem = item;
-                System.out.println(getName() + " worn " + item.getName() + " successfully.");
+
                 if (checkWeight(item.getWeight())){
-                    for(Item clothing: inventory) {
-                        if (clothing.getName().equals(item.getName())) {
-                            break;
-                        } else {
-                            inventory.add(this.clothing);
-                        }
+                    if (clothing.getResistance() != 0){
+                        inventory.add(clothing);
                     }
+
                 }else {
-                    System.out.println("The old clothing cannot be added to inventory so it has been thrown away.");
+                    System.out.println("The old weapon cannot be added to inventory so it has been thrown away.");
                 }
-
-
                 clothing = (Clothing) item;
-
+                System.out.println(name+ " wielded "+ item.getName() + " successfully.");
+                return false;
             }
-
-        }
-
-        if (inventoryItem != null){
-            inventory.remove(inventoryItem);
         }
 
         return false;
 
 
 
+    }
+
+    public void removeFromInventory(Item item){
+        inventory.remove(item);
     }
 
 
@@ -282,7 +258,9 @@ public abstract class Character {
     public void listInventory(){
         System.out.println("Inventory: ");
         for (Item item:getInventory()){
-            System.out.println(item.getName());
+            if (item!=null) {
+                System.out.println(item.getName());
+            }
         }
         System.out.println("********************");
     }

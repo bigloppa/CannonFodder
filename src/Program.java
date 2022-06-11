@@ -130,6 +130,12 @@ public class Program {
                             if (selectedCharacter.wield(level.getGround(), userInput)) {
                                 level.groundRemove(item);
 
+                            }else{
+                                item = level.searchInventory(selectedCharacter,userInput[2]);
+                                selectedCharacter.removeFromInventory(item);
+                                if (item == null){
+                                    throw new NullPointerException();
+                                }
                             }
 
                         } catch (NullPointerException exception) {
@@ -144,6 +150,12 @@ public class Program {
                             if (selectedCharacter.wear(level.getGround(), userInput)&& item!=null) {
                                 level.groundRemove(item);
                                 System.out.println(selectedCharacter.getName() + " worn " + item.getName() + " successfully.");
+                            }else {
+                                item = level.searchInventory(selectedCharacter,userInput[2]);
+                                selectedCharacter.removeFromInventory(item);
+                                if (item == null){
+                                    throw new NullPointerException();
+                                }
                             }
 
                         } catch (NullPointerException exception) {

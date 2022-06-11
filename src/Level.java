@@ -209,6 +209,18 @@ public class Level {
         return null;
     }
 
+    public Item searchInventory(Character character,String name){
+        for(Item item: character.getInventory()){
+            if (name.equals(item.getName())){
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+
+
     public void updateTurn(){
 
         for (Character character:characters){
@@ -293,11 +305,13 @@ public class Level {
         allItems.add(new Wand("Castanea",4,5));
         allItems.add(new Wand("Diospyros",4,6));
         allItems.add(new Wand("Cedrus",3,4));
-        allItems.add(new Clothing("WoodenArmour",7,8));
-        allItems.add(new Clothing("LeatherArmour",6,10));
-        allItems.add(new Clothing("IronArmour",8,12));
-        allItems.add(new Clothing("DragonArmour",10,15));
-        allItems.add(new Clothing("ObsidianArmour",9,14));
+        allItems.add(new Clothing("WoodenArmour",7,20));
+        allItems.add(new Clothing("LeatherArmour",6,24));
+        allItems.add(new Clothing("IronArmour",8,27));
+        allItems.add(new Clothing("DragonArmour",10,32));
+        allItems.add(new Clothing("ObsidianArmour",9,30));
+        allItems.add(new Clothing("ChainArmour",7,23));
+        allItems.add(new Clothing("SteelArmour",9,28));
 
     }
 
