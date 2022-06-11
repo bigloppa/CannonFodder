@@ -129,8 +129,7 @@ public class Level {
         ArrayList<Item> tempList = new ArrayList<Item>();
         tempList.addAll(ground);
         tempList.addAll(selectedCharacter.getInventory());
-        tempList.add(selectedCharacter.getWeapon());
-        tempList.add(selectedCharacter.getClothing());
+
         for (Item item: tempList){
 
 
