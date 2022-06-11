@@ -17,7 +17,7 @@ public class Enemy extends Character {
 
     @Override
     public void attack(Character selectedCharacter) {
-        if (getState()!=1){
+        if (selectedCharacter.getState()!=1){
 
             int dmg = getWeapon().calculateDmg(this);
             selectedCharacter.setHp(selectedCharacter.getHp() - (long) dmg);

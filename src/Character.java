@@ -240,7 +240,8 @@ public abstract class Character {
         if (getWeapon() != null&&state !=0) {
             int resistance = (clothing == null) ? 0 : selectedCharacter.clothing.getResistance();
             int dmg = getWeapon().calculateDmg(this);
-            selectedCharacter.setHp(selectedCharacter.hp - (long) dmg + resistance);
+            int healthModifier = Math.max((dmg - resistance), 0);
+            selectedCharacter.setHp(selectedCharacter.hp - healthModifier );
             if (selectedCharacter.hp < 0) {
                 selectedCharacter.hp = 0;
             }

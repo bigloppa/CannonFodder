@@ -59,7 +59,7 @@ public class Shield extends Weapon{
         }else{
             bound = enemyList.size();
         }
-        stunnedCharacters = enemyList;
+
 
         for (int i = 0; i < bound; i++) {
             int randomNum = secureRandom.nextInt(enemyList.size());
@@ -69,7 +69,9 @@ public class Shield extends Weapon{
                 if (randomNum == j){
                     enemyList.get(j).setState(1);
                     System.out.print(enemyList.get(j).getName()+ " is stunned. ");
+                    stunnedCharacters.add(enemyList.get(j));
                     enemyList.remove(enemyList.get(j));
+
                 }
             }
             System.out.println();
